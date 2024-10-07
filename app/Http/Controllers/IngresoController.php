@@ -1,0 +1,157 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\CreateIngresoRequest;
+use App\Http\Requests\UpdateIngresoRequest;
+use App\Repositories\IngresoRepository;
+use App\Http\Controllers\AppBaseController;
+use Illuminate\Http\Request;
+use Flash;
+use Laracasts\Flash\Flash as FlashFlash;
+use Response;
+
+class IngresoController extends AppBaseController
+{
+    /** @var IngresoRepository $ingresoRepository*/
+    private $ingresoRepository;
+
+    public function __construct(IngresoRepository $ingresoRepo)
+    {
+        $this->ingresoRepository = $ingresoRepo;
+    }
+
+    /**
+     * Display a listing of the Ingreso.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function index(Request $request)
+    {
+        $ingresos = $this->ingresoRepository->all();
+
+        return view('ingresos.index')
+            ->with('ingresos', $ingresos);
+    }
+
+    /**
+     * Show the form for creating a new Ingreso.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        return view('ingresos.create');
+    }
+
+    /**
+     * Store a newly created Ingreso in storage.
+     *
+     * @param CreateIngresoRequest $request
+     *
+     * @return Response
+     */
+    public function store(CreateIngresoRequest $request)
+    {
+        $input = $request->all();
+
+        $ingreso = $this->ingresoRepository->create($input);
+
+        FlashFlash::success('Ingreso saved successfully.');
+
+        return redirect(route('ingresos.index'));
+    }
+
+    /**
+     * Display the specified Ingreso.
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function show($id)
+    {
+        $ingreso = $this->ingresoRepository->find($id);
+
+        if (empty($ingreso)) {
+            FlashFlash::error('Ingreso not found');
+
+            return redirect(route('ingresos.index'));
+        }
+
+        return view('ingresos.show')->with('ingreso', $ingreso);
+    }
+
+    /**
+     * Show the form for editing the specified Ingreso.
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function edit($id)
+    {
+        $ingreso = $this->ingresoRepository->find($id);
+
+        if (empty($ingreso)) {
+            FlashFlash::error('Ingreso not found');
+
+            return redirect(route('ingresos.index'));
+        }
+
+        return view('ingresos.edit')->with('ingreso', $ingreso);
+    }
+
+    /**
+     * Update the specified Ingreso in storage.
+     *
+     * @param int $id
+     * @param UpdateIngresoRequest $request
+     *
+     * @return Response
+     */
+    public function update($id, UpdateIngresoRequest $request)
+    {
+        $ingreso = $this->ingresoRepository->find($id);
+
+        if (empty($ingreso)) {
+            FlashFlash::error('Ingreso not found');
+
+            return redirect(route('ingresos.index'));
+        }
+
+        $ingreso = $this->ingresoRepository->update($request->all(), $id);
+
+        FlashFlash::success('Ingreso updated successfully.');
+
+        return redirect(route('ingresos.index'));
+    }
+
+    /**
+     * Remove the specified Ingreso from storage.
+     *
+     * @param int $id
+     *
+     * @throws \Exception
+     *
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        $ingreso = $this->ingresoRepository->find($id);
+
+        if (empty($ingreso)) {
+            FlashFlash::error('Ingreso not found');
+
+            return redirect(route('ingresos.index'));
+        }
+
+        $this->ingresoRepository->delete($id);
+
+        FlashFlash::success('Ingreso deleted successfully.');
+
+        return redirect(route('ingresos.index'));
+    }
+}

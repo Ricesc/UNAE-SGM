@@ -1,0 +1,3 @@
+php artisan infyom:scaffold BienesSubTipo --fromTable --tableName=bienes_sub_tipo --plural=BienesSubTipos --primary=bsti_id
+
+php artisan infyom:model TranferDetalle --fromTable --tableName=tranfer_detalles --primary=trdet_id
