@@ -1,7 +1,7 @@
 <!-- Edif Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('edif_id', 'Edif Id:') !!}
-    {!! Form::number('edif_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('Edificio', 'Edificio:') !!}
+    {!! Form::select('Edificio', $edif, null, ['class' => 'form-select']) !!}
 </div>
 
 <!-- Piso Descripcion Field -->

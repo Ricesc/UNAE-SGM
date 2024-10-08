@@ -69,3 +69,9 @@ Route::resource('bienesSubTipos', App\Http\Controllers\BienesSubTipoController::
 
 
 Route::resource('bienesSubTipos', App\Http\Controllers\BienesSubTipoController::class);
+
+
+Route::resource('usuarios', App\Http\Controllers\UsuarioController::class);
+
+
+Route::resource('users', App\Http\Controllers\UserController::class)->middleware('auth');

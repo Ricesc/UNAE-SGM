@@ -6,6 +6,7 @@ use App\Http\Requests\CreatePisoRequest;
 use App\Http\Requests\UpdatePisoRequest;
 use App\Repositories\PisoRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Edificio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Laracasts\Flash\Flash;
@@ -29,7 +30,7 @@ class PisoController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $pisos = $this->pisoRepository->all();
+        $pisos = $this->pisoRepository->allWithEdificio();;
 
         return view('pisos.index')
             ->with('pisos', $pisos);
@@ -42,7 +43,9 @@ class PisoController extends AppBaseController
      */
     public function create()
     {
-        return view('pisos.create');
+        $edificios = Edificio::pluck('edif_descripcion', 'edif_id');  // Listado clave-valor
+
+        return view('pisos.create')->with('edif', $edificios);
     }
 
     /**

@@ -68,11 +68,11 @@ class Bien extends EloquentModel
      * @var array
      */
     public static $rules = [
-        'btip_id' => 'nullable|integer',
-        'sala_id' => 'nullable|integer',
-        'idet_id' => 'nullable|integer',
-        'bien_estado' => 'nullable|integer',
-        'bien_codigo' => 'nullable|string|max:30',
+        'btip_id' => 'required|integer',
+        'sala_id' => 'required|integer',
+        'idet_id' => 'required|integer',
+        'bien_estado' => 'required|integer',
+        'bien_codigo' => 'required|string|max:30',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'

@@ -102,3 +102,15 @@
 </li>
 
 
+<li class="nav-item">
+    <a href="{{ route('usuarios.index') }}"
+       class="nav-link {{ Request::is('usuarios*') ? 'active' : '' }}">
+        <p>Usuarios</p>
+    </a>
+</li>
+
+
+
+<li class="{{ Request::is('users*') ? 'active' : '' }}">
+    <a href="{!! route('users.index') !!}"><i class="fa fa-user"></i><span>Users</span></a>
+</li>

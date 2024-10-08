@@ -2,7 +2,7 @@
     <table class="table" id="pisos-table">
         <thead>
         <tr>
-            <th>Edif Id</th>
+            <th>Edificio</th>
         <th>Piso Descripcion</th>
         <th>Piso Direccion</th>
             <th colspan="3">Action</th>
@@ -11,7 +11,7 @@
         <tbody>
         @foreach($pisos as $piso)
             <tr>
-                <td>{{ $piso->edif_id }}</td>
+                <td>{{ $piso->edif->edif_descripcion }}</td>
             <td>{{ $piso->piso_descripcion }}</td>
             <td>{{ $piso->piso_direccion }}</td>
                 <td width="120">

@@ -127,6 +127,8 @@ return [
     */
 
     'options' => [
+        'tables' => 'datatables',
+
         'seeder' => true,
 
         'factory' => true,
@@ -177,7 +179,7 @@ return [
 
         'tests'         => true,
 
-        'datatables'    => false,
+        'datatables'    => true,
 
         'menu'          => [
 

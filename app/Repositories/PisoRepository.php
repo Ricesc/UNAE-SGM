@@ -9,7 +9,7 @@ use App\Repositories\BaseRepository;
  * Class PisoRepository
  * @package App\Repositories
  * @version October 7, 2024, 5:07 pm UTC
-*/
+ */
 
 class PisoRepository extends BaseRepository
 {
@@ -38,5 +38,13 @@ class PisoRepository extends BaseRepository
     public function model()
     {
         return Piso::class;
+    }
+
+    /**
+     * Get all pisos with their associated edificio
+     */
+    public function allWithEdificio($columns = ['*'])
+    {
+        return Piso::with('edif')->get($columns);  // Cargar la relación 'edificio'
     }
 }
