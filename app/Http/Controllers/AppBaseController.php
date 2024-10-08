@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Response as FacadesResponse;
+use Illuminate\Support\Facades\Response;
 use InfyOm\Generator\Utils\ResponseUtil;
-use Response;
 
 /**
  * @SWG\Swagger(
@@ -21,17 +20,17 @@ class AppBaseController extends Controller
 {
     public function sendResponse($result, $message)
     {
-        return FacadesResponse::json(ResponseUtil::makeResponse($message, $result));
+        return Response::json(ResponseUtil::makeResponse($message, $result));
     }
 
     public function sendError($error, $code = 404)
     {
-        return FacadesResponse::json(ResponseUtil::makeError($error), $code);
+        return Response::json(ResponseUtil::makeError($error), $code);
     }
 
     public function sendSuccess($message)
     {
-        return FacadesResponse::json([
+        return Response::json([
             'success' => true,
             'message' => $message
         ], 200);

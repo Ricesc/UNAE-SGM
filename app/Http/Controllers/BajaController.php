@@ -7,9 +7,8 @@ use App\Http\Requests\UpdateBajaRequest;
 use App\Repositories\BajaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
-use Laracasts\Flash\Flash as FlashFlash;
-use Response;
+use Illuminate\Support\Facades\Response;
+use Laracasts\Flash\Flash;
 
 class BajaController extends AppBaseController
 {
@@ -59,7 +58,7 @@ class BajaController extends AppBaseController
 
         $baja = $this->bajaRepository->create($input);
 
-        FlashFlash::success('Baja saved successfully.');
+        Flash::success('Baja saved successfully.');
 
         return redirect(route('bajas.index'));
     }
@@ -76,7 +75,7 @@ class BajaController extends AppBaseController
         $baja = $this->bajaRepository->find($id);
 
         if (empty($baja)) {
-            FlashFlash::error('Baja not found');
+            Flash::error('Baja not found');
 
             return redirect(route('bajas.index'));
         }
@@ -96,7 +95,7 @@ class BajaController extends AppBaseController
         $baja = $this->bajaRepository->find($id);
 
         if (empty($baja)) {
-            FlashFlash::error('Baja not found');
+            Flash::error('Baja not found');
 
             return redirect(route('bajas.index'));
         }
@@ -117,14 +116,14 @@ class BajaController extends AppBaseController
         $baja = $this->bajaRepository->find($id);
 
         if (empty($baja)) {
-            FlashFlash::error('Baja not found');
+            Flash::error('Baja not found');
 
             return redirect(route('bajas.index'));
         }
 
         $baja = $this->bajaRepository->update($request->all(), $id);
 
-        FlashFlash::success('Baja updated successfully.');
+        Flash::success('Baja updated successfully.');
 
         return redirect(route('bajas.index'));
     }
@@ -143,14 +142,14 @@ class BajaController extends AppBaseController
         $baja = $this->bajaRepository->find($id);
 
         if (empty($baja)) {
-            FlashFlash::error('Baja not found');
+            Flash::error('Baja not found');
 
             return redirect(route('bajas.index'));
         }
 
         $this->bajaRepository->delete($id);
 
-        FlashFlash::success('Baja deleted successfully.');
+        Flash::success('Baja deleted successfully.');
 
         return redirect(route('bajas.index'));
     }

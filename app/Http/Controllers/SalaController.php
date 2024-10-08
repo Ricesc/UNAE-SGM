@@ -7,8 +7,8 @@ use App\Http\Requests\UpdateSalaRequest;
 use App\Repositories\SalaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
-use Response;
+use Illuminate\Support\Facades\Response;
+use Laracasts\Flash\Flash;
 
 class SalaController extends AppBaseController
 {

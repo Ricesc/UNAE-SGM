@@ -7,9 +7,8 @@ use App\Http\Requests\UpdatePisoRequest;
 use App\Repositories\PisoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
-use Laracasts\Flash\Flash as FlashFlash;
-use Response;
+use Illuminate\Support\Facades\Response;
+use Laracasts\Flash\Flash;
 
 class PisoController extends AppBaseController
 {
@@ -59,7 +58,7 @@ class PisoController extends AppBaseController
 
         $piso = $this->pisoRepository->create($input);
 
-        FlashFlash::success('Piso saved successfully.');
+        Flash::success('Piso saved successfully.');
 
         return redirect(route('pisos.index'));
     }
@@ -76,7 +75,7 @@ class PisoController extends AppBaseController
         $piso = $this->pisoRepository->find($id);
 
         if (empty($piso)) {
-            FlashFlash::error('Piso not found');
+            Flash::error('Piso not found');
 
             return redirect(route('pisos.index'));
         }
@@ -96,7 +95,7 @@ class PisoController extends AppBaseController
         $piso = $this->pisoRepository->find($id);
 
         if (empty($piso)) {
-            FlashFlash::error('Piso not found');
+            Flash::error('Piso not found');
 
             return redirect(route('pisos.index'));
         }
@@ -117,14 +116,14 @@ class PisoController extends AppBaseController
         $piso = $this->pisoRepository->find($id);
 
         if (empty($piso)) {
-            FlashFlash::error('Piso not found');
+            Flash::error('Piso not found');
 
             return redirect(route('pisos.index'));
         }
 
         $piso = $this->pisoRepository->update($request->all(), $id);
 
-        FlashFlash::success('Piso updated successfully.');
+        Flash::success('Piso updated successfully.');
 
         return redirect(route('pisos.index'));
     }
@@ -143,14 +142,14 @@ class PisoController extends AppBaseController
         $piso = $this->pisoRepository->find($id);
 
         if (empty($piso)) {
-            FlashFlash::error('Piso not found');
+            Flash::error('Piso not found');
 
             return redirect(route('pisos.index'));
         }
 
         $this->pisoRepository->delete($id);
 
-        FlashFlash::success('Piso deleted successfully.');
+        Flash::success('Piso deleted successfully.');
 
         return redirect(route('pisos.index'));
     }

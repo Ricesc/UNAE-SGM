@@ -7,9 +7,8 @@ use App\Http\Requests\UpdateBienesTipoRequest;
 use App\Repositories\BienesTipoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
-use Laracasts\Flash\Flash as FlashFlash;
-use Response;
+use Illuminate\Support\Facades\Response;
+use Laracasts\Flash\Flash;
 
 class BienesTipoController extends AppBaseController
 {
@@ -59,7 +58,7 @@ class BienesTipoController extends AppBaseController
 
         $bienesTipo = $this->bienesTipoRepository->create($input);
 
-        FlashFlash::success('Bienes Tipo saved successfully.');
+        Flash::success('Bienes Tipo saved successfully.');
 
         return redirect(route('bienesTipos.index'));
     }
@@ -76,7 +75,7 @@ class BienesTipoController extends AppBaseController
         $bienesTipo = $this->bienesTipoRepository->find($id);
 
         if (empty($bienesTipo)) {
-            FlashFlash::error('Bienes Tipo not found');
+            Flash::error('Bienes Tipo not found');
 
             return redirect(route('bienesTipos.index'));
         }
@@ -96,7 +95,7 @@ class BienesTipoController extends AppBaseController
         $bienesTipo = $this->bienesTipoRepository->find($id);
 
         if (empty($bienesTipo)) {
-            FlashFlash::error('Bienes Tipo not found');
+            Flash::error('Bienes Tipo not found');
 
             return redirect(route('bienesTipos.index'));
         }
@@ -117,14 +116,14 @@ class BienesTipoController extends AppBaseController
         $bienesTipo = $this->bienesTipoRepository->find($id);
 
         if (empty($bienesTipo)) {
-            FlashFlash::error('Bienes Tipo not found');
+            Flash::error('Bienes Tipo not found');
 
             return redirect(route('bienesTipos.index'));
         }
 
         $bienesTipo = $this->bienesTipoRepository->update($request->all(), $id);
 
-        FlashFlash::success('Bienes Tipo updated successfully.');
+        Flash::success('Bienes Tipo updated successfully.');
 
         return redirect(route('bienesTipos.index'));
     }
@@ -143,14 +142,14 @@ class BienesTipoController extends AppBaseController
         $bienesTipo = $this->bienesTipoRepository->find($id);
 
         if (empty($bienesTipo)) {
-            FlashFlash::error('Bienes Tipo not found');
+            Flash::error('Bienes Tipo not found');
 
             return redirect(route('bienesTipos.index'));
         }
 
         $this->bienesTipoRepository->delete($id);
 
-        FlashFlash::success('Bienes Tipo deleted successfully.');
+        Flash::success('Bienes Tipo deleted successfully.');
 
         return redirect(route('bienesTipos.index'));
     }

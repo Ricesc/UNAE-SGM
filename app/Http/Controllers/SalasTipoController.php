@@ -7,8 +7,8 @@ use App\Http\Requests\UpdateSalasTipoRequest;
 use App\Repositories\SalasTipoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
-use Response;
+use Illuminate\Support\Facades\Response;
+use Laracasts\Flash\Flash;
 
 class SalasTipoController extends AppBaseController
 {

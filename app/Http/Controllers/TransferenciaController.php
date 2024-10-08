@@ -7,8 +7,8 @@ use App\Http\Requests\UpdateTransferenciaRequest;
 use App\Repositories\TransferenciaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
-use Response;
+use Illuminate\Support\Facades\Response;
+use Laracasts\Flash\Flash;
 
 class TransferenciaController extends AppBaseController
 {

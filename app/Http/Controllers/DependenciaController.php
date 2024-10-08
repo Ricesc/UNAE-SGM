@@ -7,9 +7,8 @@ use App\Http\Requests\UpdateDependenciaRequest;
 use App\Repositories\DependenciaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
-use Laracasts\Flash\Flash as FlashFlash;
-use Response;
+use Illuminate\Support\Facades\Response;
+use Laracasts\Flash\Flash;
 
 class DependenciaController extends AppBaseController
 {
@@ -59,7 +58,7 @@ class DependenciaController extends AppBaseController
 
         $dependencia = $this->dependenciaRepository->create($input);
 
-        FlashFlash::success('Dependencia saved successfully.');
+        Flash::success('Dependencia saved successfully.');
 
         return redirect(route('dependencias.index'));
     }
@@ -76,7 +75,7 @@ class DependenciaController extends AppBaseController
         $dependencia = $this->dependenciaRepository->find($id);
 
         if (empty($dependencia)) {
-            FlashFlash::error('Dependencia not found');
+            Flash::error('Dependencia not found');
 
             return redirect(route('dependencias.index'));
         }
@@ -96,7 +95,7 @@ class DependenciaController extends AppBaseController
         $dependencia = $this->dependenciaRepository->find($id);
 
         if (empty($dependencia)) {
-            FlashFlash::error('Dependencia not found');
+            Flash::error('Dependencia not found');
 
             return redirect(route('dependencias.index'));
         }
@@ -117,14 +116,14 @@ class DependenciaController extends AppBaseController
         $dependencia = $this->dependenciaRepository->find($id);
 
         if (empty($dependencia)) {
-            FlashFlash::error('Dependencia not found');
+            Flash::error('Dependencia not found');
 
             return redirect(route('dependencias.index'));
         }
 
         $dependencia = $this->dependenciaRepository->update($request->all(), $id);
 
-        FlashFlash::success('Dependencia updated successfully.');
+        Flash::success('Dependencia updated successfully.');
 
         return redirect(route('dependencias.index'));
     }
@@ -143,14 +142,14 @@ class DependenciaController extends AppBaseController
         $dependencia = $this->dependenciaRepository->find($id);
 
         if (empty($dependencia)) {
-            FlashFlash::error('Dependencia not found');
+            Flash::error('Dependencia not found');
 
             return redirect(route('dependencias.index'));
         }
 
         $this->dependenciaRepository->delete($id);
 
-        FlashFlash::success('Dependencia deleted successfully.');
+        Flash::success('Dependencia deleted successfully.');
 
         return redirect(route('dependencias.index'));
     }

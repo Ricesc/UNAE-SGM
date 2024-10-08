@@ -7,9 +7,8 @@ use App\Http\Requests\UpdateBienesSubTipoRequest;
 use App\Repositories\BienesSubTipoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
-use Laracasts\Flash\Flash as FlashFlash;
-use Response;
+use Illuminate\Support\Facades\Response;
+use Laracasts\Flash\Flash;
 
 class BienesSubTipoController extends AppBaseController
 {
@@ -59,7 +58,7 @@ class BienesSubTipoController extends AppBaseController
 
         $bienesSubTipo = $this->bienesSubTipoRepository->create($input);
 
-        FlashFlash::success('Bienes Sub Tipo saved successfully.');
+        Flash::success('Bienes Sub Tipo saved successfully.');
 
         return redirect(route('bienesSubTipos.index'));
     }
@@ -76,7 +75,7 @@ class BienesSubTipoController extends AppBaseController
         $bienesSubTipo = $this->bienesSubTipoRepository->find($id);
 
         if (empty($bienesSubTipo)) {
-            FlashFlash::error('Bienes Sub Tipo not found');
+            Flash::error('Bienes Sub Tipo not found');
 
             return redirect(route('bienesSubTipos.index'));
         }
@@ -96,7 +95,7 @@ class BienesSubTipoController extends AppBaseController
         $bienesSubTipo = $this->bienesSubTipoRepository->find($id);
 
         if (empty($bienesSubTipo)) {
-            FlashFlash::error('Bienes Sub Tipo not found');
+            Flash::error('Bienes Sub Tipo not found');
 
             return redirect(route('bienesSubTipos.index'));
         }
@@ -117,14 +116,14 @@ class BienesSubTipoController extends AppBaseController
         $bienesSubTipo = $this->bienesSubTipoRepository->find($id);
 
         if (empty($bienesSubTipo)) {
-            FlashFlash::error('Bienes Sub Tipo not found');
+            Flash::error('Bienes Sub Tipo not found');
 
             return redirect(route('bienesSubTipos.index'));
         }
 
         $bienesSubTipo = $this->bienesSubTipoRepository->update($request->all(), $id);
 
-        FlashFlash::success('Bienes Sub Tipo updated successfully.');
+        Flash::success('Bienes Sub Tipo updated successfully.');
 
         return redirect(route('bienesSubTipos.index'));
     }
@@ -143,14 +142,14 @@ class BienesSubTipoController extends AppBaseController
         $bienesSubTipo = $this->bienesSubTipoRepository->find($id);
 
         if (empty($bienesSubTipo)) {
-            FlashFlash::error('Bienes Sub Tipo not found');
+            Flash::error('Bienes Sub Tipo not found');
 
             return redirect(route('bienesSubTipos.index'));
         }
 
         $this->bienesSubTipoRepository->delete($id);
 
-        FlashFlash::success('Bienes Sub Tipo deleted successfully.');
+        Flash::success('Bienes Sub Tipo deleted successfully.');
 
         return redirect(route('bienesSubTipos.index'));
     }

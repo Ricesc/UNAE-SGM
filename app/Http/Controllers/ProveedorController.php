@@ -7,8 +7,8 @@ use App\Http\Requests\UpdateProveedorRequest;
 use App\Repositories\ProveedorRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
-use Response;
+use Illuminate\Support\Facades\Response;
+use Laracasts\Flash\Flash;
 
 class ProveedorController extends AppBaseController
 {

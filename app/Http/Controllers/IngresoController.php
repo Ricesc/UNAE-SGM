@@ -7,9 +7,8 @@ use App\Http\Requests\UpdateIngresoRequest;
 use App\Repositories\IngresoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
-use Laracasts\Flash\Flash as FlashFlash;
-use Response;
+use Illuminate\Support\Facades\Response;
+use Laracasts\Flash\Flash;
 
 class IngresoController extends AppBaseController
 {
@@ -59,7 +58,7 @@ class IngresoController extends AppBaseController
 
         $ingreso = $this->ingresoRepository->create($input);
 
-        FlashFlash::success('Ingreso saved successfully.');
+        Flash::success('Ingreso saved successfully.');
 
         return redirect(route('ingresos.index'));
     }
@@ -76,7 +75,7 @@ class IngresoController extends AppBaseController
         $ingreso = $this->ingresoRepository->find($id);
 
         if (empty($ingreso)) {
-            FlashFlash::error('Ingreso not found');
+            Flash::error('Ingreso not found');
 
             return redirect(route('ingresos.index'));
         }
@@ -96,7 +95,7 @@ class IngresoController extends AppBaseController
         $ingreso = $this->ingresoRepository->find($id);
 
         if (empty($ingreso)) {
-            FlashFlash::error('Ingreso not found');
+            Flash::error('Ingreso not found');
 
             return redirect(route('ingresos.index'));
         }
@@ -117,14 +116,14 @@ class IngresoController extends AppBaseController
         $ingreso = $this->ingresoRepository->find($id);
 
         if (empty($ingreso)) {
-            FlashFlash::error('Ingreso not found');
+            Flash::error('Ingreso not found');
 
             return redirect(route('ingresos.index'));
         }
 
         $ingreso = $this->ingresoRepository->update($request->all(), $id);
 
-        FlashFlash::success('Ingreso updated successfully.');
+        Flash::success('Ingreso updated successfully.');
 
         return redirect(route('ingresos.index'));
     }
@@ -143,14 +142,14 @@ class IngresoController extends AppBaseController
         $ingreso = $this->ingresoRepository->find($id);
 
         if (empty($ingreso)) {
-            FlashFlash::error('Ingreso not found');
+            Flash::error('Ingreso not found');
 
             return redirect(route('ingresos.index'));
         }
 
         $this->ingresoRepository->delete($id);
 
-        FlashFlash::success('Ingreso deleted successfully.');
+        Flash::success('Ingreso deleted successfully.');
 
         return redirect(route('ingresos.index'));
     }

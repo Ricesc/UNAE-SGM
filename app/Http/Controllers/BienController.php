@@ -7,9 +7,8 @@ use App\Http\Requests\UpdateBienRequest;
 use App\Repositories\BienRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
-use Laracasts\Flash\Flash as FlashFlash;
-use Response;
+use Illuminate\Support\Facades\Response;
+use Laracasts\Flash\Flash;
 
 class BienController extends AppBaseController
 {
@@ -59,7 +58,7 @@ class BienController extends AppBaseController
 
         $bien = $this->bienRepository->create($input);
 
-        FlashFlash::success('Bien saved successfully.');
+        Flash::success('Bien saved successfully.');
 
         return redirect(route('bienes.index'));
     }
@@ -76,7 +75,7 @@ class BienController extends AppBaseController
         $bien = $this->bienRepository->find($id);
 
         if (empty($bien)) {
-            FlashFlash::error('Bien not found');
+            Flash::error('Bien not found');
 
             return redirect(route('bienes.index'));
         }
@@ -96,7 +95,7 @@ class BienController extends AppBaseController
         $bien = $this->bienRepository->find($id);
 
         if (empty($bien)) {
-            FlashFlash::error('Bien not found');
+            Flash::error('Bien not found');
 
             return redirect(route('bienes.index'));
         }
@@ -117,14 +116,14 @@ class BienController extends AppBaseController
         $bien = $this->bienRepository->find($id);
 
         if (empty($bien)) {
-            FlashFlash::error('Bien not found');
+            Flash::error('Bien not found');
 
             return redirect(route('bienes.index'));
         }
 
         $bien = $this->bienRepository->update($request->all(), $id);
 
-        FlashFlash::success('Bien updated successfully.');
+        Flash::success('Bien updated successfully.');
 
         return redirect(route('bienes.index'));
     }
@@ -143,14 +142,14 @@ class BienController extends AppBaseController
         $bien = $this->bienRepository->find($id);
 
         if (empty($bien)) {
-            FlashFlash::error('Bien not found');
+            Flash::error('Bien not found');
 
             return redirect(route('bienes.index'));
         }
 
         $this->bienRepository->delete($id);
 
-        FlashFlash::success('Bien deleted successfully.');
+        Flash::success('Bien deleted successfully.');
 
         return redirect(route('bienes.index'));
     }

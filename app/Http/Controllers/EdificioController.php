@@ -7,9 +7,8 @@ use App\Http\Requests\UpdateEdificioRequest;
 use App\Repositories\EdificioRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
-use Laracasts\Flash\Flash as FlashFlash;
-use Response;
+use Illuminate\Support\Facades\Response;
+use Laracasts\Flash\Flash;
 
 class EdificioController extends AppBaseController
 {
@@ -59,7 +58,7 @@ class EdificioController extends AppBaseController
 
         $edificio = $this->edificioRepository->create($input);
 
-        FlashFlash::success('Edificio saved successfully.');
+        Flash::success('Edificio saved successfully.');
 
         return redirect(route('edificios.index'));
     }
@@ -76,7 +75,7 @@ class EdificioController extends AppBaseController
         $edificio = $this->edificioRepository->find($id);
 
         if (empty($edificio)) {
-            FlashFlash::error('Edificio not found');
+            Flash::error('Edificio not found');
 
             return redirect(route('edificios.index'));
         }
@@ -96,7 +95,7 @@ class EdificioController extends AppBaseController
         $edificio = $this->edificioRepository->find($id);
 
         if (empty($edificio)) {
-            FlashFlash::error('Edificio not found');
+            Flash::error('Edificio not found');
 
             return redirect(route('edificios.index'));
         }
@@ -117,14 +116,14 @@ class EdificioController extends AppBaseController
         $edificio = $this->edificioRepository->find($id);
 
         if (empty($edificio)) {
-            FlashFlash::error('Edificio not found');
+            Flash::error('Edificio not found');
 
             return redirect(route('edificios.index'));
         }
 
         $edificio = $this->edificioRepository->update($request->all(), $id);
 
-        FlashFlash::success('Edificio updated successfully.');
+        Flash::success('Edificio updated successfully.');
 
         return redirect(route('edificios.index'));
     }
@@ -143,14 +142,14 @@ class EdificioController extends AppBaseController
         $edificio = $this->edificioRepository->find($id);
 
         if (empty($edificio)) {
-            FlashFlash::error('Edificio not found');
+            Flash::error('Edificio not found');
 
             return redirect(route('edificios.index'));
         }
 
         $this->edificioRepository->delete($id);
 
-        FlashFlash::success('Edificio deleted successfully.');
+        Flash::success('Edificio deleted successfully.');
 
         return redirect(route('edificios.index'));
     }
