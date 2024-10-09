@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 /**
  * Class Piso
  * @package App\Models
- * @version October 7, 2024, 5:07 pm UTC
+ * @version October 9, 2024, 2:13 pm -03
  *
  * @property \App\Models\Edificio $edif
  * @property \Illuminate\Database\Eloquent\Collection $sectores
@@ -20,66 +20,66 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
  */
 class Piso extends EloquentModel
 {
-	use SoftDeletes;
+    use SoftDeletes;
 
-	use HasFactory;
+    use HasFactory;
 
-	public $table = 'pisos';
+    public $table = 'pisos';
 
-	const CREATED_AT = 'created_at';
-	const UPDATED_AT = 'updated_at';
-
-
-	protected $dates = ['deleted_at'];
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
 
 
-	protected $primaryKey = 'piso_id';
+    protected $dates = ['deleted_at'];
 
-	public $fillable = [
-		'edif_id',
-		'piso_descripcion',
-		'piso_direccion'
-	];
 
-	/**
-	 * The attributes that should be casted to native types.
-	 *
-	 * @var array
-	 */
-	protected $casts = [
-		'piso_id' => 'integer',
-		'edif_id' => 'integer',
-		'piso_descripcion' => 'string',
-		'piso_direccion' => 'string'
-	];
+    protected $primaryKey = 'piso_id';
 
-	/**
-	 * Validation rules
-	 *
-	 * @var array
-	 */
-	public static $rules = [
-		'edif_id' => 'nullable|integer',
-		'piso_descripcion' => 'required|string|max:255',
-		'piso_direccion' => 'nullable|string|max:255',
-		'created_at' => 'nullable',
-		'updated_at' => 'nullable',
-		'deleted_at' => 'nullable'
-	];
+    public $fillable = [
+        'edif_id',
+        'piso_descripcion',
+        'piso_direccion'
+    ];
 
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-	 **/
-	public function edif()
-	{
-		return $this->belongsTo(\App\Models\Edificio::class, 'edif_id');
-	}
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'piso_id' => 'integer',
+        'edif_id' => 'integer',
+        'piso_descripcion' => 'string',
+        'piso_direccion' => 'string'
+    ];
 
-	/**
-	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
-	 **/
-	public function sectores()
-	{
-		return $this->hasMany(\App\Models\Sector::class, 'piso_id');
-	}
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public static $rules = [
+        'edif_id' => 'nullable|integer',
+        'piso_descripcion' => 'required|string|max:255',
+        'piso_direccion' => 'nullable|string|max:255',
+        'created_at' => 'nullable',
+        'updated_at' => 'nullable',
+        'deleted_at' => 'nullable'
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function edif()
+    {
+        return $this->belongsTo(\App\Models\Edificio::class, 'edif_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function sectores()
+    {
+        return $this->hasMany(\App\Models\Sector::class, 'piso_id');
+    }
 }

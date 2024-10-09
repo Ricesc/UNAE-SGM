@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\Usuario;
+use App\Models\Edificio;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
-class UsuarioDataTable extends DataTable
+class EdificioDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -18,16 +18,16 @@ class UsuarioDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'usuarios.datatables_actions');
+        return $dataTable->addColumn('action', 'edificios.datatables_actions');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Usuario $model
+     * @param \App\Models\Edificio $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Usuario $model)
+    public function query(Edificio $model)
     {
         return $model->newQuery();
     }
@@ -44,12 +44,6 @@ class UsuarioDataTable extends DataTable
             ->minifiedAjax()
             ->addAction(['width' => '120px', 'printable' => false])
             ->parameters([
-                'responsive' => true,
-                'columnDefs' => [
-                    ['responsivePriority' => 1, 'targets' => 0],
-                    ['responsivePriority' => 2, 'targets' => -1],
-                ],
-                'autoWidth' => false,
                 'dom'       => 'Bfrtip',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
@@ -71,9 +65,8 @@ class UsuarioDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'usu_nombre',
-            'usu_apellido',
-            'usu_rol'
+            'edif_descripcion',
+            'edif_direccion'
         ];
     }
 
@@ -84,6 +77,6 @@ class UsuarioDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'usuarios_datatable_' . time();
+        return 'edificios_datatable_' . time();
     }
 }

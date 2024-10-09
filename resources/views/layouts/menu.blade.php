@@ -6,20 +6,6 @@
 </li>
 
 
-<li class="nav-item">
-    <a href="{{ route('edificios.index') }}"
-       class="nav-link {{ Request::is('edificios*') ? 'active' : '' }}">
-        <p>Edificios</p>
-    </a>
-</li>
-
-
-<li class="nav-item">
-    <a href="{{ route('pisos.index') }}"
-       class="nav-link {{ Request::is('pisos*') ? 'active' : '' }}">
-        <p>Pisos</p>
-    </a>
-</li>
 
 
 <li class="nav-item">
@@ -114,3 +100,19 @@
 <li class="{{ Request::is('users*') ? 'active' : '' }}">
     <a href="{!! route('users.index') !!}"><i class="fa fa-user"></i><span>Users</span></a>
 </li>
+<li class="nav-item">
+    <a href="{{ route('edificios.index') }}"
+       class="nav-link {{ Request::is('edificios*') ? 'active' : '' }}">
+        <p>Edificios</p>
+    </a>
+</li>
+
+
+<li class="nav-item">
+    <a href="{{ route('pisos.index') }}"
+       class="nav-link {{ Request::is('pisos*') ? 'active' : '' }}">
+        <p>Pisos</p>
+    </a>
+</li>
+
+

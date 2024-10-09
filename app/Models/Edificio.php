@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 /**
  * Class Edificio
  * @package App\Models
- * @version October 7, 2024, 4:51 pm UTC
+ * @version October 9, 2024, 2:00 pm -03
  *
  * @property \Illuminate\Database\Eloquent\Collection $pisos
  * @property string $edif_descripcion

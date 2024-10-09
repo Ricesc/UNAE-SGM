@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\PisoDataTable;
 use App\Http\Requests\CreatePisoRequest;
 use App\Http\Requests\UpdatePisoRequest;
 use App\Repositories\PisoRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Models\Edificio;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
 
 class PisoController extends AppBaseController
@@ -24,16 +25,13 @@ class PisoController extends AppBaseController
     /**
      * Display a listing of the Piso.
      *
-     * @param Request $request
+     * @param PisoDataTable $pisoDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(PisoDataTable $pisoDataTable)
     {
-        $pisos = $this->pisoRepository->allWithEdificio();;
-
-        return view('pisos.index')
-            ->with('pisos', $pisos);
+        return $pisoDataTable->render('pisos.index');
     }
 
     /**
@@ -135,8 +133,6 @@ class PisoController extends AppBaseController
      * Remove the specified Piso from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */

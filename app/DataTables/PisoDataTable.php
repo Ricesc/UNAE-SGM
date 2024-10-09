@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\Usuario;
+use App\Models\Piso;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
-class UsuarioDataTable extends DataTable
+class PisoDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -18,18 +18,22 @@ class UsuarioDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'usuarios.datatables_actions');
+        return $dataTable
+            ->addColumn('edif_descripcion', function ($row) {
+                return $row->edif->edif_descripcion ?? 'Sin edificio'; // Mostrar la descripción del edificio
+            })
+            ->addColumn('action', 'pisos.datatables_actions');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Usuario $model
+     * @param \App\Models\Piso $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Usuario $model)
+    public function query(Piso $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->with('edif');
     }
 
     /**
@@ -71,9 +75,9 @@ class UsuarioDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'usu_nombre',
-            'usu_apellido',
-            'usu_rol'
+            'piso_descripcion',
+            'piso_direccion',
+            'edif_descripcion' => ['title' => 'Edificio'] // Columna personalizada para mostrar el edificio
         ];
     }
 
@@ -84,6 +88,6 @@ class UsuarioDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'usuarios_datatable_' . time();
+        return 'pisos_datatable_' . time();
     }
 }

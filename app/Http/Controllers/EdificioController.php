@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\EdificioDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateEdificioRequest;
 use App\Http\Requests\UpdateEdificioRequest;
 use App\Repositories\EdificioRepository;
+use Flash;
 use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
-use Laracasts\Flash\Flash;
+use Response;
 
 class EdificioController extends AppBaseController
 {
@@ -23,16 +24,13 @@ class EdificioController extends AppBaseController
     /**
      * Display a listing of the Edificio.
      *
-     * @param Request $request
+     * @param EdificioDataTable $edificioDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(EdificioDataTable $edificioDataTable)
     {
-        $edificios = $this->edificioRepository->all();
-
-        return view('edificios.index')
-            ->with('edificios', $edificios);
+        return $edificioDataTable->render('edificios.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class EdificioController extends AppBaseController
      * Remove the specified Edificio from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */

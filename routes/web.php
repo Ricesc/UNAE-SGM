@@ -32,10 +32,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('sectores', App\Http\Controllers\SectorController::class);
 
 
-Route::resource('edificios', App\Http\Controllers\EdificioController::class);
 
 
-Route::resource('pisos', App\Http\Controllers\PisoController::class);
 
 
 Route::resource('salas', App\Http\Controllers\SalaController::class);
@@ -75,3 +73,9 @@ Route::resource('usuarios', App\Http\Controllers\UsuarioController::class);
 
 
 Route::resource('users', App\Http\Controllers\UserController::class)->middleware('auth');
+
+
+Route::resource('edificios', App\Http\Controllers\EdificioController::class);
+
+
+Route::resource('pisos', App\Http\Controllers\PisoController::class);
