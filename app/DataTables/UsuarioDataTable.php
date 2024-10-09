@@ -50,9 +50,10 @@ class UsuarioDataTable extends DataTable
                     ['responsivePriority' => 2, 'targets' => -1],
                 ],
                 'autoWidth' => false,
-                'dom'       => 'Bfrtip',
+                'dom'       => '<"top"lBf>rt<"bottom"ip><"clear">',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
+                'lengthMenu' => [5, 10, 20, 50, 100],
                 'language'   => [ // Personalización de los textos en la tabla
                     'lengthMenu'    => 'Mostrar _MENU_ registros por página',
                     'zeroRecords'   => 'Ningún Usuario encontrado',
@@ -69,7 +70,7 @@ class UsuarioDataTable extends DataTable
                     ],
                 ],
                 'buttons'   => [
-                    'colvis',
+                    ['extend' => 'colvis', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
