@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\SalasTipoDataTable;
 use App\Http\Requests\CreateSalasTipoRequest;
 use App\Http\Requests\UpdateSalasTipoRequest;
 use App\Repositories\SalasTipoRepository;
@@ -23,16 +24,13 @@ class SalasTipoController extends AppBaseController
     /**
      * Display a listing of the SalasTipo.
      *
-     * @param Request $request
+     * @param SalasTipoDataTable $salasTipoDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(SalasTipoDataTable $salasTipoDataTable)
     {
-        $salasTipos = $this->salasTipoRepository->all();
-
-        return view('salas_tipos.index')
-            ->with('salasTipos', $salasTipos);
+        return $salasTipoDataTable->render('salas_tipos.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class SalasTipoController extends AppBaseController
      * Remove the specified SalasTipo from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */

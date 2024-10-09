@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 /**
  * Class Baja
  * @package App\Models
- * @version October 7, 2024, 7:08 pm UTC
+ * @version October 9, 2024, 5:19 pm -03
  *
  * @property \App\Models\Usuario $usu
  * @property \Illuminate\Database\Eloquent\Collection $bienes

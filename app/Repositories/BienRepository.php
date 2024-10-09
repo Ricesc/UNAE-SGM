@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class BienRepository
  * @package App\Repositories
- * @version October 7, 2024, 7:11 pm UTC
+ * @version October 9, 2024, 5:22 pm -03
 */
 
 class BienRepository extends BaseRepository

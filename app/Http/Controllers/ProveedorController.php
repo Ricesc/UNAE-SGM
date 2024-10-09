@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\ProveedorDataTable;
 use App\Http\Requests\CreateProveedorRequest;
 use App\Http\Requests\UpdateProveedorRequest;
 use App\Repositories\ProveedorRepository;
@@ -23,16 +24,13 @@ class ProveedorController extends AppBaseController
     /**
      * Display a listing of the Proveedor.
      *
-     * @param Request $request
+     * @param ProveedorDataTable $proveedorDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(ProveedorDataTable $proveedorDataTable)
     {
-        $proveedores = $this->proveedorRepository->all();
-
-        return view('proveedores.index')
-            ->with('proveedores', $proveedores);
+        return $proveedorDataTable->render('proveedores.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class ProveedorController extends AppBaseController
      * Remove the specified Proveedor from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */

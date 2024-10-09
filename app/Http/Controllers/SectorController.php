@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\SectorDataTable;
 use App\Http\Requests\CreateSectorRequest;
 use App\Http\Requests\UpdateSectorRequest;
 use App\Repositories\SectorRepository;
@@ -23,16 +24,13 @@ class SectorController extends AppBaseController
     /**
      * Display a listing of the Sector.
      *
-     * @param Request $request
+     * @param SectorDataTable $sectorDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(SectorDataTable $sectorDataTable)
     {
-        $sectores = $this->sectorRepository->all();
-
-        return view('sectores.index')
-            ->with('sectores', $sectores);
+        return $sectorDataTable->render('sectores.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class SectorController extends AppBaseController
      * Remove the specified Sector from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */

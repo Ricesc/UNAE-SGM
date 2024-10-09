@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 /**
  * Class BienesTipo
  * @package App\Models
- * @version October 7, 2024, 7:36 pm UTC
+ * @version October 9, 2024, 5:28 pm -03
  *
  * @property \App\Models\BienesSubTipo $bsti
  * @property \Illuminate\Database\Eloquent\Collection $ingresos

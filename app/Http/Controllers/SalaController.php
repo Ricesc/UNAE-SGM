@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\SalaDataTable;
 use App\Http\Requests\CreateSalaRequest;
 use App\Http\Requests\UpdateSalaRequest;
 use App\Repositories\SalaRepository;
@@ -23,16 +24,13 @@ class SalaController extends AppBaseController
     /**
      * Display a listing of the Sala.
      *
-     * @param Request $request
+     * @param SalaDataTable $salaDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(SalaDataTable $salaDataTable)
     {
-        $salas = $this->salaRepository->all();
-
-        return view('salas.index')
-            ->with('salas', $salas);
+        return $salaDataTable->render('salas.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class SalaController extends AppBaseController
      * Remove the specified Sala from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */

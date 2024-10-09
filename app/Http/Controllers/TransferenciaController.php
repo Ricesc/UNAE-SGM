@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\TransferenciaDataTable;
 use App\Http\Requests\CreateTransferenciaRequest;
 use App\Http\Requests\UpdateTransferenciaRequest;
 use App\Repositories\TransferenciaRepository;
@@ -23,16 +24,13 @@ class TransferenciaController extends AppBaseController
     /**
      * Display a listing of the Transferencia.
      *
-     * @param Request $request
+     * @param TransferenciaDataTable $transferenciaDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(TransferenciaDataTable $transferenciaDataTable)
     {
-        $transferencias = $this->transferenciaRepository->all();
-
-        return view('transferencias.index')
-            ->with('transferencias', $transferencias);
+        return $transferenciaDataTable->render('transferencias.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class TransferenciaController extends AppBaseController
      * Remove the specified Transferencia from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */

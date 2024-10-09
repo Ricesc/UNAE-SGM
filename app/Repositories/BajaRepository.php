@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class BajaRepository
  * @package App\Repositories
- * @version October 7, 2024, 7:08 pm UTC
+ * @version October 9, 2024, 5:19 pm -03
 */
 
 class BajaRepository extends BaseRepository

@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class SalaRepository
  * @package App\Repositories
- * @version October 7, 2024, 5:14 pm UTC
+ * @version October 9, 2024, 5:01 pm -03
 */
 
 class SalaRepository extends BaseRepository

@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 /**
  * Class SalasTipo
  * @package App\Models
- * @version October 7, 2024, 6:33 pm UTC
+ * @version October 9, 2024, 5:06 pm -03
  *
  * @property \Illuminate\Database\Eloquent\Collection $salas
  * @property string $stip_descripcion

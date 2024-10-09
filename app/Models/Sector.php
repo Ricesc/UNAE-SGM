@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 /**
  * Class Sector
  * @package App\Models
- * @version October 7, 2024, 3:33 pm UTC
+ * @version October 9, 2024, 4:55 pm -03
  *
  * @property \App\Models\Piso $piso
  * @property \Illuminate\Database\Eloquent\Collection $salas

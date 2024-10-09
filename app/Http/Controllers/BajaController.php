@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\BajaDataTable;
 use App\Http\Requests\CreateBajaRequest;
 use App\Http\Requests\UpdateBajaRequest;
 use App\Repositories\BajaRepository;
@@ -23,16 +24,13 @@ class BajaController extends AppBaseController
     /**
      * Display a listing of the Baja.
      *
-     * @param Request $request
+     * @param BajaDataTable $bajaDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(BajaDataTable $bajaDataTable)
     {
-        $bajas = $this->bajaRepository->all();
-
-        return view('bajas.index')
-            ->with('bajas', $bajas);
+        return $bajaDataTable->render('bajas.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class BajaController extends AppBaseController
      * Remove the specified Baja from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */

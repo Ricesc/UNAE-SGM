@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class IngresoRepository
  * @package App\Repositories
- * @version October 7, 2024, 7:15 pm UTC
+ * @version October 9, 2024, 5:31 pm -03
 */
 
 class IngresoRepository extends BaseRepository

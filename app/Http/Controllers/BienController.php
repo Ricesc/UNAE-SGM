@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\BienDataTable;
 use App\Http\Requests\CreateBienRequest;
 use App\Http\Requests\UpdateBienRequest;
 use App\Repositories\BienRepository;
@@ -23,16 +24,13 @@ class BienController extends AppBaseController
     /**
      * Display a listing of the Bien.
      *
-     * @param Request $request
+     * @param BienDataTable $bienDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(BienDataTable $bienDataTable)
     {
-        $bienes = $this->bienRepository->all();
-
-        return view('bienes.index')
-            ->with('bienes', $bienes);
+        return $bienDataTable->render('bienes.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class BienController extends AppBaseController
      * Remove the specified Bien from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */

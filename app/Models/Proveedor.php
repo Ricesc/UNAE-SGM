@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 /**
  * Class Proveedor
  * @package App\Models
- * @version October 7, 2024, 7:18 pm UTC
+ * @version October 9, 2024, 5:33 pm -03
  *
  * @property \Illuminate\Database\Eloquent\Collection $usuarios
  * @property string $prov_nombre

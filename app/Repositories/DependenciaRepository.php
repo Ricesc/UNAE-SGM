@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class DependenciaRepository
  * @package App\Repositories
- * @version October 7, 2024, 6:52 pm UTC
+ * @version October 9, 2024, 5:13 pm -03
 */
 
 class DependenciaRepository extends BaseRepository

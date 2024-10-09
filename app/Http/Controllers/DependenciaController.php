@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\DependenciaDataTable;
 use App\Http\Requests\CreateDependenciaRequest;
 use App\Http\Requests\UpdateDependenciaRequest;
 use App\Repositories\DependenciaRepository;
@@ -23,16 +24,13 @@ class DependenciaController extends AppBaseController
     /**
      * Display a listing of the Dependencia.
      *
-     * @param Request $request
+     * @param DependenciaDataTable $dependenciaDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(DependenciaDataTable $dependenciaDataTable)
     {
-        $dependencias = $this->dependenciaRepository->all();
-
-        return view('dependencias.index')
-            ->with('dependencias', $dependencias);
+        return $dependenciaDataTable->render('dependencias.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class DependenciaController extends AppBaseController
      * Remove the specified Dependencia from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */

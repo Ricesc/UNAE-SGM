@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\BienesTipoDataTable;
 use App\Http\Requests\CreateBienesTipoRequest;
 use App\Http\Requests\UpdateBienesTipoRequest;
 use App\Repositories\BienesTipoRepository;
@@ -23,16 +24,13 @@ class BienesTipoController extends AppBaseController
     /**
      * Display a listing of the BienesTipo.
      *
-     * @param Request $request
+     * @param BienesTipoDataTable $bienesTipoDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(BienesTipoDataTable $bienesTipoDataTable)
     {
-        $bienesTipos = $this->bienesTipoRepository->all();
-
-        return view('bienes_tipos.index')
-            ->with('bienesTipos', $bienesTipos);
+        return $bienesTipoDataTable->render('bienes_tipos.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class BienesTipoController extends AppBaseController
      * Remove the specified BienesTipo from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */

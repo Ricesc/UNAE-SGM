@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\IngresoDataTable;
 use App\Http\Requests\CreateIngresoRequest;
 use App\Http\Requests\UpdateIngresoRequest;
 use App\Repositories\IngresoRepository;
@@ -23,16 +24,13 @@ class IngresoController extends AppBaseController
     /**
      * Display a listing of the Ingreso.
      *
-     * @param Request $request
+     * @param IngresoDataTable $ingresoDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(IngresoDataTable $ingresoDataTable)
     {
-        $ingresos = $this->ingresoRepository->all();
-
-        return view('ingresos.index')
-            ->with('ingresos', $ingresos);
+        return $ingresoDataTable->render('ingresos.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class IngresoController extends AppBaseController
      * Remove the specified Ingreso from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */

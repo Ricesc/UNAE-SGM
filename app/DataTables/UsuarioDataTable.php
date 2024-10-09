@@ -53,7 +53,23 @@ class UsuarioDataTable extends DataTable
                 'dom'       => 'Bfrtip',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
+                'language'   => [ // Personalización de los textos en la tabla
+                    'lengthMenu'    => 'Mostrar _MENU_ registros por página',
+                    'zeroRecords'   => 'Ningún Usuario encontrado',
+                    'info'          => 'Mostrando de _START_ a _END_ de un total de _TOTAL_ registros',
+                    'infoEmpty'     => 'Ningún Usuario encontrado',
+                    'infoFiltered'  => '(filtrados desde _MAX_ registros totales)',
+                    'search'        => 'Buscar:',
+                    'loadingRecords' => 'Cargando...',
+                    'paginate'      => [
+                        'first'    => 'Primero',
+                        'last'     => 'Último',
+                        'next'     => 'Siguiente',
+                        'previous' => 'Anterior',
+                    ],
+                ],
                 'buttons'   => [
+                    'colvis',
                     ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],

@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 /**
  * Class Dependencia
  * @package App\Models
- * @version October 7, 2024, 6:52 pm UTC
+ * @version October 9, 2024, 5:13 pm -03
  *
  * @property \Illuminate\Database\Eloquent\Collection $salas
  * @property string $depe_descripcion

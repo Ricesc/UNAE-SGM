@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 /**
  * Class Ingreso
  * @package App\Models
- * @version October 7, 2024, 7:15 pm UTC
+ * @version October 9, 2024, 5:31 pm -03
  *
  * @property \App\Models\Proveedore $prov
  * @property \App\Models\Usuario $usu

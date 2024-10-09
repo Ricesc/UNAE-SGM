@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\BienesSubTipoDataTable;
 use App\Http\Requests\CreateBienesSubTipoRequest;
 use App\Http\Requests\UpdateBienesSubTipoRequest;
 use App\Repositories\BienesSubTipoRepository;
@@ -23,16 +24,13 @@ class BienesSubTipoController extends AppBaseController
     /**
      * Display a listing of the BienesSubTipo.
      *
-     * @param Request $request
+     * @param BienesSubTipoDataTable $bienesSubTipoDataTable
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(BienesSubTipoDataTable $bienesSubTipoDataTable)
     {
-        $bienesSubTipos = $this->bienesSubTipoRepository->all();
-
-        return view('bienes_sub_tipos.index')
-            ->with('bienesSubTipos', $bienesSubTipos);
+        return $bienesSubTipoDataTable->render('bienes_sub_tipos.index');
     }
 
     /**
@@ -132,8 +130,6 @@ class BienesSubTipoController extends AppBaseController
      * Remove the specified BienesSubTipo from storage.
      *
      * @param int $id
-     *
-     * @throws \Exception
      *
      * @return Response
      */

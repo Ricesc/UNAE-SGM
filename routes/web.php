@@ -23,17 +23,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-
-
-
-
-
-
 Route::resource('sectores', App\Http\Controllers\SectorController::class);
-
-
-
-
 
 
 Route::resource('salas', App\Http\Controllers\SalaController::class);
@@ -61,9 +51,6 @@ Route::resource('proveedores', App\Http\Controllers\ProveedorController::class);
 
 
 Route::resource('bienesTipos', App\Http\Controllers\BienesTipoController::class);
-
-
-Route::resource('bienesSubTipos', App\Http\Controllers\BienesSubTipoController::class);
 
 
 Route::resource('bienesSubTipos', App\Http\Controllers\BienesSubTipoController::class);
