@@ -5,13 +5,13 @@
     </button>
     <div class="dropdown-menu">
         <a href="{{ route('usuarios.show', $usu_id) }}" class='dropdown-item'>
-            <i class="fa fa-eye"></i> View
+            <i class="fa fa-eye"></i> Ver
         </a>
         <a href="{{ route('usuarios.edit', $usu_id) }}" class='dropdown-item'>
-            <i class="fa fa-edit"></i> Edit 
+            <i class="fa fa-edit"></i> Editar
         </a>
         <div class="dropdown-divider"></div>
-        {!! Form::button('<i class="fa fa-trash"></i> Delete', [
+        {!! Form::button('<i class="fa fa-trash"></i> Borrar', [
             'type' => 'submit',
             'class' => 'dropdown-item text-danger',
             'onclick' => "return confirm('Are you sure?')"
