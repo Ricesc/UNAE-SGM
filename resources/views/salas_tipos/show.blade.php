@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Salas Tipo Details</h1>
+                    <h1>Detalles del Tipo de Sala</h1>
                 </div>
                 <div class="col-sm-6">
                     <a class="btn btn-default float-right"
                        href="{{ route('salasTipos.index') }}">
-                        Back
+                       Volver
                     </a>
                 </div>
             </div>

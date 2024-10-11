@@ -10,7 +10,7 @@
                 <div class="col-sm-6">
                     <a class="btn btn-primary float-right"
                        href="{{ route('bienesSubTipos.create') }}">
-                        Add New
+                        Agregar
                     </a>
                 </div>
             </div>
@@ -24,7 +24,7 @@
         <div class="clearfix"></div>
 
         <div class="card">
-            <div class="card-body p-0">
+            <div class="card-body p-2">
                 @include('bienes_sub_tipos.table')
 
                 <div class="card-footer clearfix">

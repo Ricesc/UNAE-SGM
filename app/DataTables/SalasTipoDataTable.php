@@ -44,15 +44,36 @@ class SalasTipoDataTable extends DataTable
             ->minifiedAjax()
             ->addAction(['width' => '120px', 'printable' => false])
             ->parameters([
-                'dom'       => 'Bfrtip',
+                'responsive' => true,
+                'columnDefs' => [
+                    ['responsivePriority' => 1, 'targets' => 0],
+                    ['responsivePriority' => 2, 'targets' => -1],
+                ],
+                'autoWidth' => false,
+                'dom'       => '<"top"lBf>rt<"bottom"ip><"clear">',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
+                'lengthMenu' => [5, 10, 20, 50, 100],
+                'language'   => [ // Personalización de los textos en la tabla
+                    'lengthMenu'    => 'Mostrar _MENU_ registros por página',
+                    'zeroRecords'   => 'Ningún Tipo de Sala encontrado',
+                    'info'          => 'Mostrando de _START_ a _END_ de un total de _TOTAL_ registros',
+                    'infoEmpty'     => 'Ningún Tipo de Sala encontrado',
+                    'infoFiltered'  => '(filtrados desde _MAX_ registros totales)',
+                    'search'        => 'Buscar:',
+                    'loadingRecords' => 'Cargando...',
+                    'paginate'      => [
+                        'first'    => 'Primero',
+                        'last'     => 'Último',
+                        'next'     => 'Siguiente',
+                        'previous' => 'Anterior',
+                    ],
+                ],
                 'buttons'   => [
-                    ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
+                    ['extend' => 'csv', 'className' => 'btn btn-default btn-sm no-corner',],
+                    ['extend' => 'excel', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
+                    ['extend' => 'colvis', 'className' => 'btn btn-default btn-sm no-corner',],
                 ],
             ]);
     }
@@ -65,7 +86,7 @@ class SalasTipoDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'stip_descripcion'
+            'stip_descripcion' => ['title' => 'Tipo de Sala']
         ];
     }
 

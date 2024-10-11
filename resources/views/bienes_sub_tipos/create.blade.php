@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Create Bienes Sub Tipo</h1>
+                    <h1>Registrar Sub Tipo de Bien</h1>
                 </div>
             </div>
         </div>
@@ -28,8 +28,8 @@
             </div>
 
             <div class="card-footer">
-                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('bienesSubTipos.index') }}" class="btn btn-default">Cancel</a>
+                {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
+                <a href="{{ route('bienesSubTipos.index') }}" class="btn btn-default">Cancelar</a>
             </div>
 
             {!! Form::close() !!}

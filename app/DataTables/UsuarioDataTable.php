@@ -86,9 +86,9 @@ class UsuarioDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'usu_nombre',
-            'usu_apellido',
-            'usu_rol'
+            'usu_nombre' => ['title' => 'Nombre'],
+            'usu_apellido' => ['title' => 'Apellido'],
+            'usu_rol' => ['title' => 'Rol']
         ];
     }
 
