@@ -59,25 +59,19 @@
 
 {{-- Agrupación de Parámetros de Administrador --}}
 <li class="nav-header">Parámetros de Administrador</li>
-<li class="nav-item has-treeview {{ Request::is('usuarios*') || Request::is('users*') || Request::is('edificios*') || Request::is('pisos*') || Request::is('sectores*') || Request::is('salasTipos*') || Request::is('salas*') || Request::is('dependencias*') ? 'menu-open' : '' }}">
-    <a href="#" class="nav-link {{ Request::is('usuarios*') || Request::is('users*') || Request::is('edificios*') || Request::is('pisos*') || Request::is('sectores*') || Request::is('salasTipos*') || Request::is('salas*') || Request::is('dependencias*') ? 'active' : '' }}">
+<li class="nav-item has-treeview {{ Request::is('users*') || Request::is('edificios*') || Request::is('pisos*') || Request::is('sectores*') || Request::is('salasTipos*') || Request::is('salas*') || Request::is('dependencias*') ? 'menu-open' : '' }}">
+    <a href="#" class="nav-link {{ Request::is('users*') || Request::is('edificios*') || Request::is('pisos*') || Request::is('sectores*') || Request::is('salasTipos*') || Request::is('salas*') || Request::is('dependencias*') ? 'active' : '' }}">
         <i class="nav-icon fas fa-cogs"></i>
         <p>
             Parámetros
             <i class="right fas fa-angle-left"></i>
         </p>
     </a>
-    <ul class="nav nav-treeview" style="{{ Request::is('usuarios*') || Request::is('users*') || Request::is('edificios*') || Request::is('pisos*') || Request::is('sectores*') || Request::is('salasTipos*') || Request::is('salas*') || Request::is('dependencias*') ? 'display: block;' : 'display: none;' }}">
-        <li class="nav-item">
-            <a href="{{ route('usuarios.index') }}" class="nav-link {{ Request::is('usuarios*') ? 'active' : '' }}">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Usuarios</p>
-            </a>
-        </li>
+    <ul class="nav nav-treeview" style="{{ Request::is('users*') || Request::is('edificios*') || Request::is('pisos*') || Request::is('sectores*') || Request::is('salasTipos*') || Request::is('salas*') || Request::is('dependencias*') ? 'display: block;' : 'display: none;' }}">
         <li class="nav-item">
             <a href="{{ route('users.index') }}" class="nav-link {{ Request::is('users*') ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Users</p>
+                <p>Usuarios</p>
             </a>
         </li>
         <li class="nav-item">
