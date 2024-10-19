@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
  * @package App\Models
  * @version October 9, 2024, 5:19 pm -03
  *
- * @property \App\Models\Usuario $usu
+ * @property \App\Models\User $usu
  * @property \Illuminate\Database\Eloquent\Collection $bienes
  * @property integer $usu_id
  * @property string $baja_fecha
@@ -72,7 +72,7 @@ class Baja extends EloquentModel
      **/
     public function usu()
     {
-        return $this->belongsTo(\App\Models\Usuario::class, 'usu_id');
+        return $this->belongsTo(\App\Models\User::class);
     }
 
     /**

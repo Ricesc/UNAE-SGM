@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('ingresos', function (Blueprint $table) {
             $table->foreign(['prov_id'], 'fk_ingresos_reference_proveedo')->references(['prov_id'])->on('proveedores')->onUpdate('restrict')->onDelete('restrict');
-            $table->foreign(['usu_id'], 'fk_ingresos_reference_usuarios')->references(['usu_id'])->on('usuarios')->onUpdate('restrict')->onDelete('restrict');
+            $table->foreign(['usu_id'], 'fk_ingresos_reference_users')->references('id')->on('users')->onUpdate('restrict')->onDelete('restrict');
         });
     }
 
@@ -24,7 +24,7 @@ return new class extends Migration
     {
         Schema::table('ingresos', function (Blueprint $table) {
             $table->dropForeign('fk_ingresos_reference_proveedo');
-            $table->dropForeign('fk_ingresos_reference_usuarios');
+            $table->dropForeign('fk_ingresos_reference_users');
         });
     }
 };

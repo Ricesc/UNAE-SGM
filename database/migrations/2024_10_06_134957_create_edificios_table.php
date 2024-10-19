@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('usuarios', function (Blueprint $table) {
-            $table->increments('usu_id');
-            $table->string('usu_nombre');
-            $table->string('usu_apellido');
-            $table->integer('usu_rol')->nullable();
+        Schema::create('edificios', function (Blueprint $table) {
+            $table->increments('edif_id');
+            $table->string('edif_descripcion')->unique('ed_desc_idx');
+            $table->text('edif_direccion')->nullable();
             $table->timestamps();
             $table->softDeletes();
-
-            $table->index(['usu_nombre', 'usu_apellido'], 'usu_nombre_idx');
         });
     }
 
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('edificios');
     }
 };

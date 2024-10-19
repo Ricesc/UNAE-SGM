@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
  * @version October 9, 2024, 5:31 pm -03
  *
  * @property \App\Models\Proveedore $prov
- * @property \App\Models\Usuario $usu
+ * @property \App\Models\User $usu
  * @property \Illuminate\Database\Eloquent\Collection $bienesTipos
  * @property integer $prov_id
  * @property integer $usu_id
@@ -89,7 +89,7 @@ class Ingreso extends EloquentModel
      **/
     public function usu()
     {
-        return $this->belongsTo(\App\Models\Usuario::class, 'usu_id');
+        return $this->belongsTo(\App\Models\User::class);
     }
 
     /**

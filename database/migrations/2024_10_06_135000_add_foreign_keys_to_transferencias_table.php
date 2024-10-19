@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('transferencias', function (Blueprint $table) {
             $table->foreign(['sala_id'], 'fk_transfer_reference_salas')->references(['sala_id'])->on('salas')->onUpdate('restrict')->onDelete('restrict');
-            $table->foreign(['usu_id'], 'fk_transfer_reference_usuarios')->references(['usu_id'])->on('usuarios')->onUpdate('restrict')->onDelete('restrict');
+            $table->foreign(['usu_id'], 'fk_transfer_reference_users')->references('id')->on('users')->onUpdate('restrict')->onDelete('restrict');
         });
     }
 
@@ -24,7 +24,7 @@ return new class extends Migration
     {
         Schema::table('transferencias', function (Blueprint $table) {
             $table->dropForeign('fk_transfer_reference_salas');
-            $table->dropForeign('fk_transfer_reference_usuarios');
+            $table->dropForeign('fk_transfer_reference_users');
         });
     }
 };

@@ -21,6 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->index(['name'], 'usu_name_idx');
         });
     }
 
