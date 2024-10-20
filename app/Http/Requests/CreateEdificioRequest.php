@@ -26,4 +26,12 @@ class CreateEdificioRequest extends FormRequest
     {
         return Edificio::$rules;
     }
+
+    public function messages()
+    {
+        return [
+            'edif_descripcion.required' => 'Por favor, ingrese una descripción para el edificio.',
+            'edif_descripcion.unique' => 'Ya existe un edificio con esta descripción.'
+        ];
+    }
 }

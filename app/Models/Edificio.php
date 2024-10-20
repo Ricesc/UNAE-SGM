@@ -55,7 +55,7 @@ class Edificio extends EloquentModel
      * @var array
      */
     public static $rules = [
-        'edif_descripcion' => 'required|string|max:255',
+        'edif_descripcion' => 'required|string|max:255|unique:edificios,edif_descripcion',
         'edif_direccion' => 'nullable|string',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\EdificioDataTable;
-use App\Http\Requests;
 use App\Http\Requests\CreateEdificioRequest;
 use App\Http\Requests\UpdateEdificioRequest;
 use App\Repositories\EdificioRepository;
-use Flash;
 use App\Http\Controllers\AppBaseController;
-use Response;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use Laracasts\Flash\Flash;
 
 class EdificioController extends AppBaseController
 {
