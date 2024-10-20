@@ -55,7 +55,7 @@ class Dependencia extends EloquentModel
      * @var array
      */
     public static $rules = [
-        'depe_descripcion' => 'required|string|max:255',
+        'depe_descripcion' => 'required|string|max:255|unique:dependencias,depe_descripcion',
         'depe_telefono' => 'nullable|integer',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',

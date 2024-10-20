@@ -26,4 +26,12 @@ class CreateDependenciaRequest extends FormRequest
     {
         return Dependencia::$rules;
     }
+
+    public function messages()
+    {
+        return [
+            'depe_descripcion.required' => 'Por favor, ingrese una descripción para la dependencia.',
+            'depe_descripcion.unique' => 'Ya existe una dependencia con esta descripción.'
+        ];
+    }
 }

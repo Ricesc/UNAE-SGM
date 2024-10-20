@@ -13,8 +13,6 @@
 
     <div class="content px-3">
 
-        @include('adminlte-templates::common.errors')
-
         <div class="card">
 
             {!! Form::model($dependencia, ['route' => ['dependencias.update', $dependencia->depe_id], 'method' => 'patch']) !!}

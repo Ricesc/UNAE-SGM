@@ -18,7 +18,11 @@ class DependenciaDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'dependencias.datatables_actions');
+        // Agregar columna de índice
+        return $dataTable
+            ->addColumn('index', function ($dependencia) {
+                return $this->getIndex($dependencia);
+            })->addColumn('action', 'dependencias.datatables_actions');
     }
 
     /**
@@ -29,7 +33,8 @@ class DependenciaDataTable extends DataTable
      */
     public function query(Dependencia $model)
     {
-        return $model->newQuery();
+        // Filtrar solo registros activos (sin soft delete)
+        return $model->newQuery()->whereNull('deleted_at');
     }
 
     /**
@@ -40,9 +45,10 @@ class DependenciaDataTable extends DataTable
     public function html()
     {
         return $this->builder()
+            ->setTableId('dependencias-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->addAction(['width' => '120px', 'printable' => false])
+            ->addAction(['width' => '120px', 'printable' => false, 'title' => 'Acciones'])
             ->parameters([
                 'responsive' => true,
                 'columnDefs' => [
@@ -86,9 +92,21 @@ class DependenciaDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            ['data' => 'index', 'title' => '#'], // Columna para numeración
             'depe_descripcion' => ['title' => 'Dependencia'],
             'depe_telefono' => ['title' => 'Teléfono']
         ];
+    }
+
+    // Método para obtener el índice, contando solo los registros no eliminados
+    protected function getIndex($dependencia)
+    {
+        // Obtenemos todos los registros activos
+        $activeRows = Dependencia::whereNull('deleted_at')->get();
+        // Buscamos la posición de la dependencia
+        return $activeRows->search(function ($item) use ($dependencia) {
+            return $item->getKey() === $dependencia->getKey();
+        }) + 1; // +1 porque la numeración debe comenzar en 1
     }
 
     /**
