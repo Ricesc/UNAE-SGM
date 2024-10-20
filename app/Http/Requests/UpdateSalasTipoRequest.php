@@ -25,7 +25,15 @@ class UpdateSalasTipoRequest extends FormRequest
     public function rules()
     {
         $rules = SalasTipo::$rules;
-        
+
         return $rules;
+    }
+
+    public function messages()
+    {
+        return [
+            'stip_descripcion.required' => 'Por favor, ingrese una descripción para el tipo de sala.',
+            'stip_descripcion.unique' => 'Ya existe un tipo de sala con esta descripción.'
+        ];
     }
 }

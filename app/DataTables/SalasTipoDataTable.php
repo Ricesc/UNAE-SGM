@@ -17,8 +17,11 @@ class SalasTipoDataTable extends DataTable
     public function dataTable($query)
     {
         $dataTable = new EloquentDataTable($query);
-
-        return $dataTable->addColumn('action', 'salas_tipos.datatables_actions');
+        // Agregar columna de índice
+        return $dataTable
+            ->addColumn('index', function ($salasTipo) {
+                return $this->getIndex($salasTipo);
+            })->addColumn('action', 'salas_tipos.datatables_actions');
     }
 
     /**
@@ -29,7 +32,8 @@ class SalasTipoDataTable extends DataTable
      */
     public function query(SalasTipo $model)
     {
-        return $model->newQuery();
+        // Filtrar solo registros activos (sin soft delete)
+        return $model->newQuery()->whereNull('deleted_at');
     }
 
     /**
@@ -40,9 +44,10 @@ class SalasTipoDataTable extends DataTable
     public function html()
     {
         return $this->builder()
+            ->setTableId('salasTipo-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->addAction(['width' => '120px', 'printable' => false])
+            ->addAction(['width' => '120px', 'printable' => false, 'title' => 'Acciones'])
             ->parameters([
                 'responsive' => true,
                 'columnDefs' => [
@@ -86,11 +91,24 @@ class SalasTipoDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            ['data' => 'index', 'title' => '#'], // Columna para numeración
             'stip_descripcion' => ['title' => 'Tipo de Sala']
         ];
     }
 
-    /**
+    // Método para obtener el índice, contando solo los registros no eliminados
+    protected function getIndex($salasTipo)
+    {
+        // Obtenemos todos los registros activos
+        $activeRows = SalasTipo::whereNull('deleted_at')->get();
+
+        // Buscamos la posición del tipo de sala actual
+        return $activeRows->search(function ($item) use ($salasTipo) {
+            return $item->getKey() === $salasTipo->getKey();
+        }) + 1; // +1 porque la numeración debe comenzar en 1
+    }
+
+    /**salasTipo
      * Get filename for export.
      *
      * @return string

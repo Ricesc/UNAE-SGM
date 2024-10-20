@@ -52,7 +52,7 @@ class SalasTipo extends EloquentModel
      * @var array
      */
     public static $rules = [
-        'stip_descripcion' => 'required|string|max:255',
+        'stip_descripcion' => 'required|string|max:255|unique:salas_tipo,stip_descripcion',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
