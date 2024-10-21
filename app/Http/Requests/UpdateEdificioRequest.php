@@ -26,6 +26,9 @@ class UpdateEdificioRequest extends FormRequest
     {
         $rules = Edificio::$rules;
 
+        // Ignorar la validación única para el registro actual
+        $rules['edif_descripcion'] = 'required|string|max:255|unique:edificios,edif_descripcion,' . $this->route('edificio') . ',edif_id';
+
         return $rules;
     }
 

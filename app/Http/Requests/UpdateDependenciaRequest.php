@@ -26,6 +26,9 @@ class UpdateDependenciaRequest extends FormRequest
     {
         $rules = Dependencia::$rules;
 
+        // Ignorar la validación única para el registro actual
+        $rules['depe_descripcion'] = 'required|string|max:255|unique:dependencias,depe_descripcion,' . $this->route('dependencia') . ',depe_id';
+
         return $rules;
     }
 

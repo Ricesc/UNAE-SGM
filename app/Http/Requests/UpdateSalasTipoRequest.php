@@ -26,6 +26,9 @@ class UpdateSalasTipoRequest extends FormRequest
     {
         $rules = SalasTipo::$rules;
 
+        // Ignorar la validación única para el registro actual
+        $rules['stip_descripcion'] = 'required|string|max:255|unique:salas_tipo,stip_descripcion,' . $this->route('salasTipo') . ',stip_id';
+
         return $rules;
     }
 
