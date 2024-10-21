@@ -25,7 +25,15 @@ class UpdateSectorRequest extends FormRequest
     public function rules()
     {
         $rules = Sector::$rules;
-        
+
         return $rules;
+    }
+
+    public function messages()
+    {
+        return [
+            'sect_descripcion.required' => 'Por favor, ingrese una descripción para el sector.',
+            'piso_id.required' => 'Seleccione el piso asociado a este sector.',
+        ];
     }
 }

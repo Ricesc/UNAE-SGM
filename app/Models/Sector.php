@@ -59,7 +59,7 @@ class Sector extends EloquentModel
      * @var array
      */
     public static $rules = [
-        'piso_id' => 'nullable|integer',
+        'piso_id' => 'required|integer',
         'sect_descripcion' => 'required|string|max:255',
         'sect_direccion' => 'nullable|string|max:255',
         'created_at' => 'nullable',

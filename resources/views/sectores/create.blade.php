@@ -5,15 +5,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Create Sector</h1>
+                    <h1>Registrar Sector</h1>
                 </div>
             </div>
         </div>
     </section>
 
     <div class="content px-3">
-
-        @include('adminlte-templates::common.errors')
 
         <div class="card">
 
@@ -28,8 +26,8 @@
             </div>
 
             <div class="card-footer">
-                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('sectores.index') }}" class="btn btn-default">Cancel</a>
+                {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
+                <a href="{{ route('sectores.index') }}" class="btn btn-default">Cancelar</a>
             </div>
 
             {!! Form::close() !!}

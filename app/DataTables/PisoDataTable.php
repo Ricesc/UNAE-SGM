@@ -95,8 +95,8 @@ class PisoDataTable extends DataTable
     {
         return [
             ['data' => 'index', 'title' => '#'], // Columna para numeración
-            'piso_descripcion',
-            'piso_direccion',
+            'piso_descripcion' => ['title' => 'Descripción'],
+            'piso_direccion' => ['title' => 'Dirección'],
             'edif_descripcion' => ['title' => 'Edificio'] // Columna personalizada para mostrar el edificio
         ];
     }

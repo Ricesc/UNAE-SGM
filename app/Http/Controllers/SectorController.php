@@ -7,6 +7,7 @@ use App\Http\Requests\CreateSectorRequest;
 use App\Http\Requests\UpdateSectorRequest;
 use App\Repositories\SectorRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Piso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Laracasts\Flash\Flash;
@@ -40,7 +41,9 @@ class SectorController extends AppBaseController
      */
     public function create()
     {
-        return view('sectores.create');
+        $pisos = Piso::pluck('piso_descripcion', 'piso_id');  // Listado clave-valor
+
+        return view('sectores.create')->with('piso', $pisos);;
     }
 
     /**
