@@ -24,12 +24,26 @@ class CreateUserRequest extends FormRequest
      */
     public function rules()
     {
-       $rules = [
-          'name'                  => 'required',
-          'email'                 => 'required|email|unique:users,email',
-          'password'              => 'required|confirmed'
-       ];
+        $rules = [
+            'name'                  => 'required',
+            'email'                 => 'required|email|unique:users,email',
+            'password'              => 'required|confirmed'
+        ];
 
         return $rules;
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'El nombre es obligatorio.',
+
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'El correo electrónico debe ser una dirección válida.',
+            'email.unique' => 'El correo electrónico ya está registrado.',
+
+            'password.required' => 'La contraseña es obligatoria.',
+            'password.confirmed' => 'La confirmación de la contraseña no coincide.',
+        ];
     }
 }
