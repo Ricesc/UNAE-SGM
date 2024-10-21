@@ -26,4 +26,12 @@ class CreateBienesSubTipoRequest extends FormRequest
     {
         return BienesSubTipo::$rules;
     }
+
+    public function messages()
+    {
+        return [
+            'bsti_descripcion.required' => 'Por favor, ingrese una descripción para el sub tipo de bien.',
+            'bsti_descripcion.unique' => 'Ya existe un sub tipo de bien con esta descripción.'
+        ];
+    }
 }

@@ -18,7 +18,11 @@ class BienesSubTipoDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'bienes_sub_tipos.datatables_actions');
+        // Agregar columna de índice
+        return $dataTable
+            ->addColumn('index', function ($bienesSubTipo) {
+                return $this->getIndex($bienesSubTipo);
+            })->addColumn('action', 'bienes_sub_tipos.datatables_actions');
     }
 
     /**
@@ -29,7 +33,8 @@ class BienesSubTipoDataTable extends DataTable
      */
     public function query(BienesSubTipo $model)
     {
-        return $model->newQuery();
+        // Filtrar solo registros activos (sin soft delete)
+        return $model->newQuery()->whereNull('deleted_at');
     }
 
     /**
@@ -40,9 +45,10 @@ class BienesSubTipoDataTable extends DataTable
     public function html()
     {
         return $this->builder()
+            ->setTableId('bienesSubTipo-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->addAction(['width' => '120px', 'printable' => false])
+            ->addAction(['width' => '120px', 'printable' => false, 'title' => 'Acciones'])
             ->parameters([
                 'responsive' => true,
                 'columnDefs' => [
@@ -86,9 +92,22 @@ class BienesSubTipoDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            ['data' => 'index', 'title' => '#'], // Columna para numeración
             'bsti_descripcion' => ['title' => 'Sub Tipo de Bien'],
             'bsti_detalle' => ['title' => 'Detalle']
         ];
+    }
+
+    // Método para obtener el índice, contando solo los registros no eliminados
+    protected function getIndex($bienesSubTipo)
+    {
+        // Obtenemos todos los registros activos
+        $activeRows = BienesSubTipo::whereNull('deleted_at')->get();
+
+        // Buscamos la posición del sub tipo de bien actual
+        return $activeRows->search(function ($item) use ($bienesSubTipo) {
+            return $item->getKey() === $bienesSubTipo->getKey();
+        }) + 1; // +1 porque la numeración debe comenzar en 1
     }
 
     /**

@@ -17,7 +17,7 @@
     @endif
 </div>
 
-<!-- Edif Teléfono Field -->
+<!-- Depe Teléfono Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('depe_telefono', 'Teléfono:', ['for' => 'depe_telefono']) !!}
     {!! Form::number('depe_telefono', null, [

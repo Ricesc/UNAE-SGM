@@ -55,7 +55,7 @@ class BienesSubTipo extends EloquentModel
      * @var array
      */
     public static $rules = [
-        'bsti_descripcion' => 'required|string|max:255',
+        'bsti_descripcion' => 'required|string|max:255|unique:bienes_sub_tipo,bsti_descripcion',
         'bsti_detalle' => 'nullable|string',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
