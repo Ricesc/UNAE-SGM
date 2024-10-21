@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Bienes Tipos</h1>
+                    <h1>Tipos de Bienes</h1>
                 </div>
                 <div class="col-sm-6">
                     <a class="btn btn-primary float-right"
                        href="{{ route('bienesTipos.create') }}">
-                        Add New
+                        Agregar
                     </a>
                 </div>
             </div>
@@ -24,7 +24,7 @@
         <div class="clearfix"></div>
 
         <div class="card">
-            <div class="card-body p-0">
+            <div class="card-body p-2">
                 @include('bienes_tipos.table')
 
                 <div class="card-footer clearfix">
@@ -34,6 +34,27 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    <!-- Modal para confirmar eliminación -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirmar Eliminación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que deseas eliminar este tipo de bien?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="confirmDelete">Borrar</button>
+                </div>
+            </div>
         </div>
     </div>
 

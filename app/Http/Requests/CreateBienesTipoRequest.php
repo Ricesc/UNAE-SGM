@@ -26,4 +26,12 @@ class CreateBienesTipoRequest extends FormRequest
     {
         return BienesTipo::$rules;
     }
+
+    public function messages()
+    {
+        return [
+            'btip_descripcion.required' => 'Por favor, ingrese una descripción para el tipo de bien.',
+            'bsti_id.required' => 'Seleccione el sub tipo de bien asociado a este tipo de bien.',
+        ];
+    }
 }

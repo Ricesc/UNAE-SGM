@@ -63,7 +63,7 @@ class BienesTipo extends EloquentModel
      * @var array
      */
     public static $rules = [
-        'bsti_id' => 'nullable|integer',
+        'bsti_id' => 'required|integer',
         'btip_descripcion' => 'required|string|max:255',
         'btip_detalle' => 'nullable|string',
         'btip_costo' => 'nullable|integer',
