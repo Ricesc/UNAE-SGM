@@ -18,7 +18,11 @@ class ProveedorDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'proveedores.datatables_actions');
+        // Agregar columna de índice
+        return $dataTable
+            ->addColumn('index', function ($proveedor) {
+                return $this->getIndex($proveedor);
+            })->addColumn('action', 'proveedores.datatables_actions');
     }
 
     /**
@@ -29,7 +33,8 @@ class ProveedorDataTable extends DataTable
      */
     public function query(Proveedor $model)
     {
-        return $model->newQuery();
+        // Filtrar solo registros activos (sin soft delete)
+        return $model->newQuery()->whereNull('deleted_at');
     }
 
     /**
@@ -40,9 +45,10 @@ class ProveedorDataTable extends DataTable
     public function html()
     {
         return $this->builder()
+            ->setTableId('proveedores-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->addAction(['width' => '120px', 'printable' => false])
+            ->addAction(['width' => '120px', 'printable' => false, 'title' => 'Acciones'])
             ->parameters([
                 'responsive' => true,
                 'columnDefs' => [
@@ -86,12 +92,25 @@ class ProveedorDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            ['data' => 'index', 'title' => '#'], // Columna para numeración
             'prov_nombre' => ['title' => 'Nombre'],
             'prov_telefono' => ['title' => 'Teléfono'],
-            'prov_ruc' => ['title' => 'Ruc'],
+            'prov_ruc' => ['title' => 'RUC'],
             'prov_direccion' => ['title' => 'Dirección'],
             'prov_localidad' => ['title' => 'Localidad']
         ];
+    }
+
+    // Método para obtener el índice, contando solo los registros no eliminados
+    protected function getIndex($proveedor)
+    {
+        // Obtenemos todos los registros activos
+        $activeRows = Proveedor::whereNull('deleted_at')->get();
+
+        // Buscamos la posición del proveedor actual
+        return $activeRows->search(function ($item) use ($proveedor) {
+            return $item->getKey() === $proveedor->getKey();
+        }) + 1; // +1 porque la numeración debe comenzar en 1
     }
 
     /**

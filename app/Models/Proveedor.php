@@ -66,7 +66,7 @@ class Proveedor extends EloquentModel
     public static $rules = [
         'prov_nombre' => 'required|string|max:255',
         'prov_telefono' => 'nullable|integer',
-        'prov_ruc' => 'nullable|string|max:255',
+        'prov_ruc' => 'nullable|string|max:255|unique:proveedores,prov_ruc',
         'prov_direccion' => 'nullable|string',
         'prov_localidad' => 'nullable|string|max:255',
         'created_at' => 'nullable',
@@ -77,8 +77,8 @@ class Proveedor extends EloquentModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function usuarios()
+    public function ingresos()
     {
-        return $this->belongsToMany(\App\Models\Usuario::class, 'ingresos');
+        return $this->hasMany(\App\Models\Ingreso::class, 'prov_id');
     }
 }

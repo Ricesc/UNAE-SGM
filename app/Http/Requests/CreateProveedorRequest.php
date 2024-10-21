@@ -26,4 +26,12 @@ class CreateProveedorRequest extends FormRequest
     {
         return Proveedor::$rules;
     }
+
+    public function messages()
+    {
+        return [
+            'prov_nombre.required' => 'El nombre del proveedor es obligatorio.',
+            'prov_ruc.unique' => 'El RUC ya está registrado',
+        ];
+    }
 }

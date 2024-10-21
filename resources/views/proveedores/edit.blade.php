@@ -13,8 +13,6 @@
 
     <div class="content px-3">
 
-        @include('adminlte-templates::common.errors')
-
         <div class="card">
 
             {!! Form::model($proveedor, ['route' => ['proveedores.update', $proveedor->prov_id], 'method' => 'patch']) !!}
