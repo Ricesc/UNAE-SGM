@@ -26,4 +26,12 @@ class CreatePisoRequest extends FormRequest
     {
         return Piso::$rules;
     }
+
+    public function messages()
+    {
+        return [
+            'piso_descripcion.required' => 'Por favor, ingrese una descripción para el piso.',
+            'edif_id.required' => 'Seleccione el edificio asociado a este piso.',
+        ];
+    }
 }

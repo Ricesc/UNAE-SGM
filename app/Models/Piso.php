@@ -59,7 +59,7 @@ class Piso extends EloquentModel
      * @var array
      */
     public static $rules = [
-        'edif_id' => 'nullable|integer',
+        'edif_id' => 'required|integer',
         'piso_descripcion' => 'required|string|max:255',
         'piso_direccion' => 'nullable|string|max:255',
         'created_at' => 'nullable',
