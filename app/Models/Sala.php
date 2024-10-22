@@ -115,10 +115,10 @@ class Sala extends EloquentModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function usuarios()
+    public function transferencias()
     {
-        return $this->belongsToMany(\App\Models\Usuario::class, 'transferencias');
+        return $this->hasMany(\App\Models\Transferencia::class, 'sala_id');
     }
 }
