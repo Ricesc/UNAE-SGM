@@ -65,10 +65,10 @@ class TransferenciaDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'sala_id',
-            'usu_id',
-            'tran_fecha',
-            'tran_procesado'
+            'sala_id' =>['title'=>'Sala'],
+            'usu_id' =>['title'=>'Usuario'],
+            'tran_fecha' =>['title'=>'Fecha de transferencia'],
+            'tran_procesado' =>['title'=>'Procesado'],
         ];
     }
 
