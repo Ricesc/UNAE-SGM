@@ -1,18 +1,18 @@
 <!-- Sect Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('sect_id', 'Sect Id:') !!}
+    {!! Form::label('sect_id', 'Sector:') !!}
     {!! Form::number('sect_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Stip Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('stip_id', 'Stip Id:') !!}
+    {!! Form::label('stip_id', 'Tipo de sala:') !!}
     {!! Form::number('stip_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Depe Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('depe_id', 'Depe Id:') !!}
+    {!! Form::label('depe_id', 'Dependencia:') !!}
     {!! Form::number('depe_id', null, ['class' => 'form-control']) !!}
 </div>
 
