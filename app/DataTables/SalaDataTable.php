@@ -8,35 +8,17 @@ use Yajra\DataTables\EloquentDataTable;
 
 class SalaDataTable extends DataTable
 {
-    /**
-     * Build DataTable class.
-     *
-     * @param mixed $query Results from query() method.
-     * @return \Yajra\DataTables\DataTableAbstract
-     */
     public function dataTable($query)
     {
         $dataTable = new EloquentDataTable($query);
-
         return $dataTable->addColumn('action', 'salas.datatables_actions');
     }
 
-    /**
-     * Get query source of dataTable.
-     *
-     * @param \App\Models\Sala $model
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
     public function query(Sala $model)
     {
         return $model->newQuery();
     }
 
-    /**
-     * Optional method if you want to use html builder.
-     *
-     * @return \Yajra\DataTables\Html\Builder
-     */
     public function html()
     {
         return $this->builder()
@@ -57,28 +39,18 @@ class SalaDataTable extends DataTable
             ]);
     }
 
-    /**
-     * Get columns.
-     *
-     * @return array
-     */
     protected function getColumns()
     {
         return [
-            'sect_id',
-            'stip_id',
-            'depe_id',
-            'sala_descripcion',
-            'sala_direccion',
-            'sala_capacidad'
+            'sect_id' => ['title' => 'ID del Sector'],
+            'stip_id' => ['title' => 'ID del Tipo de Sala'],
+            'depe_id' => ['title' => 'ID de Dependencia'],
+            'sala_descripcion' => ['title' => 'Descripción de la Sala'],
+            'sala_direccion' => ['title' => 'Dirección de la Sala'],
+            'sala_capacidad' => ['title' => 'Capacidad de la Sala'],
         ];
     }
 
-    /**
-     * Get filename for export.
-     *
-     * @return string
-     */
     protected function filename()
     {
         return 'salas_datatable_' . time();
