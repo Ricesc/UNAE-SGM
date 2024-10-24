@@ -65,7 +65,7 @@ class BajaDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'usu_id',
+            'usu_id'=>['title'=>'Usuario'],
             'baja_fecha',
             'baja_estado'
         ];
