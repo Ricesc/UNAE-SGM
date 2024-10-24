@@ -1,18 +1,18 @@
 <!-- Sect Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('sect_id', 'Sect Id:') !!}
+    {!! Form::label('sect_id', 'Sector:') !!}
     <p>{{ $sala->sect_id }}</p>
 </div>
 
 <!-- Stip Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('stip_id', 'Stip Id:') !!}
+    {!! Form::label('stip_id', 'Tipo de sala:') !!}
     <p>{{ $sala->stip_id }}</p>
 </div>
 
 <!-- Depe Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('depe_id', 'Depe Id:') !!}
+    {!! Form::label('depe_id', 'Dependencia:') !!}
     <p>{{ $sala->depe_id }}</p>
 </div>
 
