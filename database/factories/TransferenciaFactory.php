@@ -22,13 +22,12 @@ class TransferenciaFactory extends Factory
     public function definition()
     {
         return [
-            'sala_id' => $this->faker->randomDigitNotNull,
-        'usu_id' => $this->faker->randomDigitNotNull,
-        'tran_fecha' => $this->faker->word,
-        'tran_procesado' => $this->faker->randomDigitNotNull,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'sala_id' => \App\Models\Sala::factory(),
+            'usu_id' => \App\Models\User::factory(),
+            'tran_fecha' => $this->faker->date(),
+            'tran_procesado' => $this->faker->numberBetween(0, 1),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

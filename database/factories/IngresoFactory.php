@@ -22,14 +22,13 @@ class IngresoFactory extends Factory
     public function definition()
     {
         return [
-            'prov_id' => $this->faker->randomDigitNotNull,
-        'usu_id' => $this->faker->randomDigitNotNull,
-        'ing_fecha_compra' => $this->faker->word,
-        'ing_costo_total' => $this->faker->randomDigitNotNull,
-        'ing_estado' => $this->faker->randomDigitNotNull,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'prov_id' => \App\Models\Proveedor::factory(),
+            'usu_id' => \App\Models\User::factory(),
+            'ing_fecha_compra' => $this->faker->date(),
+            'ing_costo_total' => $this->faker->numberBetween(1000, 10000000),
+            'ing_estado' => $this->faker->numberBetween(0, 1),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

@@ -22,15 +22,14 @@ class SalaFactory extends Factory
     public function definition()
     {
         return [
-            'sect_id' => $this->faker->randomDigitNotNull,
-        'stip_id' => $this->faker->randomDigitNotNull,
-        'depe_id' => $this->faker->randomDigitNotNull,
-        'sala_descripcion' => $this->faker->word,
-        'sala_direccion' => $this->faker->word,
-        'sala_capacidad' => $this->faker->randomDigitNotNull,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'sect_id' => \App\Models\Sector::factory(),
+            'stip_id' => \App\Models\SalasTipo::factory(),
+            'depe_id' => \App\Models\Dependencia::factory(),
+            'sala_descripcion' => $this->faker->sentence(3),
+            'sala_direccion' => $this->faker->address(),
+            'sala_capacidad' => $this->faker->numberBetween(10, 500),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

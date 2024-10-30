@@ -22,12 +22,11 @@ class BajaFactory extends Factory
     public function definition()
     {
         return [
-            'usu_id' => $this->faker->randomDigitNotNull,
-        'baja_fecha' => $this->faker->word,
-        'baja_estado' => $this->faker->randomDigitNotNull,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'usu_id' => $this->faker->numberBetween(1, 100),
+            'baja_fecha' => $this->faker->date(),
+            'baja_estado' => $this->faker->numberBetween(0, 1),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

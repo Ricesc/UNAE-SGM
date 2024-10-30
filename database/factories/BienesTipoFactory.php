@@ -22,13 +22,12 @@ class BienesTipoFactory extends Factory
     public function definition()
     {
         return [
-            'bsti_id' => $this->faker->randomDigitNotNull,
-        'btip_descripcion' => $this->faker->word,
-        'btip_detalle' => $this->faker->text,
-        'btip_costo' => $this->faker->randomDigitNotNull,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'bsti_id' => \App\Models\BienesSubTipo::factory(),
+            'btip_descripcion' => $this->faker->word(),
+            'btip_detalle' => $this->faker->sentence(),
+            'btip_costo' => $this->faker->numberBetween(100, 1000000),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

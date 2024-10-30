@@ -22,12 +22,11 @@ class SectorFactory extends Factory
     public function definition()
     {
         return [
-            'piso_id' => $this->faker->randomDigitNotNull,
-        'sect_descripcion' => $this->faker->word,
-        'sect_direccion' => $this->faker->word,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'piso_id' => \App\Models\Piso::factory(),
+            'sect_descripcion' => $this->faker->sentence(3),
+            'sect_direccion' => $this->faker->address(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

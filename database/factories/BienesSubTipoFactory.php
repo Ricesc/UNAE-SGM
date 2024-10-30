@@ -22,11 +22,10 @@ class BienesSubTipoFactory extends Factory
     public function definition()
     {
         return [
-            'bsti_descripcion' => $this->faker->word,
-        'bsti_detalle' => $this->faker->text,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'bsti_descripcion' => $this->faker->word(),
+            'bsti_detalle' => $this->faker->sentence(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

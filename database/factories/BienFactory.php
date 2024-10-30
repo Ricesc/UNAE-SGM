@@ -22,14 +22,13 @@ class BienFactory extends Factory
     public function definition()
     {
         return [
-            'btip_id' => $this->faker->randomDigitNotNull,
-        'sala_id' => $this->faker->randomDigitNotNull,
-        'idet_id' => $this->faker->randomDigitNotNull,
-        'bien_estado' => $this->faker->randomDigitNotNull,
-        'bien_codigo' => $this->faker->word,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'btip_id' => \App\Models\BienesTipo::factory(),
+            'sala_id' => \App\Models\Sala::factory(),
+            'idet_id' => \App\Models\IngresosDet::factory(),
+            'bien_estado' => $this->faker->numberBetween(0, 1),
+            'bien_codigo' => strtoupper($this->faker->lexify('????????????')) . $this->faker->numerify('##############'),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

@@ -2,17 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Edificio;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class EdificioFactory extends Factory
+class BajasDetFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = Edificio::class;
+
+    protected $model = \App\Models\BajasDet::class;
 
     /**
      * Define the model's default state.
@@ -22,8 +17,9 @@ class EdificioFactory extends Factory
     public function definition()
     {
         return [
-            'edif_descripcion' => $this->faker->word(),
-            'edif_direccion' => $this->faker->address(),
+            'baja_id' => \App\Models\Baja::factory(),
+            'bien_id' => \App\Models\Bien::factory(),
+            'bdet_estado' => $this->faker->numberBetween(0, 1),
             'created_at' => now(),
             'updated_at' => now(),
         ];

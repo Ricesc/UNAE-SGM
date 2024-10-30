@@ -22,12 +22,11 @@ class PisoFactory extends Factory
     public function definition()
     {
         return [
-            'edif_id' => $this->faker->randomDigitNotNull,
-        'piso_descripcion' => $this->faker->word,
-        'piso_direccion' => $this->faker->word,
-        'created_at' => $this->faker->date('Y-m-d H:i:s'),
-        'updated_at' => $this->faker->date('Y-m-d H:i:s'),
-        'deleted_at' => $this->faker->date('Y-m-d H:i:s')
+            'edif_id' => \App\Models\Edificio::factory(),
+            'piso_descripcion' => $this->faker->word(),
+            'piso_direccion' => $this->faker->address(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }
