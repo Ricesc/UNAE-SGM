@@ -22,7 +22,7 @@ class BajaFactory extends Factory
     public function definition()
     {
         return [
-            'usu_id' => $this->faker->numberBetween(1, 100),
+            'usu_id' => \App\Models\User::factory(),
             'baja_fecha' => $this->faker->date(),
             'baja_estado' => $this->faker->numberBetween(0, 1),
             'created_at' => now(),

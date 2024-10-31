@@ -34,23 +34,23 @@ class DatabaseSeeder extends Seeder
     {
         // Llama a los seeders
         $this->call([
-            BajaSeeder::class,
-            BajasDetSeeder::class,
-            BienesSubTipoSeeder::class,
-            BienesTipoSeeder::class,
-            BienSeeder::class,
+            UserSeeder::class,
             DependenciaSeeder::class,
             EdificioSeeder::class,
-            IngresoSeeder::class,
-            IngresosDetSeeder::class,
-            PisoSeeder::class,
             ProveedorSeeder::class,
-            SalaSeeder::class,
             SalasTipoSeeder::class,
+            BienesSubTipoSeeder::class,
+            PisoSeeder::class,
             SectorSeeder::class,
-            TranferDetalleSeeder::class,
+            SalaSeeder::class,
+            BienesTipoSeeder::class,
+            IngresoSeeder::class,
             TransferenciaSeeder::class,
-            UserSeeder::class,
+            IngresosDetSeeder::class,
+            BienSeeder::class,
+            BajaSeeder::class,
+            BajasDetSeeder::class,
+            TranferDetalleSeeder::class,
         ]);
     }
 }

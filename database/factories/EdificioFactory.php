@@ -22,7 +22,7 @@ class EdificioFactory extends Factory
     public function definition()
     {
         return [
-            'edif_descripcion' => $this->faker->word(),
+            'edif_descripcion' => $this->faker->unique()->company(),
             'edif_direccion' => $this->faker->address(),
             'created_at' => now(),
             'updated_at' => now(),
