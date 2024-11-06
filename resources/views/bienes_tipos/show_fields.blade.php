@@ -1,9 +1,3 @@
-<!-- Bsti Id Field -->
-<div class="col-sm-12">
-    {!! Form::label('bsti_id', 'Sub Tipo de Bien:') !!}
-    <p>{{ $bienesTipo->bsti_id }}</p>
-</div>
-
 <!-- Btip Descripcion Field -->
 <div class="col-sm-12">
     {!! Form::label('btip_descripcion', 'Tipo de Bien:') !!}
@@ -15,10 +9,3 @@
     {!! Form::label('btip_detalle', 'Detalle:') !!}
     <p>{{ $bienesTipo->btip_detalle }}</p>
 </div>
-
-<!-- Btip Costo Field -->
-<div class="col-sm-12">
-    {!! Form::label('btip_costo', 'Costo:') !!}
-    <p>{{ $bienesTipo->btip_costo }}</p>
-</div>
-

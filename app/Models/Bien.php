@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
  * @package App\Models
  * @version October 9, 2024, 5:22 pm -03
  *
- * @property \App\Models\BienesTipo $btip
+ * @property \App\Models\BienesSubTipo $bsti
  * @property \App\Models\Sala $sala
  * @property \App\Models\IngresosDet $idet
  * @property \Illuminate\Database\Eloquent\Collection $bajas
@@ -41,7 +41,7 @@ class Bien extends EloquentModel
     protected $primaryKey = 'bien_id';
 
     public $fillable = [
-        'btip_id',
+        'bsti_id',
         'sala_id',
         'idet_id',
         'bien_estado',
@@ -55,7 +55,7 @@ class Bien extends EloquentModel
      */
     protected $casts = [
         'bien_id' => 'integer',
-        'btip_id' => 'integer',
+        'bsti_id' => 'integer',
         'sala_id' => 'integer',
         'idet_id' => 'integer',
         'bien_estado' => 'integer',
@@ -68,7 +68,7 @@ class Bien extends EloquentModel
      * @var array
      */
     public static $rules = [
-        'btip_id' => 'nullable|integer',
+        'bsti_id' => 'nullable|integer',
         'sala_id' => 'nullable|integer',
         'idet_id' => 'nullable|integer',
         'bien_estado' => 'nullable|integer',
@@ -83,7 +83,7 @@ class Bien extends EloquentModel
      **/
     public function btip()
     {
-        return $this->belongsTo(\App\Models\BienesTipo::class, 'btip_id');
+        return $this->belongsTo(\App\Models\BienesSubTipo::class, 'bsti_id');
     }
 
     /**
@@ -103,18 +103,18 @@ class Bien extends EloquentModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
      **/
-    public function bajas()
+    public function BajasDet()
     {
-        return $this->belongsToMany(\App\Models\Baja::class, 'bajas_det');
+        return $this->hasMany(\App\Models\Baja::class, 'bien_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function transferencias()
+    public function TranferDetalle()
     {
-        return $this->belongsToMany(\App\Models\Transferencia::class, 'tranfer_detalles');
+        return $this->hasMany(\App\Models\TranferDetalle::class, 'bien_id');
     }
 }

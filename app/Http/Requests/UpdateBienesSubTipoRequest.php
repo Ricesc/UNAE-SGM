@@ -26,9 +26,6 @@ class UpdateBienesSubTipoRequest extends FormRequest
     {
         $rules = BienesSubTipo::$rules;
 
-        // Ignorar la validación única para el registro actual
-        $rules['bsti_descripcion'] = 'required|string|max:255|unique:bienes_sub_tipo,bsti_descripcion,' . $this->route('bienesSubTipo') . ',bsti_id';
-
         return $rules;
     }
 
@@ -36,7 +33,7 @@ class UpdateBienesSubTipoRequest extends FormRequest
     {
         return [
             'bsti_descripcion.required' => 'Por favor, ingrese una descripción para el sub tipo de bien.',
-            'bsti_descripcion.unique' => 'Ya existe un sub tipo de bien con esta descripción.'
+            'btip_id.required' => 'Seleccione el tipo de bien asociado a este sub tipo de bien.',
         ];
     }
 }

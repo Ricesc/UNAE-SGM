@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('bienes_sub_tipo', function (Blueprint $table) {
             $table->increments('bsti_id');
+            $table->integer('btip_id')->nullable();
             $table->string('bsti_descripcion')->index('bsti_desc_idx');
             $table->text('bsti_detalle')->nullable();
+            $table->integer('bsti_costo')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

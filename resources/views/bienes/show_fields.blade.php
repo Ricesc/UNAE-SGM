@@ -1,7 +1,7 @@
 <!-- Btip Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('btip_id', 'Btip Id:') !!}
-    <p>{{ $bien->btip_id }}</p>
+    {!! Form::label('bsti_id', 'Bsti Id:') !!}
+    <p>{{ $bien->bsti_id }}</p>
 </div>
 
 <!-- Sala Id Field -->

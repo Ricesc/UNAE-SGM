@@ -31,7 +31,7 @@ class CreateBienesTipoRequest extends FormRequest
     {
         return [
             'btip_descripcion.required' => 'Por favor, ingrese una descripción para el tipo de bien.',
-            'bsti_id.required' => 'Seleccione el sub tipo de bien asociado a este tipo de bien.',
+            'btip_descripcion.unique' => 'Ya existe un tipo de bien con esta descripción.'
         ];
     }
 }

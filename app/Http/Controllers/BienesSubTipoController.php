@@ -7,6 +7,7 @@ use App\Http\Requests\CreateBienesSubTipoRequest;
 use App\Http\Requests\UpdateBienesSubTipoRequest;
 use App\Repositories\BienesSubTipoRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\BienesTipo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Laracasts\Flash\Flash;
@@ -40,7 +41,9 @@ class BienesSubTipoController extends AppBaseController
      */
     public function create()
     {
-        return view('bienes_sub_tipos.create');
+        $bienesTipos = BienesTipo::pluck('btip_descripcion', 'btip_id');  // Listado clave-valor
+
+        return view('bienes_sub_tipos.create')->with('btip', $bienesTipos);
     }
 
     /**
@@ -98,7 +101,12 @@ class BienesSubTipoController extends AppBaseController
             return redirect(route('bienesSubTipos.index'));
         }
 
-        return view('bienes_sub_tipos.edit')->with('bienesSubTipo', $bienesSubTipo);
+        $bienesTipos = BienesTipo::pluck('btip_descripcion', 'btip_id');  // Listado clave-valor
+
+        return view('bienes_sub_tipos.edit')->with([
+            'bienesSubTipo' => $bienesSubTipo,
+            'btip' => $bienesTipos
+        ]);
     }
 
     /**

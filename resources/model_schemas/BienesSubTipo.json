@@ -12,6 +12,18 @@
         "inView": false
     },
     {
+        "name": "btip_id",
+        "dbType": "integer,false",
+        "htmlType": null,
+        "validations": "nullable|integer|nullable|integer",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
         "name": "bsti_descripcion",
         "dbType": "string,255",
         "htmlType": "text",
@@ -28,6 +40,18 @@
         "dbType": "text:nullable",
         "htmlType": "textarea",
         "validations": "nullable|string|nullable|string",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "inView": true
+    },
+    {
+        "name": "bsti_costo",
+        "dbType": "integer,false",
+        "htmlType": null,
+        "validations": "nullable|integer|nullable|integer",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -73,6 +97,14 @@
     },
     {
         "type": "relation",
-        "relation": "1tm,BienesTipo,bsti_id"
+        "relation": "1tm,BienesTipo,btip_id"
+    },
+    {
+        "type": "relation",
+        "relation": "mtm,Ingreso,ingresos_det"
+    },
+    {
+        "type": "relation",
+        "relation": "1tm,Biene,btip_id"
     }
 ]

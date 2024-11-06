@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('bienes_tipos', function (Blueprint $table) {
-            $table->foreign(['bsti_id'], 'fk_bienes_t_reference_bienes_s')->references(['bsti_id'])->on('bienes_sub_tipo')->onUpdate('restrict')->onDelete('restrict');
+        Schema::table('bienes_sub_tipo', function (Blueprint $table) {
+            $table->foreign(['btip_id'], 'fk_bien_s_t_reference_bien_t')->references(['btip_id'])->on('bienes_tipos')->onUpdate('restrict')->onDelete('restrict');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('bienes_tipos', function (Blueprint $table) {
-            $table->dropForeign('fk_bienes_t_reference_bienes_s');
+        Schema::table('bienes_sub_tipo', function (Blueprint $table) {
+            $table->dropForeign('fk_bien_s_t_reference_bien_t');
         });
     }
 };

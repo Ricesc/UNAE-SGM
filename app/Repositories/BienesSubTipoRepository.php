@@ -8,8 +8,8 @@ use App\Repositories\BaseRepository;
 /**
  * Class BienesSubTipoRepository
  * @package App\Repositories
- * @version October 9, 2024, 5:25 pm -03
-*/
+ * @version October 9, 2024, 5:28 pm -03
+ */
 
 class BienesSubTipoRepository extends BaseRepository
 {
@@ -17,8 +17,10 @@ class BienesSubTipoRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
+        'btip_id',
         'bsti_descripcion',
-        'bsti_detalle'
+        'bsti_detalle',
+        'bsti_costo'
     ];
 
     /**

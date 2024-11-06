@@ -18,12 +18,10 @@ class BienesTipoDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
+        // Agregar columna de índice
         return $dataTable
             ->addColumn('index', function ($bienesTipo) {
                 return $this->getIndex($bienesTipo);
-            })
-            ->addColumn('bsti_descripcion', function ($row) {
-                return $row->bsti->bsti_descripcion ?? 'Sin sub tipo de bien'; // Mostrar la descripción del sub tipo de bien
             })->addColumn('action', 'bienes_tipos.datatables_actions');
     }
 
@@ -35,7 +33,8 @@ class BienesTipoDataTable extends DataTable
      */
     public function query(BienesTipo $model)
     {
-        return $model->newQuery()->whereNull('deleted_at')->with('bsti');
+        // Filtrar solo registros activos (sin soft delete)
+        return $model->newQuery()->whereNull('deleted_at');
     }
 
     /**
@@ -63,9 +62,9 @@ class BienesTipoDataTable extends DataTable
                 'lengthMenu' => [5, 10, 20, 50, 100],
                 'language'   => [ // Personalización de los textos en la tabla
                     'lengthMenu'    => 'Mostrar _MENU_ registros por página',
-                    'zeroRecords'   => 'Ningún Tipo de bien encontrado',
+                    'zeroRecords'   => 'Ningún Tipo de Bien encontrado',
                     'info'          => 'Mostrando de _START_ a _END_ de un total de _TOTAL_ registros',
-                    'infoEmpty'     => 'Ningún Tipo de bien encontrado',
+                    'infoEmpty'     => 'Ningún Tipo de Bien encontrado',
                     'infoFiltered'  => '(filtrados desde _MAX_ registros totales)',
                     'search'        => 'Buscar:',
                     'loadingRecords' => 'Cargando...',
@@ -94,10 +93,8 @@ class BienesTipoDataTable extends DataTable
     {
         return [
             ['data' => 'index', 'title' => '#'], // Columna para numeración
-            'btip_descripcion' => ['title' => 'Descripción'],
-            'btip_detalle' => ['title' => 'Detalle'],
-            'btip_costo' => ['title' => 'Costo'],
-            'bsti_id' => ['title' => 'Sub Tipo de Bien']
+            'btip_descripcion' => ['title' => 'Tipo de Bien'],
+            'btip_detalle' => ['title' => 'Detalle']
         ];
     }
 

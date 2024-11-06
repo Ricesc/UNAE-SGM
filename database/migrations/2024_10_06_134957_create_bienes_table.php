@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('bienes', function (Blueprint $table) {
             $table->increments('bien_id');
-            $table->integer('btip_id')->nullable();
+            $table->integer('bsti_id')->nullable();
             $table->integer('sala_id')->nullable();
             $table->integer('idet_id')->nullable();
             $table->integer('bien_estado')->nullable();

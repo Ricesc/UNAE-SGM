@@ -26,6 +26,9 @@ class UpdateBienesTipoRequest extends FormRequest
     {
         $rules = BienesTipo::$rules;
 
+        // Ignorar la validación única para el registro actual
+        $rules['btip_descripcion'] = 'required|string|max:255|unique:bienes_tipos,btip_descripcion,' . $this->route('bienesTipo') . ',btip_id';
+
         return $rules;
     }
 
@@ -33,7 +36,7 @@ class UpdateBienesTipoRequest extends FormRequest
     {
         return [
             'btip_descripcion.required' => 'Por favor, ingrese una descripción para el tipo de bien.',
-            'bsti_id.required' => 'Seleccione el sub tipo de bien asociado a este tipo de bien.',
+            'btip_descripcion.unique' => 'Ya existe un tipo de bien con esta descripción.'
         ];
     }
 }

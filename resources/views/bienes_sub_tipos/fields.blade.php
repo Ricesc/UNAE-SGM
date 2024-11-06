@@ -34,3 +34,41 @@
         </small>
     @endif
 </div>
+
+<!-- Bsti Costo Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('bsti_costo', 'Costo:', ['for' => 'bsti_costo']) !!}
+    {!! Form::number('bsti_costo', null, [
+        'class' => 'form-control ' . ($errors->has('bsti_costo') ? 'is-invalid' : (old('bsti_costo') ? 'is-valid' : '')), 
+        'id' => 'bsti_costo'
+    ]) !!}
+    @if ($errors->has('bsti_costo'))
+        <small class="text-danger">
+            {{ $errors->first('bsti_costo') }}
+        </small>
+    @elseif (old('bsti_costo'))
+        <small class="text-success">
+            ¡Se ve bien!
+        </small>
+    @endif
+</div>
+
+<!-- Btip Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('btip_id', 'Tipo de Bien:', ['for' => 'btip_id']) !!}
+    {!! Form::select('btip_id', $btip, null, [
+        'class' => 'form-control ' . ($errors->has('btip_id') ? 'is-invalid' : (old('btip_id') ? 'is-valid' : '')), 
+        'id' => 'btip_id',
+        'placeholder' => 'Seleccione una opción'
+    ]) !!}
+    @if ($errors->has('btip_id'))
+        <small class="text-danger">
+            {{ $errors->first('btip_id') }}
+        </small>
+    @elseif (old('btip_id'))
+        <small class="text-success">
+            ¡Se ve bien!
+        </small>
+    @endif
+</div>
+

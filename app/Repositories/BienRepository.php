@@ -9,7 +9,7 @@ use App\Repositories\BaseRepository;
  * Class BienRepository
  * @package App\Repositories
  * @version October 9, 2024, 5:22 pm -03
-*/
+ */
 
 class BienRepository extends BaseRepository
 {
@@ -17,7 +17,7 @@ class BienRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'btip_id',
+        'bsti_id',
         'sala_id',
         'idet_id',
         'bien_estado',

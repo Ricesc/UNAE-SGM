@@ -10,11 +10,15 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
 /**
  * Class BienesSubTipo
  * @package App\Models
- * @version October 9, 2024, 5:25 pm -03
+ * @version October 9, 2024, 5:28 pm -03
  *
- * @property \Illuminate\Database\Eloquent\Collection $bienesTipos
+ * @property \App\Models\BienesSubTipo $bsti
+ * @property \Illuminate\Database\Eloquent\Collection $ingresos
+ * @property \Illuminate\Database\Eloquent\Collection $bienes
+ * @property integer $btip_id
  * @property string $bsti_descripcion
  * @property string $bsti_detalle
+ * @property integer $bsti_costo
  */
 class BienesSubTipo extends EloquentModel
 {
@@ -34,8 +38,10 @@ class BienesSubTipo extends EloquentModel
     protected $primaryKey = 'bsti_id';
 
     public $fillable = [
+        'btip_id',
         'bsti_descripcion',
-        'bsti_detalle'
+        'bsti_detalle',
+        'bsti_costo'
     ];
 
     /**
@@ -45,8 +51,10 @@ class BienesSubTipo extends EloquentModel
      */
     protected $casts = [
         'bsti_id' => 'integer',
+        'btip_id' => 'integer',
         'bsti_descripcion' => 'string',
-        'bsti_detalle' => 'string'
+        'bsti_detalle' => 'string',
+        'bsti_costo' => 'integer'
     ];
 
     /**
@@ -55,18 +63,36 @@ class BienesSubTipo extends EloquentModel
      * @var array
      */
     public static $rules = [
-        'bsti_descripcion' => 'required|string|max:255|unique:bienes_sub_tipo,bsti_descripcion',
+        'btip_id' => 'required|integer',
+        'bsti_descripcion' => 'required|string|max:255',
         'bsti_detalle' => 'nullable|string',
+        'bsti_costo' => 'nullable|integer',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
     ];
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function btip()
+    {
+        return $this->belongsTo(\App\Models\BienesTipo::class, 'btip_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     **/
+    public function IngresosDet()
+    {
+        return $this->hasMany(\App\Models\IngresosDet::class, 'bsti_id');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function bienesTipos()
+    public function bienes()
     {
-        return $this->hasMany(\App\Models\BienesTipo::class, 'bsti_id');
+        return $this->hasMany(\App\Models\Bien::class, 'bsti_id');
     }
 }

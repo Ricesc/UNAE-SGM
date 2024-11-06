@@ -13,10 +13,10 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
  * @version October 7, 2024, 8:00 pm UTC
  *
  * @property \App\Models\Ingreso $ing
- * @property \App\Models\BienesTipo $btip
+ * @property \App\Models\BienesSubTipo $bsti
  * @property \Illuminate\Database\Eloquent\Collection $bienes
  * @property integer $ing_id
- * @property integer $btip_id
+ * @property integer $bsti_id
  * @property integer $idet_cantidad
  * @property integer $idet_estado
  */
@@ -39,7 +39,7 @@ class IngresosDet extends EloquentModel
 
     public $fillable = [
         'ing_id',
-        'btip_id',
+        'bsti_id',
         'idet_cantidad',
         'idet_estado'
     ];
@@ -52,7 +52,7 @@ class IngresosDet extends EloquentModel
     protected $casts = [
         'idet_id' => 'integer',
         'ing_id' => 'integer',
-        'btip_id' => 'integer',
+        'bsti_id' => 'integer',
         'idet_cantidad' => 'integer',
         'idet_estado' => 'integer'
     ];
@@ -64,7 +64,7 @@ class IngresosDet extends EloquentModel
      */
     public static $rules = [
         'ing_id' => 'nullable|integer',
-        'btip_id' => 'nullable|integer',
+        'bsti_id' => 'nullable|integer',
         'idet_cantidad' => 'nullable|integer',
         'idet_estado' => 'nullable|integer',
         'created_at' => 'nullable',
@@ -83,9 +83,9 @@ class IngresosDet extends EloquentModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function btip()
+    public function bsti()
     {
-        return $this->belongsTo(\App\Models\BienesTipo::class, 'btip_id');
+        return $this->belongsTo(\App\Models\BienesTipoCambiarASubTipo::class, 'bsti_id');
     }
 
     /**

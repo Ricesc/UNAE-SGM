@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('ingresos_det', function (Blueprint $table) {
             $table->increments('idet_id');
             $table->integer('ing_id')->nullable();
-            $table->integer('btip_id')->nullable();
+            $table->integer('bsti_id')->nullable();
             $table->integer('idet_cantidad')->nullable();
             $table->integer('idet_estado')->nullable()->index('indt_est_idx');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unique(['ing_id', 'btip_id'], 'infrt_idx');
+            $table->unique(['ing_id', 'bsti_id'], 'indt_idx');
         });
     }
 

@@ -89,10 +89,10 @@ class Transferencia extends EloquentModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
      **/
-    public function bienes()
+    public function TranferDetalles()
     {
-        return $this->belongsToMany(\App\Models\Bien::class, 'tranfer_detalles');
+        return $this->hasMany(\App\Models\TranferDetalle::class, 'tran_id');
     }
 }

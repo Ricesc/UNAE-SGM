@@ -22,8 +22,10 @@ class BienesSubTipoFactory extends Factory
     public function definition()
     {
         return [
+            'btip_id' => \App\Models\BienesTipo::factory(),
             'bsti_descripcion' => $this->faker->word(),
             'bsti_detalle' => $this->faker->sentence(),
+            'bsti_costo' => $this->faker->numberBetween(100, 1000000),
             'created_at' => now(),
             'updated_at' => now(),
         ];

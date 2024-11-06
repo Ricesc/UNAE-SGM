@@ -65,10 +65,10 @@ class BienDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'btip_id' => ['title' => 'Tipo de Bien'], 
+            'bsti_id' => ['title' => 'Sub Tipo de Bien'],
             'sala_id' => ['title' => 'Sala'],
             'idet_id' => ['title' => 'Ingreso Detalle'],
-            'bien_estado' => ['title' => 'Bien Estado'], 
+            'bien_estado' => ['title' => 'Bien Estado'],
             'bien_codigo' => ['title' => 'Bien Código'],
         ];
     }

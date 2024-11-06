@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('ingresos_det', function (Blueprint $table) {
-            $table->foreign(['btip_id'], 'fk_ingresos_reference_bienes_t')->references(['btip_id'])->on('bienes_tipos')->onUpdate('restrict')->onDelete('restrict');
+            $table->foreign(['bsti_id'], 'fk_ingresos_reference_bien_s_t')->references(['bsti_id'])->on('bienes_sub_tipo')->onUpdate('restrict')->onDelete('restrict');
             $table->foreign(['ing_id'], 'fk_ingresos_reference_ingresos')->references(['ing_id'])->on('ingresos')->onUpdate('restrict')->onDelete('restrict');
         });
     }
@@ -23,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('ingresos_det', function (Blueprint $table) {
-            $table->dropForeign('fk_ingresos_reference_bienes_t');
+            $table->dropForeign('fk_ingresos_reference_bien_s_t');
             $table->dropForeign('fk_ingresos_reference_ingresos');
         });
     }

@@ -76,10 +76,10 @@ class Baja extends EloquentModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
      **/
     public function bienes()
     {
-        return $this->belongsToMany(\App\Models\Bien::class, 'bajas_det');
+        return $this->hasMany(\App\Models\BajasDet::class, 'baja_id');
     }
 }

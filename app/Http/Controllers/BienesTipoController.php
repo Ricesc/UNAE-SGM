@@ -7,7 +7,6 @@ use App\Http\Requests\CreateBienesTipoRequest;
 use App\Http\Requests\UpdateBienesTipoRequest;
 use App\Repositories\BienesTipoRepository;
 use App\Http\Controllers\AppBaseController;
-use App\Models\BienesSubTipo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Laracasts\Flash\Flash;
@@ -41,9 +40,7 @@ class BienesTipoController extends AppBaseController
      */
     public function create()
     {
-        $bienesSubTipos = BienesSubTipo::pluck('bsti_descripcion', 'bsti_id');  // Listado clave-valor
-
-        return view('bienes_tipos.create')->with('bsti', $bienesSubTipos);
+        return view('bienes_tipos.create');
     }
 
     /**

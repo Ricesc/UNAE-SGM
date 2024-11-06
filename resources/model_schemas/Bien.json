@@ -12,7 +12,7 @@
         "inView": false
     },
     {
-        "name": "btip_id",
+        "name": "bsti_id",
         "dbType": "integer,false",
         "htmlType": null,
         "validations": "nullable|integer|nullable|integer",
@@ -109,7 +109,7 @@
     },
     {
         "type": "relation",
-        "relation": "mt1,BienesTipo,btip_id"
+        "relation": "mt1,BienesSubTipo,bsti_id"
     },
     {
         "type": "relation",

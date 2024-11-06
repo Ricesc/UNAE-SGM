@@ -22,7 +22,7 @@ class BienFactory extends Factory
     public function definition()
     {
         return [
-            'btip_id' => \App\Models\BienesTipo::factory(),
+            'bsti_id' => \App\Models\BienesSubTipo::factory(),
             'sala_id' => \App\Models\Sala::factory(),
             'idet_id' => \App\Models\IngresosDet::factory(),
             'bien_estado' => $this->faker->numberBetween(0, 1),

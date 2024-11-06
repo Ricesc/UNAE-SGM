@@ -18,7 +18,7 @@ class IngresosDetFactory extends Factory
     {
         return [
             'ing_id' => \App\Models\Ingreso::factory(),
-            'btip_id' => \App\Models\BienesTipo::factory(),
+            'bsti_id' => \App\Models\BienesSubTipo::factory(),
             'idet_cantidad' => $this->faker->numberBetween(1, 100),
             'idet_estado' => $this->faker->numberBetween(0, 1),
             'created_at' => now(),

@@ -101,7 +101,12 @@ class PisoController extends AppBaseController
             return redirect(route('pisos.index'));
         }
 
-        return view('pisos.edit')->with('piso', $piso);
+        $edificios = Edificio::pluck('edif_descripcion', 'edif_id');  // Listado clave-valor
+
+        return view('pisos.edit')->with([
+            'piso' => $piso,
+            'edif' => $edificios
+        ]);
     }
 
     /**

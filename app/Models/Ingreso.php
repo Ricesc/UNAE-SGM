@@ -93,10 +93,10 @@ class Ingreso extends EloquentModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
      **/
-    public function bienesTipos()
+    public function IngresosDet()
     {
-        return $this->belongsToMany(\App\Models\BienesTipo::class, 'ingresos_det');
+        return $this->hasMany(\App\Models\IngresosDet::class, 'ing_id');
     }
 }

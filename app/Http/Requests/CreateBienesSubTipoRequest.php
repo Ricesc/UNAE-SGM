@@ -31,7 +31,7 @@ class CreateBienesSubTipoRequest extends FormRequest
     {
         return [
             'bsti_descripcion.required' => 'Por favor, ingrese una descripción para el sub tipo de bien.',
-            'bsti_descripcion.unique' => 'Ya existe un sub tipo de bien con esta descripción.'
+            'btip_id.required' => 'Seleccione el tipo de bien asociado a este sub tipo de bien.',
         ];
     }
 }

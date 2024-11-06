@@ -1,7 +1,7 @@
 <!-- Btip Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('btip_id', 'Btip Id:') !!}
-    {!! Form::number('btip_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('bsti_id', 'Bsti Id:') !!}
+    {!! Form::number('bsti_id', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Sala Id Field -->
