@@ -36,4 +36,16 @@ class UserFactory extends Factory
             ];
         });
     }
+
+    // Método para crear un usuario específico
+    public function specificUser()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'name' => 'Admin',
+                'email' => 'admin@gmail.com',
+                'password' => bcrypt('123456789'),
+            ];
+        });
+    }
 }
