@@ -15,6 +15,6 @@ class BajaSeeder extends Seeder
      */
     public function run()
     {
-        Baja::factory()->count(50)->create();
+        Baja::factory()->count(10)->create();
     }
 }

@@ -14,6 +14,6 @@ class SalasTipoSeeder extends Seeder
      */
     public function run()
     {
-        SalasTipo::factory()->count(50)->create();
+        SalasTipo::factory()->count(3)->create();
     }
 }

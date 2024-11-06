@@ -14,6 +14,6 @@ class EdificioSeeder extends Seeder
      */
     public function run()
     {
-        Edificio::factory()->count(50)->create();
+        Edificio::factory()->count(3)->create();
     }
 }

@@ -14,6 +14,6 @@ class TransferenciaSeeder extends Seeder
      */
     public function run()
     {
-        Transferencia::factory()->count(50)->create();
+        Transferencia::factory()->count(10)->create();
     }
 }

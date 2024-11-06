@@ -14,6 +14,6 @@ class DependenciaSeeder extends Seeder
      */
     public function run()
     {
-        Dependencia::factory()->count(50)->create();
+        Dependencia::factory()->count(5)->create();
     }
 }

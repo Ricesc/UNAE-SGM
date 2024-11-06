@@ -14,6 +14,6 @@ class SalaSeeder extends Seeder
      */
     public function run()
     {
-        Sala::factory()->count(50)->create();
+        Sala::factory()->count(20)->create();
     }
 }

@@ -14,6 +14,6 @@ class BienesTipoSeeder extends Seeder
      */
     public function run()
     {
-        BienesTipo::factory()->count(50)->create();
+        BienesTipo::factory()->count(5)->create();
     }
 }

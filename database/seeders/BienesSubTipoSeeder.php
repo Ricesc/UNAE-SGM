@@ -14,6 +14,6 @@ class BienesSubTipoSeeder extends Seeder
      */
     public function run()
     {
-        BienesSubTipo::factory()->count(50)->create();
+        BienesSubTipo::factory()->count(10)->create();
     }
 }

@@ -14,6 +14,6 @@ class IngresoSeeder extends Seeder
      */
     public function run()
     {
-        Ingreso::factory()->count(50)->create();
+        Ingreso::factory()->count(10)->create();
     }
 }

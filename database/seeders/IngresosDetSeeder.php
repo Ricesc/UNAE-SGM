@@ -14,6 +14,6 @@ class IngresosDetSeeder extends Seeder
      */
     public function run()
     {
-        IngresosDet::factory()->count(50)->create();
+        IngresosDet::factory()->count(30)->create();
     }
 }

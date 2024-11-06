@@ -14,6 +14,6 @@ class PisoSeeder extends Seeder
      */
     public function run()
     {
-        Piso::factory()->count(50)->create();
+        Piso::factory()->count(10)->create();
     }
 }

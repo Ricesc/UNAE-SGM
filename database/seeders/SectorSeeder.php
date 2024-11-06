@@ -14,6 +14,6 @@ class SectorSeeder extends Seeder
      */
     public function run()
     {
-        Sector::factory()->count(50)->create();
+        Sector::factory()->count(15)->create();
     }
 }

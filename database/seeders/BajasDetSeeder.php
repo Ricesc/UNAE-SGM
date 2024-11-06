@@ -14,6 +14,6 @@ class BajasDetSeeder extends Seeder
      */
     public function run()
     {
-        BajasDet::factory()->count(50)->create();
+        BajasDet::factory()->count(20)->create();
     }
 }

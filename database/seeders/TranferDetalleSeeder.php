@@ -14,6 +14,6 @@ class TranferDetalleSeeder extends Seeder
      */
     public function run()
     {
-        TranferDetalle::factory()->count(50)->create();
+        TranferDetalle::factory()->count(20)->create();
     }
 }
