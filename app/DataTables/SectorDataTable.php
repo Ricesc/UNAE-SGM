@@ -96,7 +96,7 @@ class SectorDataTable extends DataTable
             ['data' => 'index', 'title' => '#'], // Columna para numeración
             'sect_descripcion' => ['title' => 'Descripción'],
             'sect_direccion' => ['title' => 'Dirección'],
-            'piso_id' => ['title' => 'Piso'] // Columna personalizada para mostrar el piso
+            'piso_descripcion' => ['title' => 'Piso'] // Columna personalizada para mostrar el piso
         ];
     }
 
