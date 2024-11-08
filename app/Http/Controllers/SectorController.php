@@ -54,12 +54,6 @@ class SectorController extends AppBaseController
         return view('sectores.create', compact('edificios', 'pisosPorEdificio'));
     }
 
-    public function getPisosByEdificio($edificioId)
-    {
-        $pisos = Piso::where('edif_id', $edificioId)->pluck('piso_descripcion', 'piso_id');
-        return response()->json($pisos);
-    }
-
     /**
      * Store a newly created Sector in storage.
      *
