@@ -20,9 +20,10 @@
 <!-- Prov Teléfono Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('prov_telefono', 'Teléfono:', ['for' => 'prov_telefono']) !!}
-    {!! Form::number('prov_telefono', null, [
+    {!! Form::text('prov_telefono', null, [
         'class' => 'form-control ' . ($errors->has('prov_telefono') ? 'is-invalid' : (old('prov_telefono') ? 'is-valid' : '')), 
-        'id' => 'prov_telefono'
+        'id' => 'prov_telefono',
+        'placeholder' => 'Ingrese el número de teléfono'
     ]) !!}
     @if ($errors->has('prov_telefono'))
         <small class="text-danger">
@@ -34,6 +35,7 @@
         </small>
     @endif
 </div>
+
 
 <!-- Prov RUC Field -->
 <div class="form-group col-sm-6">

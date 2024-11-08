@@ -46,7 +46,7 @@ class Dependencia extends EloquentModel
     protected $casts = [
         'depe_id' => 'integer',
         'depe_descripcion' => 'string',
-        'depe_telefono' => 'integer'
+        'depe_telefono' => 'string'
     ];
 
     /**
@@ -56,7 +56,7 @@ class Dependencia extends EloquentModel
      */
     public static $rules = [
         'depe_descripcion' => 'required|string|max:255|unique:dependencias,depe_descripcion',
-        'depe_telefono' => 'nullable|integer',
+        'depe_telefono' => 'nullable|string',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'

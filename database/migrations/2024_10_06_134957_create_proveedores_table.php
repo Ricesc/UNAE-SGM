@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('proveedores', function (Blueprint $table) {
             $table->increments('prov_id');
             $table->string('prov_nombre')->index('prov_nom_idx');
-            $table->integer('prov_telefono')->nullable();
+            $table->string('prov_telefono')->nullable();
             $table->string('prov_ruc')->nullable()->unique('prov_ruc_idx');
             $table->text('prov_direccion')->nullable();
             $table->string('prov_localidad')->nullable();

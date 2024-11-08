@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('dependencias', function (Blueprint $table) {
             $table->increments('depe_id');
             $table->string('depe_descripcion')->index('depe_desc_idx');
-            $table->integer('depe_telefono')->nullable();
+            $table->string('depe_telefono')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
