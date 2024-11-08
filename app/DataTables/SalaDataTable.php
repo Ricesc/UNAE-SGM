@@ -33,6 +33,7 @@ class SalaDataTable extends DataTable
     {
         // Realizar eager load de las relaciones
         return $model->newQuery()
+            ->whereNull('deleted_at')
             ->with(['sector', 'stip', 'depe']); // Cargar las relaciones necesarias
     }
 
