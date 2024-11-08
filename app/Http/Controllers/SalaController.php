@@ -7,6 +7,12 @@ use App\Http\Requests\CreateSalaRequest;
 use App\Http\Requests\UpdateSalaRequest;
 use App\Repositories\SalaRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Dependencia;
+use App\Models\Edificio;
+use App\Models\Piso;
+use App\Models\Sala;
+use App\Models\SalasTipo;
+use App\Models\Sector;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Laracasts\Flash\Flash;
@@ -40,7 +46,27 @@ class SalaController extends AppBaseController
      */
     public function create()
     {
-        return view('salas.create');
+
+        // Obtener todas las dependencias
+        $dependencias = Dependencia::pluck('depe_descripcion', 'depe_id');
+
+        // Obtener todos los tipos de salas
+        $salasTipo = SalasTipo::pluck('stip_descripcion', 'stip_id');
+
+        // Obtener todos los edificios
+        $edificios = Edificio::pluck('edif_descripcion', 'edif_id');
+
+        // Obtener pisos agrupados por edificio
+        $pisosPorEdificio = Piso::all()->groupBy('edif_id')->map(function ($pisos) {
+            return $pisos->pluck('piso_descripcion', 'piso_id')->toArray();
+        });
+
+        // Obtener sectores agrupados por piso
+        $sectoresPorPiso = Sector::all()->groupBy('piso_id')->map(function ($sectores) {
+            return $sectores->pluck('sect_descripcion', 'sect_id')->toArray();
+        });
+
+        return view('salas.create', compact('dependencias', 'salasTipo', 'edificios', 'pisosPorEdificio', 'sectoresPorPiso'));
     }
 
     /**
@@ -70,15 +96,15 @@ class SalaController extends AppBaseController
      */
     public function show($id)
     {
-        $sala = $this->salaRepository->find($id);
+        // Cargar la sala con su sector, piso y edificio relacionados
+        $sala = Sala::with(['sector.piso.edif'])->findOrFail($id);
 
         if (empty($sala)) {
             Flash::error('Sala not found');
-
             return redirect(route('salas.index'));
         }
 
-        return view('salas.show')->with('sala', $sala);
+        return view('salas.show', compact('sala'));
     }
 
     /**
@@ -90,16 +116,40 @@ class SalaController extends AppBaseController
      */
     public function edit($id)
     {
-        $sala = $this->salaRepository->find($id);
+        // Cargar la sala con su sector y relaciones anidadas
+        $sala = Sala::with('sector.piso.edif')->find($id);
 
         if (empty($sala)) {
             Flash::error('Sala not found');
-
             return redirect(route('salas.index'));
         }
 
-        return view('salas.edit')->with('sala', $sala);
+        // Obtener todas las dependencias
+        $dependencias = Dependencia::pluck('depe_descripcion', 'depe_id');
+
+        // Obtener todos los tipos de salas
+        $salasTipo = SalasTipo::pluck('stip_descripcion', 'stip_id');
+
+        // Obtener todos los edificios
+        $edificios = Edificio::pluck('edif_descripcion', 'edif_id');
+
+        // Obtener los pisos agrupados por edificio
+        $pisosPorEdificio = Edificio::with('pisos')->get()->mapWithKeys(function ($edificio) {
+            return [
+                $edificio->edif_id => $edificio->pisos->pluck('piso_descripcion', 'piso_id')->toArray()
+            ];
+        });
+
+        // Obtener sectores agrupados por piso
+        $sectoresPorPiso = Piso::with('sectores')->get()->mapWithKeys(function ($piso) {
+            return [
+                $piso->piso_id => $piso->sectores->pluck('sect_descripcion', 'sect_id')->toArray()
+            ];
+        });
+
+        return view('salas.edit', compact('dependencias', 'salasTipo', 'sala', 'edificios', 'pisosPorEdificio', 'sectoresPorPiso'));
     }
+
 
     /**
      * Update the specified Sala in storage.
