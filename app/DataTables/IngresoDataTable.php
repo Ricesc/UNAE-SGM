@@ -18,7 +18,18 @@ class IngresoDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'ingresos.datatables_actions');
+        return $dataTable
+            ->addColumn('prov_nombre', function ($ingreso) {
+                // Eliminar o comentar la línea de depuración
+                // dd($ingreso->prov); 
+                return $ingreso->prov ? $ingreso->prov->prov_nombre : 'Sin Proveedor';
+            })
+            ->addColumn('name', function ($ingreso) {
+                // Eliminar o comentar la línea de depuración
+                // dd($ingreso->usu); 
+                return $ingreso->usu ? $ingreso->usu->name : 'Sin Usuario';
+            })
+            ->addColumn('action', 'ingresos.datatables_actions');
     }
 
     /**
@@ -29,8 +40,9 @@ class IngresoDataTable extends DataTable
      */
     public function query(Ingreso $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->with(['usu', 'prov'])->whereNull('deleted_at');
     }
+
 
     /**
      * Optional method if you want to use html builder.
@@ -40,19 +52,41 @@ class IngresoDataTable extends DataTable
     public function html()
     {
         return $this->builder()
+            ->setTableId('ingresos-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->addAction(['width' => '120px', 'printable' => false])
+            ->addAction(['width' => '120px', 'printable' => false, 'title' => 'Acciones'])
             ->parameters([
-                'dom'       => 'Bfrtip',
+                'responsive' => true,
+                'columnDefs' => [
+                    ['responsivePriority' => 1, 'targets' => 0],
+                    ['responsivePriority' => 2, 'targets' => -1],
+                ],
+                'autoWidth' => false,
+                'dom'       => '<"top"lBf>rt<"bottom"ip><"clear">',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
+                'lengthMenu' => [5,10, 20, 50, 100],
+                'language'   => [ // Personalización de los textos en la tabla
+                    'lengthMenu'    => 'Mostrar _MENU_ registros por página',
+                    'zeroRecords'   => 'Ningún Ingreso encontrado',
+                    'info'          => 'Mostrando de _START_ a _END_ de un total de _TOTAL_ registros',
+                    'infoEmpty'     => 'Ningún ingreso encontrado',
+                    'infoFiltered'  => '(filtrados desde _MAX_ registros totales)',
+                    'search'        => 'Buscar:',
+                    'loadingRecords' => 'Cargando...',
+                    'paginate'      => [
+                        'first'    => 'Primero',
+                        'last'     => 'Último',
+                        'next'     => 'Siguiente',
+                        'previous' => 'Anterior',
+                    ],
+                ],
                 'buttons'   => [
-                    ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
+                    ['extend' => 'csv', 'className' => 'btn btn-default btn-sm no-corner',],
+                    ['extend' => 'excel', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
+                    ['extend' => 'colvis', 'className' => 'btn btn-default btn-sm no-corner', 'text'=>'Ver columnas'],
                 ],
             ]);
     }
@@ -65,14 +99,14 @@ class IngresoDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            ['data' => 'prov_id', 'title' => 'Proveedor'],
-            ['data' => 'usu_id', 'title' => 'Usuario'],
+            ['data' => 'prov_id', 'title' => 'Proveedor'], // Mantén los IDs de las relaciones
+            ['data' => 'usu_id', 'title' => 'Usuario'], // Mantén los IDs de las relaciones
             ['data' => 'ing_fecha_compra', 'title' => 'Fecha de Compra'],
             ['data' => 'ing_costo_total', 'title' => 'Costo Total'],
             ['data' => 'ing_estado', 'title' => 'Estado']
         ];
-        
     }
+
 
     /**
      * Get filename for export.

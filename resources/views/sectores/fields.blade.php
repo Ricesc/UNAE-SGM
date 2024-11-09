@@ -38,17 +38,16 @@
 
 <!-- Piso Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('piso_id', 'Piso:', ['for' => 'piso_id']) !!}
-    {!! Form::select('piso_id', $piso, null, [
-        'class' => 'form-control ' . ($errors->has('piso_id') ? 'is-invalid' : (old('piso_id') ? 'is-valid' : '')), 
-        'id' => 'piso_id',
-        'placeholder' => 'Seleccione una opción'
+    {!! Form::label('piso_descripcion', 'Piso:', ['for' => 'piso_descripcion']) !!}
+    {!! Form::select('piso_descripcion', $piso, null, [
+        'class' => 'form-control ' . ($errors->has('piso_descripcion') ? 'is-invalid' : (old('piso_descripcion') ? 'is-valid' : '')), 
+        'id' => 'piso_descripcion',
     ]) !!}
-    @if ($errors->has('piso_id'))
+    @if ($errors->has('piso_descripcion'))
         <small class="text-danger">
-            {{ $errors->first('piso_id') }}
+            {{ $errors->first('piso_descripcion') }}
         </small>
-    @elseif (old('piso_id'))
+    @elseif (old('piso_descripcion'))
         <small class="text-success">
             ¡Se ve bien!
         </small>

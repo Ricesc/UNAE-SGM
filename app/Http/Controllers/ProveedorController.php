@@ -29,7 +29,9 @@ class ProveedorController extends AppBaseController
      * @return Response
      */
     public function index(ProveedorDataTable $proveedorDataTable)
+
     {
+        
         return $proveedorDataTable->render('proveedores.index');
     }
 

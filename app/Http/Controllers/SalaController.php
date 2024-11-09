@@ -7,6 +7,9 @@ use App\Http\Requests\CreateSalaRequest;
 use App\Http\Requests\UpdateSalaRequest;
 use App\Repositories\SalaRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Dependencia;
+use App\Models\SalasTipo;
+use App\Models\Sector;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Laracasts\Flash\Flash;
@@ -40,8 +43,17 @@ class SalaController extends AppBaseController
      */
     public function create()
     {
-        return view('salas.create');
+        $sectores = Sector::pluck('sect_descripcion', 'sect_id');
+        $salasTipos = SalasTipo::pluck('stip_descripcion', 'stip_id');
+        $dependencias = Dependencia::pluck('depe_descripcion', 'depe_id');
+
+        return view('salas.create')->with([
+            'sectores' => $sectores,
+            'salasTipos' => $salasTipos,
+            'dependencias' => $dependencias
+        ]);
     }
+
 
     /**
      * Store a newly created Sala in storage.
@@ -56,7 +68,7 @@ class SalaController extends AppBaseController
 
         $sala = $this->salaRepository->create($input);
 
-        Flash::success('Sala saved successfully.');
+        Flash::success('Sala guardada exitosamente.');
 
         return redirect(route('salas.index'));
     }
@@ -73,7 +85,7 @@ class SalaController extends AppBaseController
         $sala = $this->salaRepository->find($id);
 
         if (empty($sala)) {
-            Flash::error('Sala not found');
+            Flash::error('Sala no encontrada');
 
             return redirect(route('salas.index'));
         }
@@ -93,12 +105,22 @@ class SalaController extends AppBaseController
         $sala = $this->salaRepository->find($id);
 
         if (empty($sala)) {
-            Flash::error('Sala not found');
+            Flash::error('Sala no encontrada');
 
             return redirect(route('salas.index'));
         }
 
-        return view('salas.edit')->with('sala', $sala);
+        $sectores = Sector::pluck('sect_descripcion', 'sect_id');
+        $tipos = SalasTipo::pluck('stip_descripcion', 'stip_id');
+        $dependencias = Dependencia::pluck('depe_descripcion', 'depe_id');
+        
+
+        return view('salas.edit')->with([
+            'sala' => $sala,
+            'sectores' => $sectores,
+            'tipos' => $tipos,
+            'dependencias' => $dependencias
+        ]);
     }
 
     /**
@@ -114,14 +136,14 @@ class SalaController extends AppBaseController
         $sala = $this->salaRepository->find($id);
 
         if (empty($sala)) {
-            Flash::error('Sala not found');
+            Flash::error('Sala no encontrada');
 
             return redirect(route('salas.index'));
         }
 
         $sala = $this->salaRepository->update($request->all(), $id);
 
-        Flash::success('Sala updated successfully.');
+        Flash::success('Sala actualizada exitosamente.');
 
         return redirect(route('salas.index'));
     }
@@ -138,14 +160,14 @@ class SalaController extends AppBaseController
         $sala = $this->salaRepository->find($id);
 
         if (empty($sala)) {
-            Flash::error('Sala not found');
+            Flash::error('Sala no encontrada');
 
             return redirect(route('salas.index'));
         }
 
         $this->salaRepository->delete($id);
 
-        Flash::success('Sala deleted successfully.');
+        Flash::success('Sala eliminada exitosamente.');
 
         return redirect(route('salas.index'));
     }

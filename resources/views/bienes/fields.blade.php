@@ -13,7 +13,6 @@
 </div>
 
 
-
 <!-- Idet Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('idet_id', 'Idet Id:') !!}
@@ -22,9 +21,18 @@
 
 <!-- Bien Estado Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('bien_estado', 'Bien Estado:') !!}
-    {!! Form::number('bien_estado', null, ['class' => 'form-control']) !!}
+    {!! Form::label('bien_estado', 'Estado del Bien:') !!}
+    {!! Form::select('bien_estado', [
+    1 => 'Nuevo', // 1 para 'Nuevo'
+    2 => 'Usado', // 2 para 'Usado'
+    3 => 'Roto', // 3 para 'Roto'
+    4 => 'Dañado', // 4 para 'Dañado'
+    5 => 'En reparación' // 5 para 'En reparación'
+    ], null, ['class' => 'form-control']) !!}
 </div>
+
+
+
 
 <!-- Bien Codigo Field -->
 <div class="form-group col-sm-6">

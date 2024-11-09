@@ -79,7 +79,7 @@ class ProveedorDataTable extends DataTable
                     ['extend' => 'csv', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'excel', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'colvis', 'className' => 'btn btn-default btn-sm no-corner',],
+                    ['extend' => 'colvis', 'className' => 'btn btn-default btn-sm no-corner', 'text'=>'Ver columnas'],
                 ],
             ]);
     }

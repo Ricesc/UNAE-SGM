@@ -4,7 +4,6 @@
     {!! Form::select('prov_id', $proveedores, null, ['class' => 'form-control']) !!}
 </div>
 
-
 <!-- Usu Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('usu_id', 'Usuario:') !!}
@@ -15,7 +14,7 @@
 <div class="form-group col-sm-6">
     {!! Form::label('ing_fecha_compra', 'Ing Fecha Compra:') !!}
     {!! Form::text('ing_fecha_compra', null, ['class' => 'form-control','id'=>'ing_fecha_compra']) !!}
-</div>
+</div> 
 
 @push('page_scripts')
 <script type="text/javascript">

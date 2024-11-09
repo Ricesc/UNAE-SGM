@@ -7,6 +7,8 @@ use App\Http\Requests\CreateBienRequest;
 use App\Http\Requests\UpdateBienRequest;
 use App\Repositories\BienRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Baja;
+use App\Models\BajasDet;
 use App\Models\BienesSubTipo;
 use App\Models\Sala;
 use Illuminate\Http\Request;
@@ -43,6 +45,7 @@ class BienController extends AppBaseController
     public function create()
     {
         // Obtener los bienes sub-tipo y salas sin usar toArray()
+        //$bajas_det = BajasDet::pluck('bdet_descripcion', 'bdet_id');
         $bienes_sub_tipo = BienesSubTipo::pluck('bsti_descripcion', 'bsti_id');
         $sala = Sala::pluck('sala_descripcion', 'sala_id');
 

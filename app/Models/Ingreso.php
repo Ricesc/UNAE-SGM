@@ -65,16 +65,21 @@ class Ingreso extends EloquentModel
      *
      * @var array
      */
-    public static $rules = [
-        'prov_id' => 'nullable|integer',
-        'usu_id' => 'nullable|integer',
-        'ing_fecha_compra' => 'nullable',
-        'ing_costo_total' => 'nullable|integer',
-        'ing_estado' => 'nullable|integer',
-        'created_at' => 'nullable',
-        'updated_at' => 'nullable',
-        'deleted_at' => 'nullable'
-    ];
+
+    public function rules()
+    {
+        return [
+            'prov_id' => 'required|integer',
+            'usu_id' => 'required|integer',
+            'ing_fecha_compra' => 'required|date',
+            'ing_costo_total' => 'required|numeric',
+            'ing_estado' => 'required|in:0,1',
+            'created_at' => 'nullable',
+            'updated_at' => 'nullable',
+            'deleted_at' => 'nullable'
+        ];
+    }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -84,12 +89,9 @@ class Ingreso extends EloquentModel
         return $this->belongsTo(\App\Models\Proveedor::class, 'prov_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
     public function usu()
     {
-        return $this->belongsTo(\App\Models\User::class);
+        return $this->belongsTo(\App\Models\User::class, 'usu_id');
     }
 
     /**

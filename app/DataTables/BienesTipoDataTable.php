@@ -59,7 +59,7 @@ class BienesTipoDataTable extends DataTable
                 'dom'       => '<"top"lBf>rt<"bottom"ip><"clear">',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
-                'lengthMenu' => [5, 10, 20, 50, 100],
+                'lengthMenu' => [5,10, 20, 50, 100],
                 'language'   => [ // Personalización de los textos en la tabla
                     'lengthMenu'    => 'Mostrar _MENU_ registros por página',
                     'zeroRecords'   => 'Ningún Tipo de Bien encontrado',
@@ -79,7 +79,7 @@ class BienesTipoDataTable extends DataTable
                     ['extend' => 'csv', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'excel', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'colvis', 'className' => 'btn btn-default btn-sm no-corner',],
+                    ['extend' => 'colvis', 'className' => 'btn btn-default btn-sm no-corner', 'text'=>'Ver columnas'],
                 ],
             ]);
     }

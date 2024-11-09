@@ -42,13 +42,12 @@ class IngresoController extends AppBaseController
      */
     public function create()
     {
-        // Obtener los proveedores y usuarios desde la base de datos
-        $proveedores = Proveedor::pluck('prov_nombre', 'prov_id')->toArray();  // Obtener id y nombre de proveedores
-        $usuarios = User::pluck('name', 'id')->toArray();       // Obtener id y nombre de usuarios
+        $proveedores = Proveedor::pluck('prov_nombre', 'prov_id')->toArray(); // Obtén los datos de los proveedores
+        $usuarios = User::pluck('name', 'usu_id')->toArray(); // Obtén los datos de los usuarios
 
-        // Pasar los datos a la vista
-        return view('ingresos.create', compact('proveedores', 'usuarios'));
+        return view('ingresos.create')->with('proveedores', $proveedores, 'usuarios', $usuarios); // Pasar los datos a la vista
     }
+
 
 
     /**

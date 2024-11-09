@@ -23,6 +23,9 @@
 
 <!-- Baja Estado Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('baja_estado', 'Baja Estado:') !!}
-    {!! Form::number('baja_estado', null, ['class' => 'form-control']) !!}
+    {!! Form::label('baja_estado', 'Estado de la Baja:') !!}
+    {!! Form::select('baja_estado', [
+    '0' => 'Pendiente',
+    '1' => 'Procesado'
+    ], null, ['class' => 'form-control']) !!}
 </div>

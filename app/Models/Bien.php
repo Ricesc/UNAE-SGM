@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Model as EloquentModel;
  * @property integer $btip_id
  * @property integer $sala_id
  * @property integer $idet_id
- * @property integer $bien_estado
+ * @property string $bien_estado
  * @property string $bien_codigo
  */
 class Bien extends EloquentModel
@@ -58,7 +58,7 @@ class Bien extends EloquentModel
         'bsti_id' => 'integer',
         'sala_id' => 'integer',
         'idet_id' => 'integer',
-        'bien_estado' => 'integer',
+        'bien_estado' => 'string',
         'bien_codigo' => 'string'
     ];
 
@@ -71,7 +71,7 @@ class Bien extends EloquentModel
         'bsti_id' => 'nullable|integer',
         'sala_id' => 'nullable|integer',
         'idet_id' => 'nullable|integer',
-        'bien_estado' => 'nullable|integer',
+        'bien_estado' => 'nullable|string',
         'bien_codigo' => 'nullable|string|max:30',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',

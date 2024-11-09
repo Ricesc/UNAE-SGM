@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ config('app.name') }} | Registration Page</title>
+    <title>{{ config('app.name') }} |   Pagina de registro</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     
     <!-- Font Awesome -->
@@ -147,7 +147,7 @@
 <body>
     <div class="register-container">
         <div class="register-logo">
-            <a href="{{ url('/home') }}"><b>{{ config('app.name') }}</b></a>
+            <a href="{{ url('/#') }}"><b>{{ config('app.name') }}</b></a>
         </div>
         
         <p class="register-box-msg">Crear nueva cuenta</p>

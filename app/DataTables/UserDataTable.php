@@ -59,7 +59,7 @@ class UserDataTable extends DataTable
                 'dom'       => '<"top"lBf>rt<"bottom"ip><"clear">',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
-                'lengthMenu' => [5, 10, 20, 50, 100],
+                'lengthMenu' => [5,10, 20, 50, 100],
                 'language'   => [ // Personalización de los textos en la tabla
                     'lengthMenu'    => 'Mostrar _MENU_ registros por página',
                     'zeroRecords'   => 'Ningún Usuario encontrado',

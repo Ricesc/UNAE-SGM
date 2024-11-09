@@ -60,7 +60,7 @@ class SectorDataTable extends DataTable
                 'dom'       => '<"top"lBf>rt<"bottom"ip><"clear">',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
-                'lengthMenu' => [5, 10, 20, 50, 100],
+                'lengthMenu' => [5,10, 20, 50, 100],
                 'language'   => [ // Personalización de los textos en la tabla
                     'lengthMenu'    => 'Mostrar _MENU_ registros por página',
                     'zeroRecords'   => 'Ningún Sector encontrado',
@@ -80,7 +80,7 @@ class SectorDataTable extends DataTable
                     ['extend' => 'csv', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'excel', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'colvis', 'className' => 'btn btn-default btn-sm no-corner',],
+                    ['extend' => 'colvis', 'className' => 'btn btn-default btn-sm no-corner', 'text'=>'Ver columnas'],
                 ],
             ]);
     }
@@ -96,7 +96,7 @@ class SectorDataTable extends DataTable
             ['data' => 'index', 'title' => '#'], // Columna para numeración
             'sect_descripcion' => ['title' => 'Descripción'],
             'sect_direccion' => ['title' => 'Dirección'],
-            'piso_id' => ['title' => 'Piso'] // Columna personalizada para mostrar el piso
+            'piso_descripcion' => ['title' => 'Piso'] // Columna personalizada para mostrar el piso
         ];
     }
 

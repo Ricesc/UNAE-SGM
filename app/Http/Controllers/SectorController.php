@@ -42,6 +42,7 @@ class SectorController extends AppBaseController
      */
     public function create()
     {
+        
         $pisos = Piso::pluck('piso_descripcion', 'piso_id');  // Listado clave-valor
 
         return view('sectores.create')->with('piso', $pisos);;

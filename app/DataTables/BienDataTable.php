@@ -40,19 +40,41 @@ class BienDataTable extends DataTable
     public function html()
     {
         return $this->builder()
+            ->setTableId('bienes-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->addAction(['width' => '120px', 'printable' => false])
+            ->addAction(['width' => '120px', 'printable' => false, 'title' => 'Acciones'])
             ->parameters([
-                'dom'       => 'Bfrtip',
+                'responsive' => true,
+                'columnDefs' => [
+                    ['responsivePriority' => 1, 'targets' => 0],
+                    ['responsivePriority' => 2, 'targets' => -1],
+                ],
+                'autoWidth' => false,
+                'dom'       => '<"top"lBf>rt<"bottom"ip><"clear">',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
+                'lengthMenu' => [5,10, 20, 50, 100],
+                'language'   => [ // Personalización de los textos en la tabla
+                    'lengthMenu'    => 'Mostrar _MENU_ registros por página',
+                    'zeroRecords'   => 'Ningun bien encontrado',
+                    'info'          => 'Mostrando de _START_ a _END_ de un total de _TOTAL_ registros',
+                    'infoEmpty'     => 'bien',
+                    'infoFiltered'  => '(filtrados desde _MAX_ registros totales)',
+                    'search'        => 'Buscar:',
+                    'loadingRecords' => 'Cargando...',
+                    'paginate'      => [
+                        'first'    => 'Primero',
+                        'last'     => 'Último',
+                        'next'     => 'Siguiente',
+                        'previous' => 'Anterior',
+                    ],
+                ],
                 'buttons'   => [
-                    ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
+                    ['extend' => 'csv', 'className' => 'btn btn-default btn-sm no-corner',],
+                    ['extend' => 'excel', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
+                    ['extend' => 'colvis', 'className' => 'btn btn-default btn-sm no-corner', 'text'=>'Ver columnas'],
                 ],
             ]);
     }

@@ -43,7 +43,7 @@ class PisoController extends AppBaseController
     {
         $edificios = Edificio::pluck('edif_descripcion', 'edif_id');  // Listado clave-valor
 
-        return view('pisos.create')->with('edif', $edificios);
+        return view('pisos.create')->with('edificios', $edificios);
     }
 
     /**
