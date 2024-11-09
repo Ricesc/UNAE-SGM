@@ -7,6 +7,8 @@ use App\Http\Requests\CreateTransferenciaRequest;
 use App\Http\Requests\UpdateTransferenciaRequest;
 use App\Repositories\TransferenciaRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Sala;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Laracasts\Flash\Flash;
@@ -40,7 +42,9 @@ class TransferenciaController extends AppBaseController
      */
     public function create()
     {
-        return view('transferencias.create');
+        $sala = Sala::pluck('sala_descripcion', 'sala_id');
+        $usuario=User::pluck('name', 'id');
+        return view('transferencias.create',compact('sala','usuario'));
     }
 
     /**
@@ -91,15 +95,23 @@ class TransferenciaController extends AppBaseController
     public function edit($id)
     {
         $transferencia = $this->transferenciaRepository->find($id);
-
+        $sala = Sala::pluck('sala_descripcion', 'sala_id')->toArray();
+        $usuario = User::pluck('name', 'id')->toArray();  // O como corresponda
+    
         if (empty($transferencia)) {
             Flash::error('Transferencia not found');
-
             return redirect(route('transferencias.index'));
         }
-
-        return view('transferencias.edit')->with('transferencia', $transferencia);
+    
+        // Pasar 'usuario' junto con otras variables a la vista
+        return view('transferencias.edit')->with([
+            'transferencia' => $transferencia,
+            'sala' => $sala,
+            'usuario' => $usuario  // Asegúrate de pasar la variable 'usuario'
+        ]);
     }
+    
+    
 
     /**
      * Update the specified Transferencia in storage.

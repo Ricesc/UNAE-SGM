@@ -1,13 +1,14 @@
 <!-- Prov Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('prov_id', 'Prov Id:') !!}
-    {!! Form::number('prov_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('prov_id', 'Proveedor:') !!}
+    {!! Form::select('prov_id', $proveedores, null, ['class' => 'form-control']) !!}
 </div>
+
 
 <!-- Usu Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('usu_id', 'Usu Id:') !!}
-    {!! Form::number('usu_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('usu_id', 'Usuario:') !!}
+    {!! Form::select('usu_id', $usuarios, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Ing Fecha Compra Field -->
@@ -17,13 +18,13 @@
 </div>
 
 @push('page_scripts')
-    <script type="text/javascript">
-        $('#ing_fecha_compra').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            useCurrent: true,
-            sideBySide: true
-        })
-    </script>
+<script type="text/javascript">
+    $('#ing_fecha_compra').datetimepicker({
+        format: 'YYYY-MM-DD HH:mm:ss',
+        useCurrent: true,
+        sideBySide: true
+    })
+</script>
 @endpush
 
 <!-- Ing Costo Total Field -->
@@ -35,5 +36,5 @@
 <!-- Ing Estado Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('ing_estado', 'Ing Estado:') !!}
-    {!! Form::number('ing_estado', null, ['class' => 'form-control']) !!}
+    {!! Form::select('ing_estado', [0 => 'Inactivo', 1 => 'Activo'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione un estado']) !!}
 </div>

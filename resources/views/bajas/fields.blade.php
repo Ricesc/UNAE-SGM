@@ -1,8 +1,9 @@
 <!-- Usu Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('usu_id', 'Usu Id:') !!}
-    {!! Form::number('usu_id', null, ['class' => 'form-control']) !!}
+    {!! Form::select('usu_id', $usuario, null, ['class' => 'form-control']) !!}
 </div>
+
 
 <!-- Baja Fecha Field -->
 <div class="form-group col-sm-6">

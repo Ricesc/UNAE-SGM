@@ -9,7 +9,7 @@
     {!! Form::button('<i class="fa fa-trash"></i>', [
         'type' => 'submit',
         'class' => 'btn btn-danger btn-xs',
-        'onclick' => "return confirm('Are you sure?')"
+        'onclick' => "return confirm('Estas seguro de eliminar esto?')"
     ]) !!}
 </div>
 {!! Form::close() !!}

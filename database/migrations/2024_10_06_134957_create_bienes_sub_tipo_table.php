@@ -13,12 +13,19 @@ return new class extends Migration
     {
         Schema::create('bienes_sub_tipo', function (Blueprint $table) {
             $table->increments('bsti_id');
-            $table->integer('btip_id')->nullable();
+            $table->unsignedInteger('btip_id')->nullable(); // Cambiado a unsignedInteger
             $table->string('bsti_descripcion')->index('bsti_desc_idx');
             $table->text('bsti_detalle')->nullable();
             $table->integer('bsti_costo')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            // Definir la clave foránea
+            $table->foreign('btip_id')
+                ->references('btip_id')
+                ->on('bienes_tipos')
+                ->onDelete('restrict')
+                ->onUpdate('restrict');
         });
     }
 

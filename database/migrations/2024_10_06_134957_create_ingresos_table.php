@@ -20,6 +20,12 @@ return new class extends Migration
             $table->integer('ing_estado')->nullable()->default(0)->index('ingre_estado_idx');
             $table->timestamps();
             $table->softDeletes();
+
+            // Agregar claves foráneas
+            $table->foreign('prov_id')->references('prov_id')->on('proveedores')
+                ->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('user')->references('id')->on('users')
+                ->onDelete('set null')->onUpdate('cascade');
         });
     }
 

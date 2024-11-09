@@ -7,6 +7,7 @@ use App\Http\Requests\CreateBajaRequest;
 use App\Http\Requests\UpdateBajaRequest;
 use App\Repositories\BajaRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Laracasts\Flash\Flash;
@@ -40,7 +41,8 @@ class BajaController extends AppBaseController
      */
     public function create()
     {
-        return view('bajas.create');
+        $usuario = User::pluck('name', 'id')->toArray();
+        return view('bajas.create',compact('usuario'));
     }
 
     /**
@@ -91,6 +93,7 @@ class BajaController extends AppBaseController
     public function edit($id)
     {
         $baja = $this->bajaRepository->find($id);
+        $usuario = User::pluck('name', 'id')->toArray();
 
         if (empty($baja)) {
             Flash::error('Baja not found');
@@ -98,7 +101,10 @@ class BajaController extends AppBaseController
             return redirect(route('bajas.index'));
         }
 
-        return view('bajas.edit')->with('baja', $baja);
+        return view('bajas.edit')->with([
+            'bajas' => $baja,
+            'usuario' => $usuario
+        ]);
     }
 
     /**

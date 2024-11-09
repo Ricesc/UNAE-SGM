@@ -7,6 +7,8 @@ use App\Http\Requests\CreateBienRequest;
 use App\Http\Requests\UpdateBienRequest;
 use App\Repositories\BienRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\BienesSubTipo;
+use App\Models\Sala;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Laracasts\Flash\Flash;
@@ -40,8 +42,15 @@ class BienController extends AppBaseController
      */
     public function create()
     {
-        return view('bienes.create');
+        // Obtener los bienes sub-tipo y salas sin usar toArray()
+        $bienes_sub_tipo = BienesSubTipo::pluck('bsti_descripcion', 'bsti_id');
+        $sala = Sala::pluck('sala_descripcion', 'sala_id');
+
+        // Pasar los bienes_sub_tipo y sala a la vista
+        return view('bienes.create', compact('bienes_sub_tipo', 'sala'));
     }
+
+
 
     /**
      * Store a newly created Bien in storage.
@@ -91,6 +100,8 @@ class BienController extends AppBaseController
     public function edit($id)
     {
         $bien = $this->bienRepository->find($id);
+        $bienes_sub_tipo = BienesSubTipo::pluck('bsti_descripcion', 'bsti_id')->toArray();
+        $sala = Sala::pluck('sala_descripcion', 'sala_id')->toArray();
 
         if (empty($bien)) {
             Flash::error('Bien not found');
@@ -98,7 +109,7 @@ class BienController extends AppBaseController
             return redirect(route('bienes.index'));
         }
 
-        return view('bienes.edit')->with('bien', $bien);
+        return view('bienes.edit')->with('bien', $bien, 'bienes_sub_tipo', $bienes_sub_tipo, 'sala', $sala);
     }
 
     /**

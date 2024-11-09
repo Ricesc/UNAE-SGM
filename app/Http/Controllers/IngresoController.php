@@ -7,6 +7,8 @@ use App\Http\Requests\CreateIngresoRequest;
 use App\Http\Requests\UpdateIngresoRequest;
 use App\Repositories\IngresoRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Proveedor;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Laracasts\Flash\Flash;
@@ -40,8 +42,14 @@ class IngresoController extends AppBaseController
      */
     public function create()
     {
-        return view('ingresos.create');
+        // Obtener los proveedores y usuarios desde la base de datos
+        $proveedores = Proveedor::pluck('prov_nombre', 'prov_id')->toArray();  // Obtener id y nombre de proveedores
+        $usuarios = User::pluck('name', 'id')->toArray();       // Obtener id y nombre de usuarios
+
+        // Pasar los datos a la vista
+        return view('ingresos.create', compact('proveedores', 'usuarios'));
     }
+
 
     /**
      * Store a newly created Ingreso in storage.
@@ -56,7 +64,7 @@ class IngresoController extends AppBaseController
 
         $ingreso = $this->ingresoRepository->create($input);
 
-        Flash::success('Ingreso saved successfully.');
+        Flash::success('Ingreso guardado correctamente.');
 
         return redirect(route('ingresos.index'));
     }
@@ -71,6 +79,9 @@ class IngresoController extends AppBaseController
     public function show($id)
     {
         $ingreso = $this->ingresoRepository->find($id);
+        $proveedores = Proveedor::pluck('prov_nombre', 'prov_id')->toArray();  // Obtener id y nombre de proveedores
+        $usuarios = User::pluck('name', 'id')->toArray();
+
 
         if (empty($ingreso)) {
             Flash::error('Ingreso not found');
@@ -78,7 +89,7 @@ class IngresoController extends AppBaseController
             return redirect(route('ingresos.index'));
         }
 
-        return view('ingresos.show')->with('ingreso', $ingreso);
+        return view('ingresos.show')->with('ingreso', $ingreso, 'proveedores', $proveedores, 'usuarios', $usuarios);
     }
 
     /**
@@ -90,15 +101,21 @@ class IngresoController extends AppBaseController
      */
     public function edit($id)
     {
+        // Obtener el ingreso por el ID
         $ingreso = $this->ingresoRepository->find($id);
 
+        // Verificar si el ingreso existe
         if (empty($ingreso)) {
             Flash::error('Ingreso not found');
-
             return redirect(route('ingresos.index'));
         }
 
-        return view('ingresos.edit')->with('ingreso', $ingreso);
+        // Obtener los proveedores y usuarios desde la base de datos
+        $proveedores = Proveedor::pluck('prov_nombre', 'prov_id')->toArray();  // Obtener id y nombre de proveedores
+        $usuarios = User::pluck('name', 'id')->toArray();       // Obtener id y nombre de usuarios
+
+        // Pasar el ingreso, proveedores y usuarios a la vista
+        return view('ingresos.edit', compact('ingreso', 'proveedores', 'usuarios'));
     }
 
     /**
@@ -121,7 +138,7 @@ class IngresoController extends AppBaseController
 
         $ingreso = $this->ingresoRepository->update($request->all(), $id);
 
-        Flash::success('Ingreso updated successfully.');
+        Flash::success('Ingreso actualizado correctamente.');
 
         return redirect(route('ingresos.index'));
     }
@@ -145,7 +162,7 @@ class IngresoController extends AppBaseController
 
         $this->ingresoRepository->delete($id);
 
-        Flash::success('Ingreso deleted successfully.');
+        Flash::success('Ingreso eliminado correctamente.');
 
         return redirect(route('ingresos.index'));
     }

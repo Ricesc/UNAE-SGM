@@ -1,14 +1,18 @@
 <!-- Btip Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('bsti_id', 'Bsti Id:') !!}
-    {!! Form::number('bsti_id', null, ['class' => 'form-control']) !!}
+    {!! Form::select('bsti_id', $bienes_sub_tipo, null, ['class' => 'form-control']) !!}
 </div>
+
+
 
 <!-- Sala Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('sala_id', 'Sala Id:') !!}
-    {!! Form::number('sala_id', null, ['class' => 'form-control']) !!}
+    {!! Form::select('sala_id', $sala, null, ['class' => 'form-control']) !!}
 </div>
+
+
 
 <!-- Idet Id Field -->
 <div class="form-group col-sm-6">

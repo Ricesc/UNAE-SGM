@@ -21,6 +21,14 @@ return new class extends Migration
             $table->integer('sala_capacidad')->nullable();
             $table->timestamps();
             $table->softDeletes();
+            
+            // Agregar claves foráneas
+            $table->foreign('sect_id')->references('sect_id')->on('sectores')
+                  ->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('stip_id')->references('stip_id')->on('salas_tipo')
+                  ->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('depe_id')->references('depe_id')->on('dependencias')
+                  ->onDelete('set null')->onUpdate('cascade');
         });
     }
 

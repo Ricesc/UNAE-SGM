@@ -65,12 +65,13 @@ class IngresoDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'prov_id',
-            'usu_id',
-            'ing_fecha_compra',
-            'ing_costo_total',
-            'ing_estado'
+            ['data' => 'prov_id', 'title' => 'Proveedor'],
+            ['data' => 'usu_id', 'title' => 'Usuario'],
+            ['data' => 'ing_fecha_compra', 'title' => 'Fecha de Compra'],
+            ['data' => 'ing_costo_total', 'title' => 'Costo Total'],
+            ['data' => 'ing_estado', 'title' => 'Estado']
         ];
+        
     }
 
     /**

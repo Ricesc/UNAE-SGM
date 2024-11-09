@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateSectorRequest;
 use App\Repositories\SectorRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Models\Piso;
+use App\Models\Sector;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Laracasts\Flash\Flash;
@@ -93,17 +94,22 @@ class SectorController extends AppBaseController
      */
     public function edit($id)
     {
-        $sector = $this->sectorRepository->find($id);
-
+        // Obtener el sector por el ID
+        $sector = Sector::find($id);
+    
+        // Obtener los pisos disponibles
+        $piso = Piso::pluck('piso_descripcion', 'piso_id')->toArray();  // Asumiendo que 'nombre' es el campo que quieres mostrar y 'id' es el valor
+    
+        // Verificar si el sector existe
         if (empty($sector)) {
             Flash::error('Sector not found');
-
             return redirect(route('sectores.index'));
         }
-
-        return view('sectores.edit')->with('sector', $sector);
+    
+        // Pasar el sector y los pisos a la vista
+        return view('sectores.edit', compact('sector', 'piso'));
     }
-
+    
     /**
      * Update the specified Sector in storage.
      *
