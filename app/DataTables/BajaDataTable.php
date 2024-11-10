@@ -18,7 +18,21 @@ class BajaDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'bajas.datatables_actions');
+        return $dataTable
+
+            ->addColumn('index', function ($baja) {
+                return $this->getIndex($baja);
+            })
+
+            ->addColumn('baja_estado', function ($baja) {
+                return $baja->baja_estado == 1 ? 'Pendiente' : 'Procesado';
+            })
+
+            ->addColumn('name', function ($baja) {
+                return $baja->usu->name ?? 'Sin nombre de usuario';
+            })
+
+            ->addColumn('action', 'bajas.datatables_actions');
     }
 
     /**
@@ -54,7 +68,7 @@ class BajaDataTable extends DataTable
                 'dom'       => '<"top"lBf>rt<"bottom"ip><"clear">',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
-                'lengthMenu' => [5,10, 20, 50, 100],
+                'lengthMenu' => [5, 10, 20, 50, 100],
                 'language'   => [ // Personalización de los textos en la tabla
                     'lengthMenu'    => 'Mostrar _MENU_ registros por página',
                     'zeroRecords'   => 'Ninguna baja encontrada',
@@ -74,7 +88,7 @@ class BajaDataTable extends DataTable
                     ['extend' => 'csv', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'excel', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'colvis', 'className' => 'btn btn-default btn-sm no-corner', 'text'=>'Ver columnas'],
+                    ['extend' => 'colvis', 'className' => 'btn btn-default btn-sm no-corner', 'text' => 'Ver columnas'],
                 ],
             ]);
     }
@@ -87,12 +101,23 @@ class BajaDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'usu_id'=>['title'=>'Usuario'],
+            'name' => ['title' => 'Usuario'],
             'baja_fecha',
             'baja_estado'
         ];
     }
 
+
+    protected function getIndex($baja)
+    {
+        // Obtenemos todos los registros activos
+        $activeRows = Baja::whereNull('deleted_at')->get();
+
+        // Buscamos la posición de la sala actual
+        return $activeRows->search(function ($item) use ($baja) {
+            return $item->getKey() === $baja->getKey();
+        }) + 1; // +1 porque la numeración debe comenzar en 1
+    }
     /**
      * Get filename for export.
      *

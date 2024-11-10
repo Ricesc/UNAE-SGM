@@ -1,7 +1,7 @@
 <!-- Btip Id Field -->
 <div class="col-sm-12">
     {!! Form::label('btip_id', 'Tipo de Bien:') !!}
-    <p>{{ $bienesSubTipo->btip_id }}</p>
+    <p>{{ $bienesSubTipo->btip->btip_descripcion ?? 'Sin descripcion' }}</p>
 </div>
 
 <!-- Bsti Descripcion Field -->

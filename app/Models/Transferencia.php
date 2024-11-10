@@ -83,11 +83,11 @@ class Transferencia extends EloquentModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
+
     public function usu()
     {
-        return $this->belongsTo(\App\Models\User::class);
+        return $this->belongsTo(\App\Models\User::class, 'usu_id');
     }
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\hasMany
      **/

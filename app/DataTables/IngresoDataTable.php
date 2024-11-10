@@ -19,16 +19,25 @@ class IngresoDataTable extends DataTable
         $dataTable = new EloquentDataTable($query);
 
         return $dataTable
+
+            ->addColumn('index', function ($ingreso) {
+                return $this->getIndex($ingreso);
+            })
+
+
             ->addColumn('prov_nombre', function ($ingreso) {
-                // Eliminar o comentar la línea de depuración
-                // dd($ingreso->prov); 
-                return $ingreso->prov ? $ingreso->prov->prov_nombre : 'Sin Proveedor';
+
+                return $ingreso->prov->prov_nombre ?? 'Sin nombre de proveedores';
             })
             ->addColumn('name', function ($ingreso) {
-                // Eliminar o comentar la línea de depuración
-                // dd($ingreso->usu); 
-                return $ingreso->usu ? $ingreso->usu->name : 'Sin Usuario';
+
+                return $ingreso->usu->name ?? 'Sin nombre de usuario';
             })
+
+            ->addColumn('ing_estado', function ($ingreso) {
+                return $ingreso->ing_estado == 1 ? 'Activo' : 'Inactivo';
+            })
+
             ->addColumn('action', 'ingresos.datatables_actions');
     }
 
@@ -66,7 +75,7 @@ class IngresoDataTable extends DataTable
                 'dom'       => '<"top"lBf>rt<"bottom"ip><"clear">',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
-                'lengthMenu' => [5,10, 20, 50, 100],
+                'lengthMenu' => [5, 10, 20, 50, 100],
                 'language'   => [ // Personalización de los textos en la tabla
                     'lengthMenu'    => 'Mostrar _MENU_ registros por página',
                     'zeroRecords'   => 'Ningún Ingreso encontrado',
@@ -86,7 +95,7 @@ class IngresoDataTable extends DataTable
                     ['extend' => 'csv', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'excel', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'colvis', 'className' => 'btn btn-default btn-sm no-corner', 'text'=>'Ver columnas'],
+                    ['extend' => 'colvis', 'className' => 'btn btn-default btn-sm no-corner', 'text' => 'Ver columnas'],
                 ],
             ]);
     }
@@ -99,14 +108,25 @@ class IngresoDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            ['data' => 'prov_id', 'title' => 'Proveedor'], // Mantén los IDs de las relaciones
-            ['data' => 'usu_id', 'title' => 'Usuario'], // Mantén los IDs de las relaciones
+            ['data' => 'prov_nombre', 'title' => 'Proveedor'], // Mantén los IDs de las relaciones
+            ['data' => 'name', 'title' => 'Usuario'], // Mantén los IDs de las relaciones
             ['data' => 'ing_fecha_compra', 'title' => 'Fecha de Compra'],
             ['data' => 'ing_costo_total', 'title' => 'Costo Total'],
             ['data' => 'ing_estado', 'title' => 'Estado']
         ];
     }
 
+
+    protected function getIndex($ingreso)
+    {
+        // Obtenemos todos los registros activos
+        $activeRows = Ingreso::whereNull('deleted_at')->get();
+
+        // Buscamos la posición de la sala actual
+        return $activeRows->search(function ($item) use ($ingreso) {
+            return $item->getKey() === $ingreso->getKey();
+        }) + 1; // +1 porque la numeración debe comenzar en 1
+    }
 
     /**
      * Get filename for export.

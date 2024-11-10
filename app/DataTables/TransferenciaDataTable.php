@@ -18,8 +18,26 @@ class TransferenciaDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'transferencias.datatables_actions');
+        return $dataTable
+            ->addColumn('index', function ($transferencia) {
+                return $this->getIndex($transferencia);
+            })
+
+            ->addColumn('sala_descripcion', function ($transferencia) {
+                return $transferencia->sala->sala_descripcion ?? 'Sin tipo de sala';
+            })
+            ->addColumn('name', function ($transferencia) {
+                return $transferencia->usu->name ?? 'Sin usuario';
+            })
+
+            ->addColumn('tran_procesado', function ($transferencia) {
+                return $transferencia->tran_procesado == 1 ? 'Procesado' : 'Pendiente';
+            })
+
+            ->addColumn('action', 'transferencias.datatables_actions');
     }
+
+
 
     /**
      * Get query source of dataTable.
@@ -29,7 +47,7 @@ class TransferenciaDataTable extends DataTable
      */
     public function query(Transferencia $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->with(['sala', 'usu'])->whereNull('deleted_at');
     }
 
     /**
@@ -54,12 +72,12 @@ class TransferenciaDataTable extends DataTable
                 'dom'       => '<"top"lBf>rt<"bottom"ip><"clear">',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
-                'lengthMenu' => [5,10, 20, 50, 100],
-                'language'   => [ // Personalización de los textos en la tabla
+                'lengthMenu' => [5, 10, 20, 50, 100],
+                'language'   => [
                     'lengthMenu'    => 'Mostrar _MENU_ registros por página',
                     'zeroRecords'   => 'Ninguna transferencia encontrada',
                     'info'          => 'Mostrando de _START_ a _END_ de un total de _TOTAL_ registros',
-                    'infoEmpty'     => 'transferencias',
+                    'infoEmpty'     => 'No hay transferencias disponibles',
                     'infoFiltered'  => '(filtrados desde _MAX_ registros totales)',
                     'search'        => 'Buscar:',
                     'loadingRecords' => 'Cargando...',
@@ -71,13 +89,14 @@ class TransferenciaDataTable extends DataTable
                     ],
                 ],
                 'buttons'   => [
-                    ['extend' => 'csv', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'excel', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'colvis', 'className' => 'btn btn-default btn-sm no-corner', 'text'=>'Ver columnas'],
+                    ['extend' => 'csv', 'className' => 'btn btn-default btn-sm no-corner'],
+                    ['extend' => 'excel', 'className' => 'btn btn-default btn-sm no-corner'],
+                    ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner'],
+                    ['extend' => 'colvis', 'className' => 'btn btn-default btn-sm no-corner', 'text' => 'Ver columnas'],
                 ],
             ]);
     }
+
 
     /**
      * Get columns.
@@ -87,13 +106,25 @@ class TransferenciaDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'sala_id' =>['title'=>'Sala'],
-            'usu_id' =>['title'=>'Usuario'],
-            'tran_fecha' =>['title'=>'Fecha de transferencia'],
-            'tran_procesado' =>['title'=>'Procesado'],
+            'sala_descripcion' => ['title' => 'Tipo de Sala'],
+            'name' => ['title' => 'Usuario'], // Ahora mostramos el nombre del usuario
+            'tran_fecha' => ['title' => 'Fecha de transferencia'],
+            'tran_procesado' => ['title' => 'Procesado'],
         ];
     }
 
+
+
+    protected function getIndex($transferencia)
+    {
+        // Obtenemos todos los registros activos
+        $activeRows = Transferencia::whereNull('deleted_at')->get();
+
+        // Buscamos la posición de la sala actual
+        return $activeRows->search(function ($item) use ($transferencia) {
+            return $item->getKey() === $transferencia->getKey();
+        }) + 1; // +1 porque la numeración debe comenzar en 1
+    }
     /**
      * Get filename for export.
      *

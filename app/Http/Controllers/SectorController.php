@@ -9,7 +9,7 @@ use App\Repositories\SectorRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Models\Edificio;
 use App\Models\Piso;
-use App\Models\Sector;
+use App\Models\Sala;
 use App\Models\Sector;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;

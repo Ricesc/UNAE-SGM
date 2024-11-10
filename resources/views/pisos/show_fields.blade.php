@@ -1,7 +1,7 @@
 <!-- Edif Id Field -->
 <div class="col-sm-12">
     {!! Form::label('edif_id', 'Edificio:') !!}
-    <p>{{ $piso->edif_id }}</p>
+    <p>{{ $piso->edif->edif_descripcion ?? 'Sin descripcion' }}</p>
 </div>
 
 <!-- Piso Descripcion Field -->

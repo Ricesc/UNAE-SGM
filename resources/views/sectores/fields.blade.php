@@ -63,11 +63,11 @@
         'id' => 'piso_id',
         'placeholder' => 'Seleccione un Piso'
     ]) !!}
-    @if ($errors->has('piso_descripcion'))
+    @if ($errors->has('piso_id'))
         <small class="text-danger">
-            {{ $errors->first('piso_descripcion') }}
+            {{ $errors->first('piso_id') }}
         </small>
-    @elseif (old('piso_descripcion'))
+    @elseif (old('piso_id'))
         <small class="text-success">
             ¡Se ve bien!
         </small>

@@ -24,12 +24,11 @@ class SalaDataTable extends DataTable
             })
 
             ->addColumn('action', 'salas.datatables_actions');
-            
     }
 
     public function query(Sala $model)
     {
-        return $model->newQuery()->with(['sect', 'stip', 'depe'])->whereNull('deleted_at');
+        return $model->newQuery()->with(['sector', 'stip', 'depe'])->whereNull('deleted_at');
     }
 
     public function html()
@@ -69,7 +68,7 @@ class SalaDataTable extends DataTable
                     ['extend' => 'csv', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'excel', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'colvis', 'className' => 'btn btn-default btn-sm no-corner', 'text'=>'Ver columnas'],
+                    ['extend' => 'colvis', 'className' => 'btn btn-default btn-sm no-corner', 'text' => 'Ver columnas'],
                 ],
             ]);
     }
@@ -78,7 +77,7 @@ class SalaDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            ['data' => 'index', 'title' => '#'], // Columna para numeración
+
             'sala_descripcion' => ['title' => 'Sala'],
             'sala_direccion' => ['title' => 'Dirección'],
             'sala_capacidad' => ['title' => 'Capacidad'],
