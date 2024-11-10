@@ -8,8 +8,7 @@
                     <h1>Detalles del Sector</h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-default float-right"
-                       href="{{ route('sectores.index') }}">
+                    <a class="btn btn-default float-right" href="{{ route('sectores.index') }}">
                         Volver
                     </a>
                 </div>
@@ -19,10 +18,11 @@
 
     <div class="content px-3">
         <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Información del Sector</h3>
+            </div>
             <div class="card-body">
-                <div class="row">
-                    @include('sectores.show_fields')
-                </div>
+                @include('sectores.show_fields')
             </div>
         </div>
     </div>

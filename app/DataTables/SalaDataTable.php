@@ -78,13 +78,26 @@ class SalaDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'sect_descripcion' => ['title' => 'Descripción del Sector'],
-            'stip_descripcion' => ['title' => 'Descripción del Tipo de Sala'],
-            'depe_descripcion' => ['title' => 'Descripción de la Dependencia'],
-            'sala_descripcion' => ['title' => 'Descripción de la Sala'],
-            'sala_direccion' => ['title' => 'Dirección de la Sala'],
-            'sala_capacidad' => ['title' => 'Capacidad de la Sala'],
+            ['data' => 'index', 'title' => '#'], // Columna para numeración
+            'sala_descripcion' => ['title' => 'Sala'],
+            'sala_direccion' => ['title' => 'Dirección'],
+            'sala_capacidad' => ['title' => 'Capacidad'],
+            'sect_descripcion' => ['title' => 'Sector'], // Columna para sector
+            'stip_descripcion' => ['title' => 'Tipo'], // Columna para tipo de sala
+            'depe_descripcion' => ['title' => 'Dependencia'], // Columna para dependencia
         ];
+    }
+
+    // Método para obtener el índice, contando solo los registros no eliminados
+    protected function getIndex($sala)
+    {
+        // Obtenemos todos los registros activos
+        $activeRows = Sala::whereNull('deleted_at')->get();
+
+        // Buscamos la posición de la sala actual
+        return $activeRows->search(function ($item) use ($sala) {
+            return $item->getKey() === $sala->getKey();
+        }) + 1; // +1 porque la numeración debe comenzar en 1
     }
 
     protected function filename()

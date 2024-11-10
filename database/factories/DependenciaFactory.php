@@ -23,7 +23,7 @@ class DependenciaFactory extends Factory
     {
         return [
             'depe_descripcion' => $this->faker->word(),
-            'depe_telefono' => $this->faker->numberBetween(600000000, 699999999),
+            'depe_telefono' => $this->faker->phoneNumber,
             'created_at' => now(),
             'updated_at' => now(),
         ];
