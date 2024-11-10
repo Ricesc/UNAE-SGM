@@ -43,9 +43,9 @@ class IngresoController extends AppBaseController
     public function create()
     {
         $proveedores = Proveedor::pluck('prov_nombre', 'prov_id')->toArray(); // Obtén los datos de los proveedores
-        $usuarios = User::pluck('name', 'usu_id')->toArray(); // Obtén los datos de los usuarios
+        $usuarios = User::pluck('name', 'id')->toArray(); // Obtén los datos de los usuarios
 
-        return view('ingresos.create')->with('proveedores', $proveedores, 'usuarios', $usuarios); // Pasar los datos a la vista
+        return view('ingresos.create')->with(['proveedores' => $proveedores, 'usuarios' => $usuarios]);
     }
 
 
@@ -81,15 +81,14 @@ class IngresoController extends AppBaseController
         $proveedores = Proveedor::pluck('prov_nombre', 'prov_id')->toArray();  // Obtener id y nombre de proveedores
         $usuarios = User::pluck('name', 'id')->toArray();
 
-
         if (empty($ingreso)) {
             Flash::error('Ingreso not found');
-
             return redirect(route('ingresos.index'));
         }
 
         return view('ingresos.show')->with('ingreso', $ingreso, 'proveedores', $proveedores, 'usuarios', $usuarios);
     }
+
 
     /**
      * Show the form for editing the specified Ingreso.

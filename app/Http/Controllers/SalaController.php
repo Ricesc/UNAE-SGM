@@ -35,7 +35,9 @@ class SalaController extends AppBaseController
      * @return Response
      */
     public function index(SalaDataTable $salaDataTable)
+
     {
+
         return $salaDataTable->render('salas.index');
     }
 
@@ -148,7 +150,14 @@ class SalaController extends AppBaseController
             ];
         });
 
-        return view('salas.edit', compact('dependencias', 'salasTipo', 'sala', 'edificios', 'pisosPorEdificio', 'sectoresPorPiso'));
+        return view('salas.edit', [
+            'sala' => $sala,
+            'dependencias' => $dependencias,
+            'salasTipo' => $salasTipo,
+            'edificios' => $edificios,
+            'pisosPorEdificio' => $pisosPorEdificio,
+            'sectoresPorPiso' => $sectoresPorPiso
+        ]);
     }
 
 

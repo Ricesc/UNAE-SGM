@@ -37,6 +37,8 @@ class SalaDataTable extends DataTable
             ->with(['sector', 'stip', 'depe']); // Cargar las relaciones necesarias
     }
 
+
+
     public function html()
     {
         return $this->builder()
@@ -83,7 +85,7 @@ class SalaDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            ['data' => 'index', 'title' => '#'], // Columna para numeración
+
             'sala_descripcion' => ['title' => 'Sala'],
             'sala_direccion' => ['title' => 'Dirección'],
             'sala_capacidad' => ['title' => 'Capacidad'],

@@ -6,8 +6,8 @@
 
 <!-- Usu Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('usu_id', 'Usuario:') !!}
-    {!! Form::select('usu_id', $usuarios, null, ['class' => 'form-control']) !!}
+    {!! Form::label('id', 'Usuario:') !!}
+    {!! Form::select('id', $usuarios, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Ing Fecha Compra Field -->
