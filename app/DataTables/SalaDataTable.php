@@ -13,9 +13,15 @@ class SalaDataTable extends DataTable
         $dataTable = new EloquentDataTable($query);
 
         return $dataTable
-            ->addColumn('sect_descripcion', function ($sala) {
-                return $sala->sect->sect_descripcion ?? 'Sin sector';
+
+            ->addColumn('index', function ($sala) {
+                return $this->getIndex($sala);
             })
+
+            ->addColumn('sect_descripcion', function ($sala) {
+                return $sala->sect_descripcion ?? 'Sin sector';  // Ahora accedemos directamente al campo de la base de datos
+            })
+
             ->addColumn('stip_descripcion', function ($sala) {
                 return $sala->stip->stip_descripcion ?? 'Sin tipo de sala';
             })
@@ -28,8 +34,13 @@ class SalaDataTable extends DataTable
 
     public function query(Sala $model)
     {
-        return $model->newQuery()->with(['sector', 'stip', 'depe'])->whereNull('deleted_at');
+        return $model->newQuery()
+            ->leftJoin('sectores', 'sectores.sect_id', '=', 'salas.sect_id')  // Hacer un JOIN con la tabla 'sectores'
+            ->select('salas.*',  'sectores.sect_descripcion') // Seleccionar los campos de la sala y el sector
+            ->whereNull('salas.deleted_at');
     }
+
+
 
     public function html()
     {

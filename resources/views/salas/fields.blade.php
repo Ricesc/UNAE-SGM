@@ -134,10 +134,10 @@
 <!-- Campo de Sector (dependiente de Piso) -->
 <div class="form-group col-sm-6">
     {!! Form::label('sect_id', 'Sector:', ['for' => 'sect_id']) !!}
-    {!! Form::select('sect_id', $sala ?? [], $sala->sect_id ?? null, [
+    {!! Form::select('sect_id', isset($sectoresPorPiso[$sala->piso_id]) ? $sectoresPorPiso[$sala->piso_id] : [], $sala->sect_id ?? null, [
     'class' => 'form-control ' . ($errors->has('sect_id') ? 'is-invalid' : (old('sect_id') ? 'is-valid' : '')),
     'id' => 'sect_id',
-    'placeholder' => 'Seleccione un Piso'
+    'placeholder' => 'Seleccione un Sector'
     ]) !!}
     @if ($errors->has('sect_id'))
     <small class="text-danger">
@@ -149,6 +149,8 @@
     </small>
     @endif
 </div>
+
+
 
 <script>
     $(document).ready(function() {
