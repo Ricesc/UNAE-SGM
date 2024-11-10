@@ -7,6 +7,7 @@ use App\Http\Requests\CreateSectorRequest;
 use App\Http\Requests\UpdateSectorRequest;
 use App\Repositories\SectorRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Edificio;
 use App\Models\Piso;
 use App\Models\Sector;
 use Illuminate\Http\Request;
@@ -42,10 +43,15 @@ class SectorController extends AppBaseController
      */
     public function create()
     {
-        
-        $pisos = Piso::pluck('piso_descripcion', 'piso_id');  // Listado clave-valor
+        // Obtener todos los edificios
+        $edificios = Edificio::pluck('edif_descripcion', 'edif_id');
 
-        return view('sectores.create')->with('piso', $pisos);;
+        // Obtener todos los pisos y agruparlos por edificio
+        $pisosPorEdificio = Piso::all()->groupBy('edif_id')->map(function ($pisos) {
+            return $pisos->pluck('piso_descripcion', 'piso_id')->toArray();
+        });
+
+        return view('sectores.create', compact('edificios', 'pisosPorEdificio'));
     }
 
     /**
@@ -75,7 +81,7 @@ class SectorController extends AppBaseController
      */
     public function show($id)
     {
-        $sector = $this->sectorRepository->find($id);
+        $sector = Sector::with(['piso.edif'])->findOrFail($id);
 
         if (empty($sector)) {
             Flash::error('Sector not found');
@@ -83,7 +89,7 @@ class SectorController extends AppBaseController
             return redirect(route('sectores.index'));
         }
 
-        return view('sectores.show')->with('sector', $sector);
+        return view('sectores.show', compact('sector'));
     }
 
     /**
@@ -95,22 +101,27 @@ class SectorController extends AppBaseController
      */
     public function edit($id)
     {
-        // Obtener el sector por el ID
-        $sector = Sector::find($id);
-    
-        // Obtener los pisos disponibles
-        $piso = Piso::pluck('piso_descripcion', 'piso_id')->toArray();  // Asumiendo que 'nombre' es el campo que quieres mostrar y 'id' es el valor
-    
-        // Verificar si el sector existe
+        $sector = Sector::with('piso.edif')->find($id);
+
         if (empty($sector)) {
             Flash::error('Sector not found');
             return redirect(route('sectores.index'));
         }
-    
-        // Pasar el sector y los pisos a la vista
-        return view('sectores.edit', compact('sector', 'piso'));
+
+        // Obtener todos los edificios
+        $edificios = Edificio::pluck('edif_descripcion', 'edif_id');
+
+        // Obtener los pisos de cada edificio utilizando la relación 'pisos'
+        $pisosPorEdificio = Edificio::with('pisos')->get()->mapWithKeys(function ($edificio) {
+            return [
+                $edificio->edif_id => $edificio->pisos->pluck('piso_descripcion', 'piso_id')->toArray()
+            ];
+        });
+
+        return view('sectores.edit', compact('sector', 'edificios', 'pisosPorEdificio'));
     }
-    
+
+
     /**
      * Update the specified Sector in storage.
      *

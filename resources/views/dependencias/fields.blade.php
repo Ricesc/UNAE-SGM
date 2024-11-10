@@ -20,9 +20,10 @@
 <!-- Depe Teléfono Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('depe_telefono', 'Teléfono:', ['for' => 'depe_telefono']) !!}
-    {!! Form::number('depe_telefono', null, [
+    {!! Form::text('depe_telefono', null, [
         'class' => 'form-control ' . ($errors->has('depe_telefono') ? 'is-invalid' : (old('depe_telefono') ? 'is-valid' : '')), 
-        'id' => 'depe_telefono'
+        'id' => 'depe_telefono',
+        'placeholder' => 'Ingrese el número de teléfono'
     ]) !!}
     @if ($errors->has('depe_telefono'))
         <small class="text-danger">

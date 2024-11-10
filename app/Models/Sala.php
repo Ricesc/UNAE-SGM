@@ -71,9 +71,9 @@ class Sala extends EloquentModel
      * @var array
      */
     public static $rules = [
-        'sect_id' => 'nullable|integer',
-        'stip_id' => 'nullable|integer',
-        'depe_id' => 'nullable|integer',
+        'sect_id' => 'required|integer',
+        'stip_id' => 'required|integer',
+        'depe_id' => 'required|integer',
         'sala_descripcion' => 'required|string|max:255',
         'sala_direccion' => 'nullable|string|max:255',
         'sala_capacidad' => 'nullable|integer',
@@ -85,7 +85,7 @@ class Sala extends EloquentModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function sect()
+    public function sector()
     {
         return $this->belongsTo(\App\Models\Sector::class, 'sect_id');
     }

@@ -5,11 +5,10 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Sala Detalles</h1>
+                    <h1>Detalles de la Sala</h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-default float-right"
-                       href="{{ route('salas.index') }}">
+                    <a class="btn btn-default float-right" href="{{ route('salas.index') }}">
                         Volver
                     </a>
                 </div>
@@ -19,6 +18,9 @@
 
     <div class="content px-3">
         <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Información de la Sala</h3>
+            </div>
             <div class="card-body">
                 <div class="row">
                     @include('salas.show_fields')

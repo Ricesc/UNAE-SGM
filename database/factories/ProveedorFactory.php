@@ -23,7 +23,7 @@ class ProveedorFactory extends Factory
     {
         return [
             'prov_nombre' => $this->faker->company(),
-            'prov_telefono' => $this->faker->numberBetween(600000000, 699999999),
+            'prov_telefono' => $this->faker->phoneNumber,
             'prov_ruc' => $this->faker->unique()->numerify('###########'),
             'prov_direccion' => $this->faker->address(),
             'prov_localidad' => $this->faker->city(),

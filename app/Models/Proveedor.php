@@ -52,7 +52,7 @@ class Proveedor extends EloquentModel
     protected $casts = [
         'prov_id' => 'integer',
         'prov_nombre' => 'string',
-        'prov_telefono' => 'integer',
+        'prov_telefono' => 'string',
         'prov_ruc' => 'string',
         'prov_direccion' => 'string',
         'prov_localidad' => 'string'
@@ -65,7 +65,7 @@ class Proveedor extends EloquentModel
      */
     public static $rules = [
         'prov_nombre' => 'required|string|max:255',
-        'prov_telefono' => 'nullable|integer',
+        'prov_telefono' => 'nullable|string',
         'prov_ruc' => 'nullable|string|max:255|unique:proveedores,prov_ruc',
         'prov_direccion' => 'nullable|string',
         'prov_localidad' => 'nullable|string|max:255',
