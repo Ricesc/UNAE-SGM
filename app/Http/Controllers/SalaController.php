@@ -35,9 +35,7 @@ class SalaController extends AppBaseController
      * @return Response
      */
     public function index(SalaDataTable $salaDataTable)
-
     {
-
         return $salaDataTable->render('salas.index');
     }
 
@@ -71,7 +69,6 @@ class SalaController extends AppBaseController
         return view('salas.create', compact('dependencias', 'salasTipo', 'edificios', 'pisosPorEdificio', 'sectoresPorPiso'));
     }
 
-
     /**
      * Store a newly created Sala in storage.
      *
@@ -85,7 +82,7 @@ class SalaController extends AppBaseController
 
         $sala = $this->salaRepository->create($input);
 
-        Flash::success('Sala guardada exitosamente.');
+        Flash::success('Sala saved successfully.');
 
         return redirect(route('salas.index'));
     }
@@ -150,14 +147,7 @@ class SalaController extends AppBaseController
             ];
         });
 
-        return view('salas.edit', [
-            'sala' => $sala,
-            'dependencias' => $dependencias,
-            'salasTipo' => $salasTipo,
-            'edificios' => $edificios,
-            'pisosPorEdificio' => $pisosPorEdificio,
-            'sectoresPorPiso' => $sectoresPorPiso
-        ]);
+        return view('salas.edit', compact('dependencias', 'salasTipo', 'sala', 'edificios', 'pisosPorEdificio', 'sectoresPorPiso'));
     }
 
 
@@ -174,14 +164,14 @@ class SalaController extends AppBaseController
         $sala = $this->salaRepository->find($id);
 
         if (empty($sala)) {
-            Flash::error('Sala no encontrada');
+            Flash::error('Sala not found');
 
             return redirect(route('salas.index'));
         }
 
         $sala = $this->salaRepository->update($request->all(), $id);
 
-        Flash::success('Sala actualizada exitosamente.');
+        Flash::success('Sala updated successfully.');
 
         return redirect(route('salas.index'));
     }
@@ -198,14 +188,14 @@ class SalaController extends AppBaseController
         $sala = $this->salaRepository->find($id);
 
         if (empty($sala)) {
-            Flash::error('Sala no encontrada');
+            Flash::error('Sala not found');
 
             return redirect(route('salas.index'));
         }
 
         $this->salaRepository->delete($id);
 
-        Flash::success('Sala eliminada exitosamente.');
+        Flash::success('Sala deleted successfully.');
 
         return redirect(route('salas.index'));
     }
