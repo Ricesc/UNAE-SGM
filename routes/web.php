@@ -63,4 +63,10 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::resource('pisos', App\Http\Controllers\PisoController::class);
+
+    Route::get('bienes_tipos/autocomplete', [App\Http\Controllers\BienesTipoController::class, 'autocomplete'])->name('bienes_tipos.autocomplete');
+    Route::get('bienes_subtipos/autocomplete', [App\Http\Controllers\BienesSubTipoController::class, 'autocomplete'])->name('bienes_subtipos.autocomplete');
+
+    Route::get('/ingresos/{ingreso}/gestion-estados', [App\Http\Controllers\IngresoController::class, 'gestionEstados'])->name('ingresos.gestion-estados');
+    Route::post('/ingresos/{ingreso}/actualizar-estados', [App\Http\Controllers\IngresoController::class, 'actualizarEstados'])->name('ingresos.actualizar-estados');
 });

@@ -1,30 +1,33 @@
-<!-- Prov Id Field -->
-<div class="col-sm-12">
-    {!! Form::label('prov_id', 'Prov Id:') !!}
-    <p>{{ $ingreso->prov_id }}</p>
+<!-- Proveedor -->
+<div class="col-md-6 mb-3">
+    <h5><i class="fas fa-user"></i> Proveedor:</h5>
+    <p>{{ $ingreso->proveedor->prov_nombre }}</p>
 </div>
 
-<!-- Usu Id Field -->
-<div class="col-sm-12">
-    {!! Form::label('usu_id', 'Usu Id:') !!}
-    <p>{{ $ingreso->usu_id }}</p>
+<!-- Fecha de Compra -->
+<div class="col-md-6 mb-3">
+    <h5><i class="fas fa-calendar"></i> Fecha de Compra:</h5>
+    <p>{{ \Carbon\Carbon::parse($ingreso->ing_fecha_compra)->format('d/m/Y') }}</p>
 </div>
 
-<!-- Ing Fecha Compra Field -->
-<div class="col-sm-12">
-    {!! Form::label('ing_fecha_compra', 'Ing Fecha Compra:') !!}
-    <p>{{ $ingreso->ing_fecha_compra }}</p>
+<!-- Costo Total -->
+<div class="col-md-6 mb-3">
+    <h5><i class="fas fa-money-bill-wave"></i> Costo Total:</h5>
+    <p> {{ number_format($ingreso->ing_costo_total, 2) }}</p>
 </div>
 
-<!-- Ing Costo Total Field -->
-<div class="col-sm-12">
-    {!! Form::label('ing_costo_total', 'Ing Costo Total:') !!}
-    <p>{{ $ingreso->ing_costo_total }}</p>
+<!-- Responsable -->
+<div class="col-md-6 mb-3">
+    <h5><i class="fas fa-user-circle"></i> Responsable:</h5>
+    <p>{{ $ingreso->usu->name }}</p>
 </div>
 
-<!-- Ing Estado Field -->
-<div class="col-sm-12">
-    {!! Form::label('ing_estado', 'Ing Estado:') !!}
-    <p>{{ $ingreso->ing_estado }}</p>
+<!-- Estado del Ingreso -->
+<div class="col-md-6 mb-3">
+    <h5><i class="fas fa-info-circle"></i> Estado del Ingreso:</h5>
+    <p>
+        <span class="badge badge-{{ $ingreso->ing_estado == 0 ? 'warning' : 'success' }}">
+            {{ $ingreso->ing_estado == 0 ? 'Pendiente' : 'Procesado' }}
+        </span>
+    </p>
 </div>
-
