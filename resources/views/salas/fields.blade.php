@@ -137,7 +137,7 @@
     {!! Form::select('sect_id', $sala ?? [], $sala->sect_id ?? null, [
         'class' => 'form-control ' . ($errors->has('sect_id') ? 'is-invalid' : (old('sect_id') ? 'is-valid' : '')),
         'id' => 'sect_id',
-        'placeholder' => 'Seleccione un Piso'
+        'placeholder' => 'Seleccione un Sector'
     ]) !!}
     @if ($errors->has('sect_id'))
         <small class="text-danger">

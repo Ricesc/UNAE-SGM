@@ -7,6 +7,7 @@ use App\Http\Requests\CreateBienesTipoRequest;
 use App\Http\Requests\UpdateBienesTipoRequest;
 use App\Repositories\BienesTipoRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\BienesTipo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Laracasts\Flash\Flash;
@@ -32,6 +33,17 @@ class BienesTipoController extends AppBaseController
     {
         return $bienesTipoDataTable->render('bienes_tipos.index');
     }
+
+    public function autocomplete(Request $request)
+    {
+        $term = $request->get('term');
+        $tipos = BienesTipo::where('btip_descripcion', 'LIKE', "%{$term}%")
+            ->pluck('btip_descripcion')
+            ->toArray();
+
+        return response()->json($tipos);
+    }
+
 
     /**
      * Show the form for creating a new BienesTipo.

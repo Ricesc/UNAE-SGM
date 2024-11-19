@@ -85,13 +85,13 @@ class IngresosDet extends EloquentModel
      **/
     public function bsti()
     {
-        return $this->belongsTo(\App\Models\BienesTipoCambiarASubTipo::class, 'bsti_id');
+        return $this->belongsTo(\App\Models\BienesSubTipo::class, 'bsti_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function bienes()
+    public function bien()
     {
         return $this->hasMany(\App\Models\Bien::class, 'idet_id');
     }

@@ -23,7 +23,7 @@ class BienesSubTipoDataTable extends DataTable
                 return $this->getIndex($bienesSubTipo);
             })
             ->addColumn('btip_descripcion', function ($row) {
-                return $row->btip->btip_descripcion ?? 'Sin tipo de bien'; // Mostrar la descripción del tipo de bien
+                return $row->tipo->btip_descripcion ?? 'Sin tipo de bien'; // Mostrar la descripción del tipo de bien
             })->addColumn('action', 'bienes_sub_tipos.datatables_actions');
     }
 
@@ -35,7 +35,7 @@ class BienesSubTipoDataTable extends DataTable
      */
     public function query(BienesSubTipo $model)
     {
-        return $model->newQuery()->whereNull('deleted_at')->with('btip');
+        return $model->newQuery()->whereNull('deleted_at')->with('tipo');
     }
 
     /**

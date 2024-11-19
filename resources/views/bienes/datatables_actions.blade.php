@@ -4,10 +4,10 @@
         Acciones
     </button>
     <div class="dropdown-menu">
-        <a href="{{ route('salas.show', $bien_id) }}" class='dropdown-item'>
+        <a href="{{ route('bienes.show', $bien_id) }}" class='dropdown-item'>
             <i class="fa fa-eye"></i> Ver
         </a>
-        <a href="{{ route('salas.edit', $bien_id) }}" class='dropdown-item'>
+        <a href="{{ route('bienes.edit', $bien_id) }}" class='dropdown-item'>
             <i class="fa fa-edit"></i> Editar
         </a>
         <div class="dropdown-divider"></div>

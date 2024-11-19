@@ -79,7 +79,7 @@ class Ingreso extends EloquentModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function prov()
+    public function proveedor()
     {
         return $this->belongsTo(\App\Models\Proveedor::class, 'prov_id');
     }

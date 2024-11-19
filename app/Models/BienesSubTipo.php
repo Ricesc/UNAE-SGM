@@ -75,7 +75,7 @@ class BienesSubTipo extends EloquentModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function btip()
+    public function tipo()
     {
         return $this->belongsTo(\App\Models\BienesTipo::class, 'btip_id');
     }

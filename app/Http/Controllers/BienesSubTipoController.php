@@ -7,6 +7,7 @@ use App\Http\Requests\CreateBienesSubTipoRequest;
 use App\Http\Requests\UpdateBienesSubTipoRequest;
 use App\Repositories\BienesSubTipoRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\BienesSubTipo;
 use App\Models\BienesTipo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -34,6 +35,23 @@ class BienesSubTipoController extends AppBaseController
         return $bienesSubTipoDataTable->render('bienes_sub_tipos.index');
     }
 
+    public function autocomplete(Request $request)
+    {
+        $term = $request->get('term');
+        $tipo = $request->get('tipo');
+
+        $subtipos = BienesSubTipo::whereHas('tipo', function ($query) use ($tipo) {
+            $query->where('btip_descripcion', $tipo);
+        })
+            ->where('bsti_descripcion', 'LIKE', "%{$term}%")
+            ->distinct() // Evita duplicados
+            ->pluck('bsti_descripcion') // Solo toma las descripciones
+            ->toArray();
+
+        return response()->json($subtipos);
+    }
+
+
     /**
      * Show the form for creating a new BienesSubTipo.
      *
@@ -43,7 +61,7 @@ class BienesSubTipoController extends AppBaseController
     {
         $bienesTipos = BienesTipo::pluck('btip_descripcion', 'btip_id');  // Listado clave-valor
 
-        return view('bienes_sub_tipos.create')->with('btip', $bienesTipos);
+        return view('bienes_sub_tipos.create')->with('tipo', $bienesTipos);
     }
 
     /**

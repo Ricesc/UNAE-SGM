@@ -81,7 +81,7 @@ class Bien extends EloquentModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function btip()
+    public function subTipo()
     {
         return $this->belongsTo(\App\Models\BienesSubTipo::class, 'bsti_id');
     }
